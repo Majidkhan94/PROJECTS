@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:59148",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.Server\\..\\apexsound.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}
