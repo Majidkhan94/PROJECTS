@@ -1,8 +1,0 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/.vs
-/ApexSound/apexsound.client/obj/Debug
-/ApexSound/ApexSound.Server/bin/Debug/net8.0
-/ApexSound/ApexSound.Server/obj
