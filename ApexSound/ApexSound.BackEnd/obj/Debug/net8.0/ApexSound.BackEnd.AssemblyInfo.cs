@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApexSound.BackEnd")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d625b6ee969bf669d7d0e4b2e70446ff370cb636")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d415af455fffb12582490712157f72fbfb516ae")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApexSound.BackEnd")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApexSound.BackEnd")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
