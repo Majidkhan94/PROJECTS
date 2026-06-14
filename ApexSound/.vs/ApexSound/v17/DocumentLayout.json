@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|c:\\users\\majid\\desktop\\work\\apexsound\\apexsound.frontend\\features\\seperatorfeatures.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|solutionrelative:apexsound.frontend\\features\\seperatorfeatures.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|c:\\users\\majid\\desktop\\work\\apexsound\\apexsound.frontend\\src\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|solutionrelative:apexsound.frontend\\src\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +18,38 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\src\\style.css",
+              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\src\\style.css",
+              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\src\\style.css",
+              "RelativeToolTip": "ApexSound.FrontEnd\\src\\style.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-06-13T13:38:35.206Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SeperatorFeatures.jsx",
+              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Features\\SeperatorFeatures.jsx",
+              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\Features\\SeperatorFeatures.jsx",
+              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Features\\SeperatorFeatures.jsx",
+              "RelativeToolTip": "ApexSound.FrontEnd\\Features\\SeperatorFeatures.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-06-14T12:34:39.739Z",
+              "EditorCaption": ""
             }
           ]
         }

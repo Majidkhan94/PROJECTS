@@ -1,0 +1,18 @@
+﻿@import "tailwindcss";
+
+@theme {
+    --font-heading: 'Montserrat', sans-serif;
+    --font-para: 'Inter', sans-serif;
+    --color-button: #001478;
+    --color-buttonhover: #0727c7;
+    --color-paragraph: #5c5c5c;
+}
+
+@layer base{
+    p {
+        font-family: var( --font-para );
+        color: var( --color-paragraph )
+    }
+
+    body { font-family: var(--font-heading);}
+}
