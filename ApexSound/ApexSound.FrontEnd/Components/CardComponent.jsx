@@ -18,7 +18,7 @@ return(<>
    {CardData.map((item,index)=>{
         return(<>
 
-            <div key={index} className="flex w-90 flex-col rounded-md bg-black/3 md:w-70">
+            <div key={index} className="flex w-90 flex-col overflow-hidden rounded-lg bg-black/3 md:w-70">
                 <span className="flex w-full flex-1">
                     <img src = {item.Image} />
                 </span>

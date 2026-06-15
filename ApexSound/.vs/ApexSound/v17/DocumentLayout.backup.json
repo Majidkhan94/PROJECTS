@@ -3,28 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|c:\\users\\majid\\desktop\\work\\apexsound\\apexsound.frontend\\sections\\slidersection.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|solutionrelative:apexsound.frontend\\sections\\slidersection.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|c:\\users\\majid\\desktop\\work\\apexsound\\apexsound.frontend\\features\\buttonfeatures.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|solutionrelative:apexsound.frontend\\features\\buttonfeatures.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|c:\\users\\majid\\desktop\\work\\apexsound\\apexsound.frontend\\components\\footercomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|solutionrelative:apexsound.frontend\\components\\footercomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|c:\\users\\majid\\desktop\\work\\apexsound\\apexsound.frontend\\components\\headercomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|solutionrelative:apexsound.frontend\\components\\headercomponent.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|c:\\users\\majid\\desktop\\work\\apexsound\\apexsound.frontend\\features\\navlinkfeatures.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|solutionrelative:apexsound.frontend\\features\\navlinkfeatures.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|c:\\users\\majid\\desktop\\work\\apexsound\\apexsound.frontend\\sections\\featuredproductssection.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|solutionrelative:apexsound.frontend\\sections\\featuredproductssection.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|c:\\users\\majid\\desktop\\work\\apexsound\\apexsound.frontend\\sections\\perfectsoundsection.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|solutionrelative:apexsound.frontend\\sections\\perfectsoundsection.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BEED9DA8-D1BF-5CE8-6C64-82634EF25C39}|ApexSound.FrontEnd\\ApexSound.FrontEnd.esproj|c:\\users\\majid\\desktop\\work\\apexsound\\apexsound.frontend\\src\\pages\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -42,59 +22,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "style.css",
               "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\src\\style.css",
               "RelativeDocumentMoniker": "ApexSound.FrontEnd\\src\\style.css",
               "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\src\\style.css",
               "RelativeToolTip": "ApexSound.FrontEnd\\src\\style.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-06-13T13:38:35.206Z",
               "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SliderSection.jsx",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Sections\\SliderSection.jsx",
-              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\Sections\\SliderSection.jsx",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Sections\\SliderSection.jsx",
-              "RelativeToolTip": "ApexSound.FrontEnd\\Sections\\SliderSection.jsx",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAEkAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-06-14T11:36:37.754Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FooterComponent.jsx",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Components\\FooterComponent.jsx",
-              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\Components\\FooterComponent.jsx",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Components\\FooterComponent.jsx",
-              "RelativeToolTip": "ApexSound.FrontEnd\\Components\\FooterComponent.jsx",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAQwB8AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-06-14T11:35:08.148Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NavlinkFeatures.jsx",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Features\\NavlinkFeatures.jsx",
-              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\Features\\NavlinkFeatures.jsx",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Features\\NavlinkFeatures.jsx",
-              "RelativeToolTip": "ApexSound.FrontEnd\\Features\\NavlinkFeatures.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-06-14T11:33:54.417Z",
               "EditorCaption": ""
             },
             {
@@ -103,54 +44,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HeaderComponent.jsx",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Components\\HeaderComponent.jsx",
-              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\Components\\HeaderComponent.jsx",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Components\\HeaderComponent.jsx",
-              "RelativeToolTip": "ApexSound.FrontEnd\\Components\\HeaderComponent.jsx",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAQwEMAAAAiAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "PerfectSoundSection.jsx",
+              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Sections\\PerfectSoundSection.jsx",
+              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\Sections\\PerfectSoundSection.jsx",
+              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Sections\\PerfectSoundSection.jsx",
+              "RelativeToolTip": "ApexSound.FrontEnd\\Sections\\PerfectSoundSection.jsx",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-06-14T11:18:19.944Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Home.jsx",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\src\\Pages\\Home.jsx",
-              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\src\\Pages\\Home.jsx",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\src\\Pages\\Home.jsx",
-              "RelativeToolTip": "ApexSound.FrontEnd\\src\\Pages\\Home.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-06-14T10:54:04.217Z",
+              "WhenOpened": "2026-06-15T10:24:56.397Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ButtonFeatures.jsx",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Features\\ButtonFeatures.jsx",
-              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\Features\\ButtonFeatures.jsx",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Features\\ButtonFeatures.jsx",
-              "RelativeToolTip": "ApexSound.FrontEnd\\Features\\ButtonFeatures.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAbAAAAAAAAAA==",
+              "Title": "Home.jsx",
+              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\src\\Pages\\Home.jsx",
+              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\src\\Pages\\Home.jsx",
+              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\src\\Pages\\Home.jsx",
+              "RelativeToolTip": "ApexSound.FrontEnd\\src\\Pages\\Home.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-06-14T09:29:22.381Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FeaturedProductsSection.jsx",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Sections\\FeaturedProductsSection.jsx",
-              "RelativeDocumentMoniker": "ApexSound.FrontEnd\\Sections\\FeaturedProductsSection.jsx",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\Work\\ApexSound\\ApexSound.FrontEnd\\Sections\\FeaturedProductsSection.jsx",
-              "RelativeToolTip": "ApexSound.FrontEnd\\Sections\\FeaturedProductsSection.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-06-14T10:55:01.028Z",
+              "WhenOpened": "2026-06-15T06:40:59.073Z",
               "EditorCaption": ""
             }
           ]
