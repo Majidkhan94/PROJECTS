@@ -18,7 +18,7 @@ I am a Full-Stack Developer specializing in building robust backend solutions an
 
 ## Project Showcase
 
-### [ApexSound](link-to-repo)
+### [ApexSound]([link-to-repo](https://github.com/Majidkhan94/PROJECTS/tree/main/ApexSound))
 Full-stack admin/user management system with JWT authentication, refresh token rotation, and role-based access control. Built with ASP.NET Core, PostgreSQL, and React.
 
 ### PROJECT_2
