@@ -48,20 +48,20 @@ I containerize my applications using **Docker**, automate build/test/deploy pipe
 ## 📂 Project Showcase
 
 ### 🎵 [ApexSound](https://github.com/Majidkhan94/PROJECTS/tree/main/ApexSound)
-Full-stack admin/user management system with **JWT authentication**, **refresh token rotation**, and **role-based access control**.
-> **Tech Stack:** ASP.NET Core · PostgreSQL · React
+****
+> **Tech Stack:** ******
 
 ---
 
 ### 🏥 [Hospital Management System](https://github.com/Majidkhan94/PROJECTS/tree/main/HospitalManagement)
-A full-stack hospital management system for handling **patient records**, **appointment scheduling**, **doctor management**, and **role-based access control** (Admin, Doctor, Receptionist). Designed with a focus on data integrity and ease of use for hospital staff.
-> **Tech Stack:** ASP.NET Core · C# · SQL Server · Entity Framework Core
+**********************
+> **Tech Stack:** ************************
 
 ---
 
 ### 📋 [TaskFlow](https://github.com/Majidkhan94/PROJECTS/tree/main/TaskFlow)
-A **Trello/Jira-inspired** project management tool featuring drag-and-drop task boards, real-time status updates, and team collaboration support — built to streamline workflow tracking for small teams.
-> **Tech Stack:** React · Node.js · Express.js · MongoDB
+*******************************************
+> **Tech Stack:** *******************************
 
 ---
 
