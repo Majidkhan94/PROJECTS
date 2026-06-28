@@ -1,0 +1,49 @@
+## .NET / Visual Studio core
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+build/
+bld/
+
+# NuGet
+*.nupkg
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Rider/VS Code (optional, agar use karte ho)
+.idea/
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# launchSettings.json - is ko commit kar sakte ho, lekin agar secrets ya
+# local ports save hain to ignore kar do
+# Properties/launchSettings.json
+
+# Docker
+docker-compose.override.yml
+
+# OS junk
+.DS_Store
+Thumbs.db	
+
+.env
+.env.*
+!.env.example
+
+appsettings.Development.json
