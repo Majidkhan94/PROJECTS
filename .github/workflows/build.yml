@@ -2,20 +2,20 @@ name: Build Check
 
 on:
   push:
-    branches:["main"]
-  pulll_request:
-    branches:["main"]
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
-job:
+jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: action/checkout@v4
+      uses: actions/checkout@v4
 
     - name: Setup .NET
-      uses: action/ setup-dotnet@v4
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
 
@@ -23,4 +23,4 @@ job:
       run: dotnet restore ApexSound-BackEnd/ApexSound-BackEnd.csproj
 
     - name: Build
-      run: dotnet build ApexSound-BackEnd/ApexSound-BackEnd.csproj --no-restore --configuration Release      
+      run: dotnet build ApexSound-BackEnd/ApexSound-BackEnd.csproj --no-restore --configuration Release
