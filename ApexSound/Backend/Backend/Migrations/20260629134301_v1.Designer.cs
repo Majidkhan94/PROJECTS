@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(ConnectionString))]
-    [Migration("20260629112453_initialcreate")]
-    partial class initialcreate
+    [Migration("20260629134301_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,7 +43,7 @@ namespace Backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("Createdat")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DateOfBirth")
                         .HasColumnType("text");

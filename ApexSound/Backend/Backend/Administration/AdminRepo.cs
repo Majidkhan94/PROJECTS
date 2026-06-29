@@ -3,15 +3,18 @@ using Backend.ConnectionStrings;
 using BCrypt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Backend.Services;
+
 namespace Backend.Administration
 {
     public class AdminRepo : IAdminRepo
     {
         private readonly ConnectionString _connectionstring;
-
-        public AdminRepo(ConnectionString connectionstring)
+        private readonly Token _token;
+        public AdminRepo(ConnectionString connectionstring, Token token)
         {
             this._connectionstring = connectionstring;
+            this._token = token;
         }
 
         // Registeration
@@ -29,10 +32,8 @@ namespace Backend.Administration
 
 
             // Tokens
-
-
-
-
+            var accesstoken = Token.GenerateAccessToken(adminregisteration.Email);
+            var refreshtoken = Token.GenerateRefreshToken();
 
 
 
@@ -45,7 +46,10 @@ namespace Backend.Administration
                 Email = adminregisteration.Email.Trim().ToLower(),
                 Password = BCrypt.Net.BCrypt.HashPassword(adminregisteration.Password),
                 role = AuthModel.Role.Admin,
-                Createdat = DateTime.UtcNow
+                Createdat = DateTime.UtcNow,
+                Refreshtoken = refreshtoken,
+                Refreshtokenexpiry = DateTime.UtcNow.AddDays(7),
+                
             };
 
             // 4. Database Save
@@ -54,7 +58,10 @@ namespace Backend.Administration
 
             return new AdminModelDTO
             {
-                Fullname = adminData.Fullname
+                Fullname = adminData.Fullname,
+                Email = adminData.Email.Trim().ToLower(),
+                Accesstoken = accesstoken,
+                Refreshtoken = refreshtoken
             };
         }
 

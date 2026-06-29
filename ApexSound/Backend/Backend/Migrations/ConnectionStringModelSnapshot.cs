@@ -40,7 +40,7 @@ namespace Backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("Createdat")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DateOfBirth")
                         .HasColumnType("text");

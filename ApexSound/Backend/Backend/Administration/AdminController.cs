@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Administration
 {
@@ -23,12 +24,11 @@ namespace Backend.Administration
                 {
                     return BadRequest(new { message = "Admin Registeration Failed" });
                 }
-                return Ok(new { message = "Admin Registeration Successfully" });
+                return Ok(new { message = "Admin Registeration Successfully", Details = AdminData });
             }
-            catch (Exception ex)
+            catch (DbUpdateException ex)
             {
-                return BadRequest(new { message = ex.Message });
-
+               return BadRequest(new { message = ex.Message });
             }
 
 

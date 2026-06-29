@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class initialcreate : Migration
+    public partial class v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,7 +30,7 @@ namespace Backend.Migrations
                     role = table.Column<string>(type: "text", nullable: true),
                     Refreshtoken = table.Column<string>(type: "text", nullable: true),
                     Refreshtokenexpiry = table.Column<DateTime>(type: "timestamp", nullable: true),
-                    Createdat = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    Createdat = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
                 {

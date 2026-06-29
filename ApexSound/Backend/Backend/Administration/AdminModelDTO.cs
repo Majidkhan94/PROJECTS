@@ -17,7 +17,10 @@ namespace Backend.Administration
         [NotMapped]
         [Compare("Password", ErrorMessage = "Password not match")]
         public string? Confirmpassword { get; set; }
-        
+
+        public string? Accesstoken { get; set; }
+        public string? Refreshtoken { get; set; }
+
     }
 }
 
