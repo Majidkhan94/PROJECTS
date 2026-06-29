@@ -1,6 +1,0 @@
-@ApexSound_BackEnd_HostAddress = http://localhost:5110
-
-GET {{ApexSound_BackEnd_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
