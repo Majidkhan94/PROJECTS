@@ -4,8 +4,8 @@ namespace Backend.Administration
 {
     public interface IAdminRepo
     {
-        Task<AdminModelDTO> AdminRegisteration(AdminModelDTO adminregisteration);
-        Task<AdminModelDTO> AdminLogin(AdminModelDTO adminlogin);
-        Task<AuthModel> Refreshtoken(AuthModel authmodel);
+        Task<AdminRegDTO> AdminRegisteration(AdminRegDTO adminregisteration);
+        Task<AdminLogDTO> AdminLogin(AdminLogDTO adminlogin);
+        
     }
 }

@@ -4,6 +4,8 @@ using BCrypt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Backend.Services;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Administration
 {
@@ -17,8 +19,9 @@ namespace Backend.Administration
             this._token = token;
         }
 
-        // Registeration
-        public async Task<AdminModelDTO> AdminRegisteration(AdminModelDTO adminregisteration)
+        //////////////////// Registeration ////////////////////
+        
+        public async Task<AdminRegDTO> AdminRegisteration(AdminRegDTO adminregisteration)
         {
             // Role Check
             var ExistAdmin = await _connectionstring.Registeration.FirstOrDefaultAsync(r => r.role == AuthModel.Role.Admin);
@@ -29,14 +32,9 @@ namespace Backend.Administration
             if (adminregisteration.Password != adminregisteration.Confirmpassword) 
             throw new Exception("Password Not Match");
 
-
-
             // Tokens
             var accesstoken = Token.GenerateAccessToken(adminregisteration.Email);
             var refreshtoken = Token.GenerateRefreshToken();
-
-
-
 
             // Mapping
 
@@ -56,7 +54,7 @@ namespace Backend.Administration
             await _connectionstring.Registeration.AddAsync(adminData);
             await _connectionstring.SaveChangesAsync();
 
-            return new AdminModelDTO
+            return new AdminRegDTO
             {
                 Fullname = adminData.Fullname,
                 Email = adminData.Email.Trim().ToLower(),
@@ -66,16 +64,35 @@ namespace Backend.Administration
         }
 
 
-        public Task<AdminModelDTO> AdminLogin(AdminModelDTO adminlogin)
-        {
-            throw new NotImplementedException();
-        }
-
+        //////////////////// Admin Login ////////////////////
         
-
-        public Task<AuthModel> Refreshtoken(AuthModel authmodel)
+        public async Task<AdminLogDTO> AdminLogin(AdminLogDTO adminlogin)
         {
-            throw new NotImplementedException();
+
+            // Email and Password
+
+            var ExistEmail = await _connectionstring.Registeration.FirstOrDefaultAsync(E => E.Email == adminlogin.Email);
+
+            if (ExistEmail == null) return null;
+
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(adminlogin.Password, ExistEmail.Password);
+            if (!isPasswordValid) return null;
+
+            // Token
+
+            var accesstoken = Token.GenerateAccessToken(adminlogin.Email);
+            var refreshtoken = Token.GenerateRefreshToken();
+
+            await _connectionstring.SaveChangesAsync();
+
+            return new AdminLogDTO
+            {
+                Email = ExistEmail.Email,
+                Accesstoken = accesstoken,
+                Refreshtoken = refreshtoken
+                
+            };
         }
+
     }
 }

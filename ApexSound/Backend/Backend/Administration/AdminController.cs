@@ -14,7 +14,7 @@ namespace Backend.Administration
         }
 
         [HttpPost("registeration")]
-        public async Task<IActionResult> AdminRegisteration([FromBody] AdminModelDTO adminregisteration)
+        public async Task<IActionResult> AdminRegisteration([FromBody] AdminRegDTO adminregisteration)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             try
@@ -26,14 +26,31 @@ namespace Backend.Administration
                 }
                 return Ok(new { message = "Admin Registeration Successfully", Details = AdminData });
             }
-            catch (DbUpdateException ex)
+            catch (Exception ex)
             {
                return BadRequest(new { message = ex.Message });
             }
-
-
-
-
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> AdminLogin(AdminLogDTO adminlogin)
+        {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                var Admin = _adminRepo.AdminLogin(adminlogin);
+                if(Admin == null)
+                {
+                    return BadRequest(new { message = "Admin Login Failed" });
+                }
+                return Ok(new { message = "Admin Login Successfully", Details = Admin });
+            }
+            catch (Exception ex) {return BadRequest(new { message = ex.Message }); }
+        }
+
+
+
+
+
     }
 }
