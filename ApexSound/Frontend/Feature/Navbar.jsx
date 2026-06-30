@@ -4,7 +4,7 @@ export const Navbar = ({ text, to, onClick }) => {
   return (
     <NavLink 
       to={to}
-      onclick={onClick} 
+      onClick={onClick} 
       className={({ isActive }) => 
         `inline-block transition-all duration-300 font-main text-sm tracking-tight
         ${isActive 
