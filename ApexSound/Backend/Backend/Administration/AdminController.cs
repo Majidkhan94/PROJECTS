@@ -33,7 +33,7 @@ namespace Backend.Administration
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> AdminLogin(AdminLogDTO adminlogin)
+        public async Task<IActionResult> AdminLogin([FromBody] AdminLogDTO adminlogin)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
