@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #121212;
+  --color-hover-bg: #b7b7b7;
+
+  --font-main: 'General Sans', sans-serif;
+}
+
+
+
+
+/* Global Styles */
+body {
+  background-color: var(--color-brand-bg);
+  color: white;
+}

@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Layout } from "../Layout/Layout.jsx";
+import { Customerlayout } from "../Layout/Customerlayout.jsx";
 import {AdminRegisteration} from "../src/Administration/AdminRegisteration.jsx";
 import {AdminLogin} from "../src/Administration/AdminLogin.jsx";
 import {AdminDashboard} from "../src/Administration/AdminDashboard.jsx";
@@ -9,7 +9,7 @@ export const Routing = () => {
     return (<>
         
         <Routes>
-            <Route path="" element={<Layout />} >
+            <Route path="" element={<Customerlayout />} >
 
                 {/* Administration */}
                 
