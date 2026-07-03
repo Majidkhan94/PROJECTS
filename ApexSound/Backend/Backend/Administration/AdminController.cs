@@ -38,7 +38,7 @@ namespace Backend.Administration
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
             {
-                var Admin = _adminRepo.AdminLogin(adminlogin);
+                var Admin = await _adminRepo.AdminLogin(adminlogin);
                 if(Admin == null)
                 {
                     return BadRequest(new { message = "Admin Login Failed" });

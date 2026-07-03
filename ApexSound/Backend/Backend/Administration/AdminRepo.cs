@@ -89,8 +89,8 @@ namespace Backend.Administration
             {
                 Email = ExistEmail.Email,
                 Accesstoken = accesstoken,
-                Refreshtoken = refreshtoken
-                
+                Refreshtoken = refreshtoken,
+                Role = ExistEmail.role.ToString()
             };
         }
 
