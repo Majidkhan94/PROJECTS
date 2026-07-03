@@ -8,17 +8,32 @@ using System.Text;
 
 
 
+
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 
-// DB COnnection
+// DB Connection
 DotNetEnv.Env.Load();
 var Connect = Environment.GetEnvironmentVariable("DATABASE_CONNECTION");
 builder.Services.AddDbContext<ConnectionString>(C => C.UseNpgsql(Connect));
 
+
+// CORS
+DotNetEnv.Env.Load();
+var frontendUrl = Environment.GetEnvironmentVariable("FRONTEND_URL").TrimEnd('/');
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins(frontendUrl!)
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
 
 builder.Services.AddControllers();
 
@@ -45,6 +60,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 app.UseHttpsRedirection();
+app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 

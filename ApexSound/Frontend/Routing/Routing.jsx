@@ -8,14 +8,19 @@ import {AdminDashboard} from "../src/Administration/AdminDashboard.jsx";
 export const Routing = () => {
     return (<>
         
-        <Routes>
-            <Route path="" element={<Customerlayout />} >
-
-                {/* Administration */}
                 
+
+
+
+
+        <Routes>
+                            {/* Administration */}
             <Route path="admin/registeration" element={<AdminRegisteration />} />
             <Route path="admin/login" element={<AdminLogin />} />
             <Route path="admin/dashboard" element={<AdminDashboard />} />
+
+
+            <Route path="" element={<Customerlayout />} >
 
 
 
