@@ -20,6 +20,7 @@ namespace Backend.Administration
 
         public string? Accesstoken { get; set; }
         public string? Refreshtoken { get; set; }
+        public string? Role { get; set; }
 
     }
     public class AdminLogDTO

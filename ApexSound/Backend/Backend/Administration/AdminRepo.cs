@@ -33,7 +33,7 @@ namespace Backend.Administration
             throw new Exception("Password Not Match");
 
             // Tokens
-            var accesstoken = Token.GenerateAccessToken(adminregisteration.Email);
+            var accesstoken = Token.GenerateAccessToken(adminregisteration.Email, AuthModel.Role.Admin.ToString());
             var refreshtoken = Token.GenerateRefreshToken();
 
             // Mapping
@@ -59,7 +59,8 @@ namespace Backend.Administration
                 Fullname = adminData.Fullname,
                 Email = adminData.Email.Trim().ToLower(),
                 Accesstoken = accesstoken,
-                Refreshtoken = refreshtoken
+                Refreshtoken = refreshtoken,
+                Role = adminData.role.ToString()
             };
         }
 
@@ -80,7 +81,7 @@ namespace Backend.Administration
 
             // Token
 
-            var accesstoken = Token.GenerateAccessToken(adminlogin.Email);
+            var accesstoken = Token.GenerateAccessToken(adminlogin.Email, AuthModel.Role.Admin.ToString());
             var refreshtoken = Token.GenerateRefreshToken();
 
             await _connectionstring.SaveChangesAsync();

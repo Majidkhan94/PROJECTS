@@ -9,14 +9,20 @@ namespace Backend.Services
 {
     public class Token
     {
-        public static string GenerateAccessToken(string email)
+        public static string GenerateAccessToken(string email, string role)
         {
             var Key   = Environment.GetEnvironmentVariable("ACCESS_TOKEN");
             var Bytes = Encoding.ASCII.GetBytes(Key);
 
+            var Claims = new[]
+     {
+        new Claim(ClaimTypes.Name, email),
+        new Claim(ClaimTypes.Role, role)
+    };
+
             var TokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, email) }),
+                Subject = new ClaimsIdentity(Claims),
                 Expires = DateTime.UtcNow.AddMinutes(15),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Bytes), SecurityAlgorithms.HmacSha256Signature)
             };

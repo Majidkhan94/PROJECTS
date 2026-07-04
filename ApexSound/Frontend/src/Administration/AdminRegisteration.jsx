@@ -5,6 +5,7 @@ import { Button } from "../../Feature/Button.jsx";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
 export const AdminRegisteration = () => {
@@ -44,7 +45,7 @@ export const AdminRegisteration = () => {
     setFormData((prevData) => ({...prevData, [name]: value}))};
 
     // Submit Form Data to Backend
-
+    const navigate =  useNavigate();
     const handleSubmit = async (e) => {
       e.preventDefault();
       setError(null);
@@ -71,12 +72,15 @@ export const AdminRegisteration = () => {
     try{
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}admin/registeration`, formData);
       setSuccess("Registration successful!");
+      localStorage.setItem("accessToken", response.data.details.accesstoken);
+      localStorage.setItem("role", response.data.details.role);
       setFormData({
         Fullname: "",
         Email: "",
         Password: "",
         Confirmpassword: ""
       });
+      navigate("/admin/dashboard");
     }
     catch(err){
       setError(err.response?.data?.message || "Registration failed.");

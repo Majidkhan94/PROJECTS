@@ -18,7 +18,7 @@ export const Routing = () => {
 
             {/* Protected routes - role based */}
             <Route path="admin/dashboard" element={
-                <ProtectedRoute allowedRole="admin">
+                <ProtectedRoute allowedRole="Admin">
                     <AdminDashboard />
                 </ProtectedRoute>}/>
 
