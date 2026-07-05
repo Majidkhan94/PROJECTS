@@ -2,8 +2,12 @@ name: Apexsound_Backend
 on:
   push:
     branches: ["main"]
+    paths:
+      - 'ApexSound/Backend/**'
   pull_request:
     branches: ["main"]
+    paths:
+      - 'ApexSound/Backend/**'
 jobs:
   build:
     runs-on: ubuntu-latest
