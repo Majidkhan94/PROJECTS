@@ -18,7 +18,7 @@ jobs:
         dotnet-version: '8.0.x'
     
     - name: Restore dependencies
-      run: dotnet restore ApexSound\Backend\Backend.csproj
+      run: dotnet restore ApexSound/Backend/Backend/Backend.csproj
     
     - name: Build
-      run: dotnet build ApexSound\Backend\Backend.csproj --no-restore --configuration Release
+      run: dotnet build ApexSound/Backend/Backend/Backend.csproj --no-restore --configuration Release
