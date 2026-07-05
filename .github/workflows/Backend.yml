@@ -22,3 +22,27 @@ jobs:
     
     - name: Build
       run: dotnet build ApexSound/Backend/Backend/Backend.csproj --no-restore --configuration Release
+
+  docker-build-push:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and Push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ApexSound/Backend/Backend
+        push: true
+        tags: |
+          majidkhan05/apexsound_backend:latest
+          majidkhan05/apexsound_backend:${{ github.sha }}
