@@ -23,12 +23,15 @@ builder.Services.AddDbContext<ConnectionString>(C => C.UseNpgsql(Connect));
 
 // CORS
 DotNetEnv.Env.Load();
-var frontendUrl = Environment.GetEnvironmentVariable("FRONTEND_URL").TrimEnd('/');
+var frontendUrls = Environment.GetEnvironmentVariable("FRONTEND_URL")
+    ?.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+    ?? Array.Empty<string>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins(frontendUrl!)
+        policy.WithOrigins(frontendUrls)
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
