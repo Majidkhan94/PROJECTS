@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FiGrid, FiUsers, FiShoppingBag, FiBox, FiShoppingCart, FiClipboard } from "react-icons/fi";
 import Logo from "../../Public/Logo.png"
+import { Link } from "react-router-dom";
 
 const Navbar = ({ text, icon: Icon, isActive, onClick }) => {
   return (
@@ -81,17 +82,19 @@ export const AdminDashboard = () => {
         </div>
 
         {/* 3. Profile */}
-        <div className="flex items-center gap-3 px-6 py-4 border-t border-gray-800">
-          <img
-            src={admin?.profilePictureUrl || "https://i.pravatar.cc/40?img=12"}
-            alt="Admin"
-            className="w-10 h-10 rounded-full object-cover"
+        <Link to="/admin/adminprofileupdate">
+          <div className="flex items-center gap-3 px-6 py-4 border-t border-gray-800">
+            <img
+              src={admin?.profilePictureUrl || "https://i.pravatar.cc/40?img=12"}
+              alt="Admin"
+              className="w-10 h-10 rounded-full object-cover"
           />
-          <div>
-            <p className="text-sm font-medium text-white">{admin?.fullname || "Loading..."}</p>
-            <p className="text-xs text-gray-400">{admin?.role || ""}</p>
+            <div>
+              <p className="text-sm font-medium text-white">{admin?.fullname || "Loading..."}</p>
+              <p className="text-xs text-gray-400">{admin?.role || ""}</p>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* Right_Side */}

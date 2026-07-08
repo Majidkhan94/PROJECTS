@@ -109,7 +109,17 @@ namespace Backend.Administration
                 var UploadImage = await _cloudinary.UploadImage(AdminUpdate.ProfilePictureUrl, "AdminProfilePicture");
                 UpdateAdmin.ProfilePictureUrl = UploadImage;
             }
+            // Password Update
+            if (!string.IsNullOrWhiteSpace(AdminUpdate.Password))
+            {
+                if (AdminUpdate.Password != AdminUpdate.Confirmpassword)
+                    throw new Exception("Password Not Match");
 
+                UpdateAdmin.Password = BCrypt.Net.BCrypt.HashPassword(AdminUpdate.Password);
+            }
+
+            UpdateAdmin.Fullname = AdminUpdate.Fullname ?? UpdateAdmin.Fullname;
+            UpdateAdmin.Email = AdminUpdate.Email ?? UpdateAdmin.Email;
             UpdateAdmin.Age = AdminUpdate.Age ?? UpdateAdmin.Age;
             UpdateAdmin.PhoneNumber = AdminUpdate.PhoneNumber ?? UpdateAdmin.PhoneNumber;
             UpdateAdmin.Address = AdminUpdate.Address ?? UpdateAdmin.Address;
