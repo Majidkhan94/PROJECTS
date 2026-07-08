@@ -2,14 +2,11 @@ import { useState, useEffect } from "react";
 import { FiGrid, FiUsers, FiShoppingBag, FiBox, FiShoppingCart, FiClipboard, } from "react-icons/fi";
 
 const Navbar = ({ text, icon: Icon, isActive, onClick }) => {
-  return ( <button onClick={onClick}
-      className={`flex items-center gap-3 px-4 py-3 mx-1 rounded-4xl text-left hover:bg-hover-bg hover:text-white
-        ${isActive ? "bg-hover-bg text-white" : "bg-brand-bg text-white"}`} >
-      {Icon && <Icon size={18} />}
-      {text}
-    </button>
-  );};
+  return ( <button onClick={onClick} className={`flex items-center gap-3 px-4 py-3 mx-1 rounded-4xl text-left hover:bg-hover-bg hover:text-white
+        ${isActive ? "bg-hover-bg text-white" : "bg-brand-bg text-white"}`}>
+      {Icon && <Icon size={18} />} {text} </button> );};
 
+                                // Left Section Data
 const Data = [
   { key: "dashboard", text: "Dashboard", icon: FiGrid },
   { key: "users", text: "Users Management", icon: FiUsers },
@@ -19,20 +16,22 @@ const Data = [
   { key: "orders", text: "Orders Management", icon: FiClipboard },
 ];
 
-// Har section ke enter hone par translate-y ko 100% se 0 tak transition karta hai
+// Right Section Slide
 const Section = ({ className, children }) => {
   const [show, setShow] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => setShow(true), 10);
-    return () => clearTimeout(timer);
-  }, []);
+  
+  useEffect(() => { const timer = setTimeout(() => setShow(true), 10);
+    return () => clearTimeout(timer); }, []);
 
-  return (
-    <div className={`${className} w-full h-full transition-all duration-[1000ms]
-        ${show ? "translate-y-0" : "translate-y-full"}`}>
-      {children}
-    </div>
-  );};
+  return ( <div className={`${className} w-full h-full transition-all duration-[1000ms]
+        ${show ? "translate-y-0" : "translate-y-full"}`}> {children} </div> );};
+
+// Right Section Dashboard Card
+
+
+
+
+
 
 export const AdminDashboard = () => {
   const [active, setActive] = useState("dashboard");

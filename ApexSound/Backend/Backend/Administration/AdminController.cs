@@ -13,18 +13,20 @@ namespace Backend.Administration
             this._adminRepo = adminRepo;
         }
 
+            // Registeration
+
         [HttpPost("registeration")]
         public async Task<IActionResult> AdminRegisteration([FromBody] AdminRegDTO adminregisteration)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             try
             {
-                var AdminData = await _adminRepo.AdminRegisteration(adminregisteration);
-                if (AdminData == null)
+                var Adminreg = await _adminRepo.AdminRegisteration(adminregisteration);
+                if (Adminreg == null)
                 {
                     return BadRequest(new { message = "Admin Registeration Failed" });
                 }
-                return Ok(new { message = "Admin Registeration Successfully", Details = AdminData });
+                return Ok(new { message = "Admin Registeration Successfully", Details = Adminreg });
             }
             catch (Exception ex)
             {
@@ -32,23 +34,49 @@ namespace Backend.Administration
             }
         }
 
+            // Login
+
         [HttpPost("login")]
         public async Task<IActionResult> AdminLogin([FromBody] AdminLogDTO adminlogin)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
             {
-                var Admin = await _adminRepo.AdminLogin(adminlogin);
-                if(Admin == null)
+                var Adminlogin = await _adminRepo.AdminLogin(adminlogin);
+                if(adminlogin == null)
                 {
                     return BadRequest(new { message = "Admin Login Failed" });
                 }
-                return Ok(new { message = "Admin Login Successfully", Details = Admin });
+                return Ok(new { message = "Admin Login Successfully", Details = Adminlogin });
             }
             catch (Exception ex) {return BadRequest(new { message = ex.Message }); }
         }
 
+        // Update
 
+        [HttpPost("update/{Id}")]
+        public async Task<IActionResult> AdminUpdate(int Id, [FromForm] AdminUpdateDTO adminupdate)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                await _adminRepo.AdminUpdate(Id, adminupdate);
+                return Ok(new { message = "Admin Updated Successfully" });
+            }
+            catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
+        }
+
+        // Get in Dashbord
+        [HttpGet("profile/{Id}")]
+        public async Task<IActionResult> AdminProfile(int Id)
+        {
+            try
+            {
+                var profile = await _adminRepo.AdminProfile(Id);
+                return Ok(profile);
+            }
+            catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
+        }
 
 
 

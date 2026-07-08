@@ -22,12 +22,14 @@ namespace Backend.Models
         public string? City { get; set; }
         public string? Gender { get; set; }
         public string? DateOfBirth { get; set; }
-        public Role? role { get; set; } 
+        public Role? role { get; set; }
         public string? Refreshtoken { get; set; }
         
         [Column(TypeName = "timestamp")]
         public DateTime? Refreshtokenexpiry { get; set; }
         public DateTime? Createdat { get; set; }
+        public string? ProfilePictureUrl { get; set; }
+
 
     }
 }

@@ -6,23 +6,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-
-
-
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
+// Load ENV File
+DotNetEnv.Env.Load();
 
 // DB Connection
-DotNetEnv.Env.Load();
 var Connect = Environment.GetEnvironmentVariable("DATABASE_CONNECTION");
 builder.Services.AddDbContext<ConnectionString>(C => C.UseNpgsql(Connect));
 
-
 // CORS
-DotNetEnv.Env.Load();
 var frontendUrls = Environment.GetEnvironmentVariable("FRONTEND_URL")
     ?.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
     ?? Array.Empty<string>();
@@ -40,12 +36,10 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 
-
-
 // Scope
 builder.Services.AddScoped<IAdminRepo, AdminRepo>();
 builder.Services.AddScoped<Token>();
-
+builder.Services.AddScoped<ICloudinary, Cloudinary>();
 
 // JWT TOKEN 
 
