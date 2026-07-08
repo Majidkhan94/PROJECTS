@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Administration
@@ -13,8 +14,7 @@ namespace Backend.Administration
             this._adminRepo = adminRepo;
         }
 
-            // Registeration
-
+        // Registeration
         [HttpPost("registeration")]
         public async Task<IActionResult> AdminRegisteration([FromBody] AdminRegDTO adminregisteration)
         {
@@ -30,55 +30,58 @@ namespace Backend.Administration
             }
             catch (Exception ex)
             {
-               return BadRequest(new { message = ex.Message });
+                return BadRequest(new { message = ex.Message });
             }
         }
 
-            // Login
-
+        // Login
         [HttpPost("login")]
         public async Task<IActionResult> AdminLogin([FromBody] AdminLogDTO adminlogin)
         {
-            if(!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             try
             {
                 var Adminlogin = await _adminRepo.AdminLogin(adminlogin);
-                if(adminlogin == null)
+                if (Adminlogin == null)
                 {
                     return BadRequest(new { message = "Admin Login Failed" });
                 }
                 return Ok(new { message = "Admin Login Successfully", Details = Adminlogin });
             }
-            catch (Exception ex) {return BadRequest(new { message = ex.Message }); }
+            catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
         }
 
-        // Update
-
-        [HttpPost("update/{Id}")]
-        public async Task<IActionResult> AdminUpdate(int Id, [FromForm] AdminUpdateDTO adminupdate)
+        [Authorize]
+        [HttpPost("update")]
+        public async Task<IActionResult> AdminUpdate([FromForm] AdminUpdateDTO adminupdate)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             try
             {
+                var idClaim = User.FindFirst("Id")?.Value;
+                if (idClaim == null) return Unauthorized(new { message = "Invalid token" });
+                int Id = int.Parse(idClaim);
+
                 await _adminRepo.AdminUpdate(Id, adminupdate);
                 return Ok(new { message = "Admin Updated Successfully" });
             }
             catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
         }
 
-        // Get in Dashbord
-        [HttpGet("profile/{Id}")]
-        public async Task<IActionResult> AdminProfile(int Id)
+        [Authorize]
+        [HttpGet("profile")]
+        public async Task<IActionResult> AdminProfile()
         {
             try
             {
+                var idClaim = User.FindFirst("Id")?.Value;
+                if (idClaim == null) return Unauthorized(new { message = "Invalid token" });
+                int Id = int.Parse(idClaim);
+
                 var profile = await _adminRepo.AdminProfile(Id);
                 return Ok(profile);
             }
             catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
         }
-
-
-
     }
 }

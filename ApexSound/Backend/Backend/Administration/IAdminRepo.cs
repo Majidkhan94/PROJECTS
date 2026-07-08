@@ -7,7 +7,7 @@ namespace Backend.Administration
         Task<AdminRegDTO> AdminRegisteration(AdminRegDTO adminregisteration);
         Task<AdminLogDTO> AdminLogin(AdminLogDTO adminlogin);
         Task<AdminUpdateDTO> AdminUpdate(int Id, AdminUpdateDTO AdminUpdate);
-        Task<AdminProfileDTO> AdminProfile(int Id);
+        Task<AdminProfileDTO> AdminProfile(int Id); // Get Details of Admin Profile
 
     }
 }

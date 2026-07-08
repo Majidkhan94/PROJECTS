@@ -9,15 +9,16 @@ namespace Backend.Services
 {
     public class Token
     {
-        public static string GenerateAccessToken(string email, string role)
+        public static string GenerateAccessToken(int Id,string email, string role)
         {
             var Key   = Environment.GetEnvironmentVariable("ACCESS_TOKEN");
             var Bytes = Encoding.ASCII.GetBytes(Key);
 
             var Claims = new[]
      {
-        new Claim(ClaimTypes.Name, email),
-        new Claim(ClaimTypes.Role, role)
+                new Claim("Id",Id.ToString()),
+                new Claim(ClaimTypes.Name, email),
+                new Claim(ClaimTypes.Role, role)
     };
 
             var TokenDescriptor = new SecurityTokenDescriptor
@@ -39,17 +40,6 @@ namespace Backend.Services
                 return Convert.ToBase64String(randomNumber);
             }
         }
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

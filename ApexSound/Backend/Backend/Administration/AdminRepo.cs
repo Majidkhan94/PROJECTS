@@ -34,12 +34,7 @@ namespace Backend.Administration
             if (adminregisteration.Password != adminregisteration.Confirmpassword)
                 throw new Exception("Password Not Match");
 
-            // Tokens
-            var accesstoken = Token.GenerateAccessToken(adminregisteration.Email, AuthModel.Role.Admin.ToString());
-            var refreshtoken = Token.GenerateRefreshToken();
-
             // Mapping
-
             var adminData = new AuthModel()
             {
                 Fullname = adminregisteration.Fullname.Trim(),
@@ -47,49 +42,52 @@ namespace Backend.Administration
                 Password = BCrypt.Net.BCrypt.HashPassword(adminregisteration.Password),
                 role = AuthModel.Role.Admin,
                 Createdat = DateTime.UtcNow,
-                Refreshtoken = refreshtoken,
                 Refreshtokenexpiry = DateTime.UtcNow.AddDays(7),
-
             };
 
-            // 4. Database Save
+            // Database Save (pehle save, taake Id generate ho jaye)
             await _connectionstring.Registeration.AddAsync(adminData);
+            await _connectionstring.SaveChangesAsync();
+
+            // Tokens (ab adminData.Id available hai)
+            var accesstoken = Token.GenerateAccessToken(adminData.Id, adminData.Email, AuthModel.Role.Admin.ToString());
+            var refreshtoken = Token.GenerateRefreshToken();
+
+            // Refresh token DB mein save karein
+            adminData.Refreshtoken = refreshtoken;
             await _connectionstring.SaveChangesAsync();
 
             return new AdminRegDTO
             {
                 Fullname = adminData.Fullname,
-                Email = adminData.Email.Trim().ToLower(),
+                Email = adminData.Email,
                 Accesstoken = accesstoken,
                 Refreshtoken = refreshtoken,
                 Role = adminData.role.ToString()
             };
         }
 
-
         //////////////////// Admin Login ////////////////////
 
         public async Task<AdminLogDTO> AdminLogin(AdminLogDTO adminlogin)
         {
-
             // Email and Password
-
             var ExistEmail = await _connectionstring.Registeration.FirstOrDefaultAsync(E => E.Email == adminlogin.Email);
-
             if (ExistEmail == null) return null;
 
             bool isPasswordValid = BCrypt.Net.BCrypt.Verify(adminlogin.Password, ExistEmail.Password);
             if (!isPasswordValid) return null;
 
             // Token
-
-            var accesstoken = Token.GenerateAccessToken(adminlogin.Email, AuthModel.Role.Admin.ToString());
+            var accesstoken = Token.GenerateAccessToken(ExistEmail.Id, ExistEmail.Email, AuthModel.Role.Admin.ToString());
             var refreshtoken = Token.GenerateRefreshToken();
 
+            ExistEmail.Refreshtoken = refreshtoken;
             await _connectionstring.SaveChangesAsync();
 
             return new AdminLogDTO
             {
+                Id = ExistEmail.Id,
                 Email = ExistEmail.Email,
                 Accesstoken = accesstoken,
                 Refreshtoken = refreshtoken,
@@ -98,7 +96,6 @@ namespace Backend.Administration
         }
 
         //////////////////// Admin Update ////////////////////
-
 
         public async Task<AdminUpdateDTO> AdminUpdate(int Id, AdminUpdateDTO AdminUpdate)
         {
@@ -122,7 +119,6 @@ namespace Backend.Administration
 
             await _connectionstring.SaveChangesAsync();
             return null;
-
         }
 
         //////////////////// Admin Profile ////////////////////
@@ -130,7 +126,6 @@ namespace Backend.Administration
         public async Task<AdminProfileDTO> AdminProfile(int Id)
         {
             var AdminProfile = await _connectionstring.Registeration.FindAsync(Id);
-
             if (AdminProfile == null) throw new Exception("Admin not found");
 
             return new AdminProfileDTO
@@ -146,8 +141,6 @@ namespace Backend.Administration
                 ProfilePictureUrl = AdminProfile.ProfilePictureUrl,
                 Role = AdminProfile.role.ToString()
             };
-
-
         }
     }
 }

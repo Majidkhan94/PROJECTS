@@ -14,21 +14,6 @@ export const AdminLogin = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
 
-  // Fetch Data From Backend
-
-  // useEffect(() => {
-  //     const FetchData = async () => {
-  //       try{
-  //         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}admin/login`);
-  //         setdata(response.data);
-  //         setLoading(false);
-  //       } catch (err) {
-  //         setError(err.message);
-  //         setLoading(false);  
-  //       }
-  //     }; FetchData(); 
-  // }, []);
-
   // Form Data
     const [formData, setFormData] = useState({ Email: "", Password: "" });
     const FormDataInput = (e) => {
@@ -62,6 +47,7 @@ export const AdminLogin = () => {
           console.log("FULL RESPONSE:", response.data);
           setSuccess("Login successful!");
           localStorage.setItem("accessToken", response.data.details.accesstoken);
+          localStorage.setItem("adminId", response.data.details.id);
           localStorage.setItem("role", response.data.details.role);
           setFormData({ Email: "", Password: "" });
           navigate("/admin/dashboard");

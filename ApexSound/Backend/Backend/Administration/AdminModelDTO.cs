@@ -6,6 +6,7 @@ namespace Backend.Administration
 {
     public class AdminRegDTO
     {
+        public int Id { get; set; }
         [Required]
         public string? Fullname { get; set; }
         [Required]
@@ -25,6 +26,7 @@ namespace Backend.Administration
     }
     public class AdminLogDTO
     {
+        public int Id { get; set; }
         [Required]
         [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Invalid email format")]
         public string? Email { get; set; }

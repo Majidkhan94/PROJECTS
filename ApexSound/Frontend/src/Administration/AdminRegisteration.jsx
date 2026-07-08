@@ -73,7 +73,9 @@ export const AdminRegisteration = () => {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}admin/registeration`, formData);
       setSuccess("Registration successful!");
       localStorage.setItem("accessToken", response.data.details.accesstoken);
+      localStorage.setItem("adminId", response.data.details.id);
       localStorage.setItem("role", response.data.details.role);
+      
       setFormData({
         Fullname: "",
         Email: "",
