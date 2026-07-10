@@ -81,7 +81,7 @@ export const AdminLogin = () => {
     {/* Login Link */}
     <div className="text-center mt-4 text-sm text-hover-bg">
   Don't have an account? 
-  <Link to="admin/register" className="text-white ml-1 hover:underline">
+  <Link to="/admin/registeration" className="text-white ml-1 hover:underline">
     Register here
   </Link>
 </div>

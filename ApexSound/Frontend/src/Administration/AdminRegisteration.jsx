@@ -117,7 +117,7 @@ export const AdminRegisteration = () => {
     {/* Login Link */}
     <div className="text-center mt-4 text-sm text-hover-bg">
       Already have an account? 
-      <Link to="admin/login" className="text-white ml-1 hover:underline">
+      <Link to="/admin/login" className="text-white ml-1 hover:underline">
         Login here
       </Link>
     </div>
