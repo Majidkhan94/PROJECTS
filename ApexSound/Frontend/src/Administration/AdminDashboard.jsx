@@ -1,19 +1,26 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { FiGrid, FiUsers, FiShoppingBag, FiBox, FiShoppingCart, FiClipboard } from "react-icons/fi";
+import { FiGrid, FiUsers, FiShoppingBag, FiBox, FiShoppingCart, FiClipboard, FiUser } from "react-icons/fi";
 import Logo from "../../Public/Logo.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "../../Feature/Button.jsx";
+import { Paragraph } from "../../Feature/Paragraph.jsx";
+import { AdminSlide } from "./Component/AdminSlide.jsx"
+import { AdminDashboardSection } from "../Administration/Sections/AdminDashboardSection.jsx";
+import { AdminUserManagement } from "../Administration/Sections/AdminUserManagement.jsx";
 
+///////////////////////////////// Left Section Data /////////////////////////////////
+
+// Navbar
 const Navbar = ({ text, icon: Icon, isActive, onClick }) => {
   return (
-    <button onClick={onClick} className={`flex items-center gap-3 px-4 py-3 mx-1 rounded-4xl text-left hover:bg-hover-bg hover:text-white
+    <button onClick={onClick} className={`flex items-center text-sm cursor-pointer gap-3 px-4 py-3 mx-1 rounded-4xl text-left hover:bg-hover-bg hover:text-white
         ${isActive ? "bg-hover-bg text-white" : "bg-brand-bg text-white"}`}>
       {Icon && <Icon size={18} />} {text}
     </button>
   );
 };
-
-// Left Section Data
+// Data
 const Data = [
   { key: "dashboard", text: "Dashboard", icon: FiGrid },
   { key: "users", text: "Users Management", icon: FiUsers },
@@ -23,24 +30,12 @@ const Data = [
   { key: "orders", text: "Orders Management", icon: FiClipboard },
 ];
 
-// Right Section Slide
-const Section = ({ className, children }) => {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShow(true), 10);
-    return () => clearTimeout(timer);
-  }, []);
-
-  return (
-    <div className={`${className} w-full h-full transition-all duration-[1000ms]
-        ${show ? "translate-y-0" : "translate-y-full"}`}>
-      {children}
-    </div>
-  );
-};
+///////////////////////////////// Right Section Data /////////////////////////////////
 
 export const AdminDashboard = () => {
+
+  const navigate = useNavigate();
+
   const [active, setActive] = useState("dashboard");
   const [admin, setAdmin] = useState(null);
 
@@ -59,63 +54,72 @@ export const AdminDashboard = () => {
     fetchProfile();
   }, [])
 
+  // Logout
+const handleLogout = () => {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("adminId");
+  localStorage.removeItem("role");
+  navigate("/admin/login");
+};
+
   return (
     <section className="h-screen w-full flex overflow-hidden">
-      {/* Left_Side */}
-      <div className="h-full w-70 bg-black flex flex-col justify-between">
+      
+                    {/* /////////// Left_Side /////////// */}
+
+      <div className="h-full w-70 bg-black flex flex-col justify-between ">
         {/* 1. Logo */}
         <div className="flex items-center justify-center py-3 border-b border-gray-800">
-          <img src={Logo} alt="ApexSound" className="h-20 w-auto object-contain" />
+          <img src={Logo} alt="ApexSound" className="h-15 w-auto object-contain" />
         </div>
 
         {/* 2. Nav Items */}
-        <div className="flex flex-col gap-5 flex-1 justify-center">
+        <div className="flex flex-col gap-5 flex-1 justify-center py-3">
           {Data.map((item) => (
-            <Navbar
-              key={item.key}
-              text={item.text}
-              icon={item.icon}
-              isActive={active === item.key}
-              onClick={() => setActive(item.key)}
-            />
-          ))}
+            <Navbar key={item.key} text={item.text} icon={item.icon} isActive={active === item.key}
+              onClick={() => setActive(item.key)} />))}
         </div>
 
         {/* 3. Profile */}
         <Link to="/admin/adminprofileupdate">
           <div className="flex items-center gap-3 px-6 py-4 border-t border-gray-800">
-            <img
-              src={admin?.profilePictureUrl || "https://i.pravatar.cc/40?img=12"}
-              alt="Admin"
-              className="w-10 h-10 rounded-full object-cover"
-          />
+            <img src={admin?.profilePictureUrl || "https://i.pravatar.cc/40?img=12"}
+              className="w-10 h-10 rounded-full object-cover" />
             <div>
-              <p className="text-sm font-medium text-white">{admin?.fullname || "Loading..."}</p>
-              <p className="text-xs text-gray-400">{admin?.role || ""}</p>
+              <Paragraph text={admin?.fullname || "Loading..."} />
+              <Paragraph text={admin?.role || ""} />
             </div>
           </div>
         </Link>
+        <Button text="Logout" onClick={handleLogout} className="text-sm" />
       </div>
 
-      {/* Right_Side */}
+      {/* /////////// Right_Side /////////// */}
+
+      
       <div className="flex-1 relative overflow-hidden">
         {active === "dashboard" && (
-          <Section key="dashboard" className="bg-amber-600">Dashboard</Section>
+          <AdminSlide key="dashboard">
+              <AdminDashboardSection />
+          </AdminSlide>
         )}
+
         {active === "users" && (
-          <Section key="users" className="bg-blue-800">User Management</Section>
+          <AdminSlide key="users">
+            <AdminUserManagement />
+          </AdminSlide>
         )}
         {active === "vendors" && (
-          <Section key="vendors" className="bg-green-400">venderrequest</Section>
+          <AdminSlide key="vendors" className="bg-green-400">venderrequest</AdminSlide>
         )}
         {active === "categories" && (
-          <Section key="categories" className="bg-purple-600">categories</Section>
+          <AdminSlide key="categories" className="bg-purple-600">categories</AdminSlide>
         )}
         {active === "products" && (
-          <Section key="products" className="bg-emerald-700">ProductManagement</Section>
+          <AdminSlide key="products" className="bg-emerald-700">ProductManagement</AdminSlide>
         )}
         {active === "orders" && (
-          <Section key="orders" className="bg-amber-950">ordermanagement</Section>
+          <AdminSlide key="orders" className="bg-amber-950">ordermanagement</AdminSlide>
         )}
       </div>
     </section>

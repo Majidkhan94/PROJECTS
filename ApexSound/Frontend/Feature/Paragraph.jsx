@@ -1,7 +1,7 @@
-export const Paragraph = ({ text }) => {
+export const Paragraph = ({ text, className }) => {
     return (<>
     
-        <p className="font-main text-hover-bg text-sm">
+        <p className={`${className} font-main text-hover-bg text-sm`}>
             {text}
         </p>
 
