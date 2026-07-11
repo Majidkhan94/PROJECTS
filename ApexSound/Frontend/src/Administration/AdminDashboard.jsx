@@ -8,6 +8,7 @@ import { Paragraph } from "../../Feature/Paragraph.jsx";
 import { AdminSlide } from "./Component/AdminSlide.jsx"
 import { AdminDashboardSection } from "../Administration/Sections/AdminDashboardSection.jsx";
 import { AdminUserManagement } from "../Administration/Sections/AdminUserManagement.jsx";
+import { AdminVenderRequest } from "../Administration/Sections/AdminVenderRequest.jsx";
 
 ///////////////////////////////// Left Section Data /////////////////////////////////
 
@@ -98,20 +99,12 @@ const handleLogout = () => {
 
       
       <div className="flex-1 relative overflow-hidden">
-        {active === "dashboard" && (
-          <AdminSlide key="dashboard">
-              <AdminDashboardSection />
-          </AdminSlide>
-        )}
+        {active === "dashboard" && (<AdminSlide key="dashboard"> <AdminDashboardSection /></AdminSlide>)}
 
-        {active === "users" && (
-          <AdminSlide key="users">
-            <AdminUserManagement />
-          </AdminSlide>
-        )}
-        {active === "vendors" && (
-          <AdminSlide key="vendors" className="bg-green-400">venderrequest</AdminSlide>
-        )}
+        {active === "users" && (<AdminSlide key="users"><AdminUserManagement /></AdminSlide>)}
+
+        {active === "vendors" && (<AdminSlide key="vendors"><AdminVenderRequest /></AdminSlide>)}
+        
         {active === "categories" && (
           <AdminSlide key="categories" className="bg-purple-600">categories</AdminSlide>
         )}
