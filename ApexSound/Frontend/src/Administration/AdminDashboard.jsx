@@ -9,6 +9,8 @@ import { AdminSlide } from "./Component/AdminSlide.jsx"
 import { AdminDashboardSection } from "../Administration/Sections/AdminDashboardSection.jsx";
 import { AdminUserManagement } from "../Administration/Sections/AdminUserManagement.jsx";
 import { AdminVenderRequest } from "../Administration/Sections/AdminVenderRequest.jsx";
+import { AdminProductManagement } from "../Administration/Sections/AdminProductManagement.jsx";
+import { AdminOrderManagement } from "../Administration/Sections/AdminOrderManagement.jsx";
 
 ///////////////////////////////// Left Section Data /////////////////////////////////
 
@@ -108,12 +110,10 @@ const handleLogout = () => {
         {active === "categories" && (
           <AdminSlide key="categories" className="bg-purple-600">categories</AdminSlide>
         )}
-        {active === "products" && (
-          <AdminSlide key="products" className="bg-emerald-700">ProductManagement</AdminSlide>
-        )}
-        {active === "orders" && (
-          <AdminSlide key="orders" className="bg-amber-950">ordermanagement</AdminSlide>
-        )}
+        
+        {active === "products" && (<AdminSlide key="products"><AdminProductManagement /></AdminSlide>)}
+        
+        {active === "orders" && (<AdminSlide key="orders"><AdminOrderManagement/></AdminSlide>)}
       </div>
     </section>
   );
