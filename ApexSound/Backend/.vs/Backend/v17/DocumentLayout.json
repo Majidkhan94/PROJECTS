@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\category\\icategoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\category\\icategoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\category\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\category\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\category\\categoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\category\\categoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\category\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\category\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\category\\icategoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\category\\icategoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -48,7 +48,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ICategoryRepo.cs",
               "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Category\\ICategoryRepo.cs",
               "RelativeDocumentMoniker": "Backend\\Category\\ICategoryRepo.cs",
@@ -61,13 +61,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Category\\CategoryController.cs",
               "RelativeDocumentMoniker": "Backend\\Category\\CategoryController.cs",
               "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Category\\CategoryController.cs",
               "RelativeToolTip": "Backend\\Category\\CategoryController.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAowFYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAgwDYAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-16T06:09:21.366Z",
               "EditorCaption": ""
@@ -80,7 +80,7 @@
               "RelativeDocumentMoniker": "Backend\\Category\\CategoryRepo.cs",
               "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Category\\CategoryRepo.cs",
               "RelativeToolTip": "Backend\\Category\\CategoryRepo.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAwwAcAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAcAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-16T05:16:06.915Z",
               "EditorCaption": ""
