@@ -9,6 +9,8 @@ namespace Backend.ConnectionStrings
 
         // Database Table
         public DbSet<AuthModel> Registeration { get; set; }
+        public DbSet<CategoryModel> Categories { get; set; }
+
 
         // Role Convert into String
         protected override void OnModelCreating(ModelBuilder modelBuilder)

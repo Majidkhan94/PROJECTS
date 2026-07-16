@@ -1,4 +1,5 @@
 using Backend.Administration;
+using Backend.Category;
 using Backend.ConnectionStrings;
 using Backend.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -40,7 +41,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IAdminRepo, AdminRepo>();
 builder.Services.AddScoped<Token>();
 builder.Services.AddScoped<ICloudinary, Cloudinary>();
-
+builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 // JWT TOKEN 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

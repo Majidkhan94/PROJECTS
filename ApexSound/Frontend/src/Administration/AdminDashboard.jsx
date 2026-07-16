@@ -11,6 +11,8 @@ import { AdminUserManagement } from "../Administration/Sections/AdminUserManagem
 import { AdminVenderRequest } from "../Administration/Sections/AdminVenderRequest.jsx";
 import { AdminProductManagement } from "../Administration/Sections/AdminProductManagement.jsx";
 import { AdminOrderManagement } from "../Administration/Sections/AdminOrderManagement.jsx";
+import { AdminCategories } from "../Administration/Sections/AdminCategories.jsx";
+
 
 ///////////////////////////////// Left Section Data /////////////////////////////////
 
@@ -107,9 +109,7 @@ const handleLogout = () => {
 
         {active === "vendors" && (<AdminSlide key="vendors"><AdminVenderRequest /></AdminSlide>)}
         
-        {active === "categories" && (
-          <AdminSlide key="categories" className="bg-purple-600">categories</AdminSlide>
-        )}
+        {active === "categories" && ( <AdminSlide key="categories"><AdminCategories /></AdminSlide> )}
         
         {active === "products" && (<AdminSlide key="products"><AdminProductManagement /></AdminSlide>)}
         
