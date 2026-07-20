@@ -1,9 +1,43 @@
 import logo from "../Public/Logo.png";
 import {Paragraph} from "../Feature/Paragraph.jsx";
 import { Navbar } from "../Feature/Navbar.jsx";
+import {Heading} from "../Feature/Heading.jsx"
+import {Input} from "../Feature/Input.jsx"
+import {Button} from "../Feature/Button.jsx"
+import { useState, useEffect} from "react";
+import axios from "axios";
+
 
 
 export const Footer = () => {
+
+const [data, setData] = useState({ email: "" });
+const [success, setSuccess] = useState(null);
+const [errorMsg, setErrorMsg] = useState("");
+
+const Newslettersubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post(
+  `${import.meta.env.VITE_BACKEND_URL}Newsletter/add`,
+  data
+);
+    console.log(response.data);
+    setSuccess(true);
+    setErrorMsg("");
+  } catch (err) {
+    console.error("Error", err);
+    setSuccess(false);
+    setErrorMsg(err.response?.data?.message || "Something went wrong.");
+  }
+};
+
+const handleChange = (e) => {
+  setData({ ...data, email: e.target.value });
+};
+
+    
+
     return (<>
     
     <footer className="bg-black text-white py-16 px-10 border-t border-gray-800">
@@ -19,7 +53,7 @@ export const Footer = () => {
 
                                  {/* Widget-2: Quick Links */}
         <div className="flex-1">
-            <h3 className="font-bold text-lg mb-4 text-white">QUICK LINKS</h3>
+            <Heading text={"QUICK LINKS"} className={"text-lg"} />
             <nav className="flex flex-col gap-4 text-hover-bg">
                 <Navbar to="/support" text="Support" />
                 <Navbar to="/faq" text="FAQ" />
@@ -30,7 +64,7 @@ export const Footer = () => {
 
         {/* 3rd Widget: Navigation */}
         <div className="flex-1">
-            <h3 className="font-bold text-lg mb-4 text-white">NAVIGATION</h3>
+            <Heading text={"NAVIGATION"} className={"text-lg"} />
             <nav className="flex flex-col gap-4 text-hover-bg">
                 <Navbar to="/" text="Home" />
                 <Navbar to="/products" text="Products" />
@@ -41,17 +75,23 @@ export const Footer = () => {
 
         {/* 4th Widget: Newsletter */}
         <div className="flex-1">
-            <h3 className="font-bold text-lg mb-4 text-white">NEWSLETTER</h3>
-            <p className="text-hover-bg text-sm mb-4">Subscribe to get latest updates.</p>
-            <div className="flex flex-col gap-2">
-                <input type="email" placeholder="Enter your email" 
-                    className="bg-gray-900 border border-gray-700 p-2 rounded text-sm outline-none focus:border-hover-bg"
-                />
-                <button className="bg-hover-bg text-white py-2 rounded text-sm hover:bg-opacity-80 transition">
-                    Subscribe
-                </button>
-            </div>
-        </div>
+  <Heading text={"NEWSLETTER"} className={"text-lg"} />
+  <Paragraph text={"Subscribe to get latest updates."} className={"text-sm py-3"} />
+  <div className="flex flex-col gap-2">
+    <form onSubmit={Newslettersubmit}>
+      <Input
+        type={"email"}
+        placeholder={"Enter your email"}
+        className={"text-sm"}
+        value={data.email}
+        onChange={handleChange}
+      />
+      <Button type={"submit"} text={"Submit"} className={"bg-white text-black! w-full"} />
+    </form>
+    {success === true && <p className="text-sm text-green-500">Subscribed!</p>}
+    {success === false && <p className="text-sm text-red-500">{errorMsg}</p>}
+  </div>
+</div>
 
     </div>
     

@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Input } from "../../../Feature/Input.jsx";
-import { Button } from "../../../Feature/Button.jsx";
-import { Heading } from "../../../Feature/Heading.jsx";
-import { Paragraph } from "../../../Feature/Paragraph.jsx";
+import { Input } from "../../src/Feature/Input.jsx";
+import { Button } from "../../src/Feature/Button.jsx";
+import { Heading } from "../../src/Feature/Heading.jsx";
+import { Paragraph } from "../../src/Feature/Paragraph.jsx";
 
 export const AdminCategories = () => {
 

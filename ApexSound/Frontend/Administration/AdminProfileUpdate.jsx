@@ -1,7 +1,7 @@
-import { Heading } from "../../Feature/Heading.jsx";
-import { Paragraph } from "../../Feature/Paragraph.jsx";
-import { Button } from "../../Feature/Button.jsx";
-import { Input } from "../../Feature/Input.jsx";
+import { Heading } from "../src/Feature/Heading.jsx";
+import { Paragraph } from "../src/Feature/Paragraph.jsx";
+import { Button } from "../src/Feature/Button.jsx";
+import { Input } from "../src/Feature/Input.jsx";
 import { AiFillProfile } from "react-icons/ai";
 import axios from "axios";
 import { useEffect, useState } from "react";

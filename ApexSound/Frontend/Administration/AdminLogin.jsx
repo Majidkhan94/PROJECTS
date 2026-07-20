@@ -1,7 +1,7 @@
-import { Heading } from "../../Feature/Heading.jsx";
+import { Heading } from "../src/Feature/Heading.jsx";
 import { IoIosUnlock } from "react-icons/io";
-import {Input} from "../../Feature/Input.jsx"
-import { Button } from "../../Feature/Button.jsx";
+import {Input} from "../src/Feature/Input.jsx"
+import { Button } from "../src/Feature/Button.jsx";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from 'react';

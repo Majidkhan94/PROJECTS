@@ -1,6 +1,7 @@
 using Backend.Administration;
 using Backend.Category;
 using Backend.ConnectionStrings;
+using Backend.Newsletter;
 using Backend.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,8 @@ builder.Services.AddScoped<IAdminRepo, AdminRepo>();
 builder.Services.AddScoped<Token>();
 builder.Services.AddScoped<ICloudinary, Cloudinary>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+builder.Services.AddScoped<INewsletterRepo, NewsletterRepo>();
+
 // JWT TOKEN 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

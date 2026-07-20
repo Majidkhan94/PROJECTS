@@ -1,11 +1,19 @@
 import { Route, Routes } from "react-router-dom";
-import { Customerlayout } from "../Layout/Customerlayout.jsx";
-import {AdminRegisteration} from "../src/Administration/AdminRegisteration.jsx";
-import {AdminLogin} from "../src/Administration/AdminLogin.jsx";
-import {AdminDashboard} from "../src/Administration/AdminDashboard.jsx";
-import {AdminProfileUpdate} from "../src/Administration/AdminProfileUpdate.jsx";
-import { NotFound404 } from "../src/NotFound404.jsx";
-import { ProtectedRoute } from "./ProtectedRoute.jsx";
+//User
+import { Userlayout } from "../Layout/Userlayout.jsx";
+import { HomePage } from "../Pages/HomePage.jsx"
+
+
+
+
+import {AdminRegisteration} from "../../Administration/AdminRegisteration.jsx";
+import {AdminLogin} from "../../Administration/AdminLogin.jsx";
+import {AdminDashboard} from "../../Administration/AdminDashboard.jsx";
+import {AdminProfileUpdate} from "../../Administration/AdminProfileUpdate.jsx";
+import { NotFound404 } from "../NotFound404.jsx";
+import { ProtectedRoute } from "../Routing/ProtectedRoute.jsx";
+
+
 
 export const Routing = () => {
     return (<>
@@ -16,6 +24,19 @@ export const Routing = () => {
 
 
         <Routes>
+
+            {/* User Routes */}
+
+            <Route path="" element={<Userlayout />} >
+            <Route path="/" element={<HomePage />} />
+            </Route>
+            
+            {/* Vender Routes */}
+
+
+
+
+
 
             {/* Protected routes - role based */}
             <Route path="admin/dashboard" element={
@@ -36,17 +57,14 @@ export const Routing = () => {
             <Route path="admin/registeration" element={<AdminRegisteration />} />
             <Route path="admin/login" element={<AdminLogin />} />
                 {/* Vender */}
-                {/* Customer */}
+                {/* Users */}
+
 
 
 
 
                     {/* With Header / Footer */}
-            <Route path="" element={<Customerlayout />} >
-
-
-                    
-            </Route>
+            
 
             {/* NotFound404 */}
             <Route path="*" element={<NotFound404 />} />

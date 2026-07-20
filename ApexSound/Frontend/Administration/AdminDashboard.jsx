@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FiGrid, FiUsers, FiShoppingBag, FiBox, FiShoppingCart, FiClipboard, FiUser } from "react-icons/fi";
-import Logo from "../../Public/Logo.png"
+import { LuLetterText } from "react-icons/lu";
+import Logo from "../src/Public/Logo.png"
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "../../Feature/Button.jsx";
-import { Paragraph } from "../../Feature/Paragraph.jsx";
-import { AdminSlide } from "./Component/AdminSlide.jsx"
+import { Button } from "../src/Feature/Button.jsx";
+import { Paragraph } from "../src/Feature/Paragraph.jsx";
+import { AdminSlide } from "../Administration/Component/AdminSlide.jsx"
 import { AdminDashboardSection } from "../Administration/Sections/AdminDashboardSection.jsx";
 import { AdminUserManagement } from "../Administration/Sections/AdminUserManagement.jsx";
 import { AdminVenderRequest } from "../Administration/Sections/AdminVenderRequest.jsx";
 import { AdminProductManagement } from "../Administration/Sections/AdminProductManagement.jsx";
 import { AdminOrderManagement } from "../Administration/Sections/AdminOrderManagement.jsx";
 import { AdminCategories } from "../Administration/Sections/AdminCategories.jsx";
+import { Newsletter } from "../Administration/Sections/Newsletter.jsx";
 
 
 ///////////////////////////////// Left Section Data /////////////////////////////////
@@ -33,6 +35,7 @@ const Data = [
   { key: "categories", text: "Categories", icon: FiBox },
   { key: "products", text: "Products Management", icon: FiShoppingCart },
   { key: "orders", text: "Orders Management", icon: FiClipboard },
+  { key: "newsletter", text: "NewsLetter", icon: LuLetterText },
 ];
 
 ///////////////////////////////// Right Section Data /////////////////////////////////
@@ -48,7 +51,7 @@ export const AdminDashboard = () => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const response = await axios.get("https://localhost:7001/api/admin/profile", {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}admin/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAdmin(response.data);
@@ -114,6 +117,8 @@ const handleLogout = () => {
         {active === "products" && (<AdminSlide key="products"><AdminProductManagement /></AdminSlide>)}
         
         {active === "orders" && (<AdminSlide key="orders"><AdminOrderManagement/></AdminSlide>)}
+
+        {active === "newsletter" && (<AdminSlide key="newsletter"><Newsletter /></AdminSlide>)}
       </div>
     </section>
   );
