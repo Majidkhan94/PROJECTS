@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Backend.Models;
 using Backend.Newsletter;
+
 namespace Backend.ConnectionStrings
 {
     public class ConnectionString : DbContext
@@ -9,9 +10,19 @@ namespace Backend.ConnectionStrings
         public ConnectionString(DbContextOptions<ConnectionString> options): base(options) { }
 
         // Database Table
+        public DbSet<NewsletterModel> Newsletter { get; set; }
+        public DbSet<UserModel> UsersRegisteration { get; set; }
+
+
+
+
+
+
+
+
+
         public DbSet<AuthModel> Registeration { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
-        public DbSet<NewsletterModel> Newsletter { get; set; }
 
 
         // Role Convert into String

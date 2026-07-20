@@ -51,9 +51,11 @@ export const Header = () => {
                 transition-all duration-1500 ease-in-out
                 ${isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
                 
-                <Navbar to="/" text="Home" onClick={handleLinkClick} />
-                <Navbar to="/products" text="Products" onClick={handleLinkClick} />
-                <Navbar to="/about" text="About Us" onClick={handleLinkClick} />
+                <Navbar to="/" text="Home"  onClick={handleLinkClick} />
+                <Navbar to="/products" text="Products"  onClick={handleLinkClick} />
+                <Navbar to="/categories" text="Categories"  onClick={handleLinkClick} />
+                <Navbar to="/about" text="About Us"  onClick={handleLinkClick} />
+                <Navbar to="/contact" text="Contact Us"  onClick={handleLinkClick} />
                 
                 <div className="flex gap-x-8 mt-4">
                     <Link to="/cart" onClick={handleLinkClick}><FiShoppingCart size={24} className="text-white" /></Link>
