@@ -11,7 +11,7 @@ namespace Backend.Users
         {
             _userRepo = userRepo;
         }
-        
+        // Registeration
         [HttpPost]
         [Route("registeration")]
         public async Task<IActionResult> userRegisteration([FromBody] UserRegDTO userregDTO)
@@ -21,16 +21,17 @@ namespace Backend.Users
                 var Reg = await _userRepo.userRegisteration(userregDTO);
                 if (Reg == null)
                 {
-                    return BadRequest(new { message = "User Registeration Failed",data = Reg });   
+                    return BadRequest(new { message = "User Registeration Failed", data = Reg });
                 }
-                return Ok(new {message = "User Registeration Successfully", data = Reg });
+                return Ok(new { message = "User Registeration Successfully", data = Reg });
             }
             catch (Exception ex) {
-            
-                return BadRequest(new { error = ex.Message});
+
+                return BadRequest(new { error = ex.Message });
             }
         }
 
+        // Login
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> userLogin([FromBody] UserLogDTO userlogDTO)
@@ -51,16 +52,17 @@ namespace Backend.Users
             }
 
         }
-        
+
+        // Update Profile
         [HttpPut("update/{Id}")]
         public async Task<IActionResult> userProfile(int Id, [FromForm] UserProDTO userproDTO)
         {
             try
             {
-                var Pro = await _userRepo.userProfile(Id ,userproDTO);
+                var Pro = await _userRepo.userProfile(Id, userproDTO);
                 if (Pro == null)
                 {
-                    return BadRequest(new { message = "User Profile Updated Failed"});
+                    return BadRequest(new { message = "User Profile Updated Failed" });
                 }
                 return Ok(new { message = "User Profile Updated", data = Pro });
             }
@@ -70,6 +72,8 @@ namespace Backend.Users
             }
         }
 
+
+        // Get User Profile Data
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetUserProfile(int Id)
         {
@@ -84,6 +88,17 @@ namespace Backend.Users
             }
         }
 
+
+        // List of Users
+        [HttpGet]
+        [Route("userlist")]
+        public async Task<IActionResult> userlist()
+        {
+            return Ok();
+        }
+
+
+        // Count of Users
 
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Formats.Asn1;
+using Backend.Migrations;
 
 namespace Backend.Users
 {
@@ -174,16 +175,23 @@ namespace Backend.Users
             };
         }
 
-
+        // User Delete
         public Task<bool> userDelete(int Id)
         {
             throw new NotImplementedException();
         }
 
-       
 
-       
+        // Get User List
+        public async Task<List<UserModel>> GetUserList()
+        {
+            return await _connectionString.UsersRegisteration.ToListAsync();
+        }
 
-        
+        // Get User Count
+        public async Task<int> GetUserCount()
+        {
+            return await _connectionString.UsersRegisteration.CountAsync();
+        }
     }
 }

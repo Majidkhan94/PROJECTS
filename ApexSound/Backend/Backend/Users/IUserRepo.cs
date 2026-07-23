@@ -1,4 +1,6 @@
-﻿using Backend.Users;
+﻿using Backend.Migrations;
+using Backend.Models;
+using Backend.Users;
 namespace Backend.Users
 {
     public interface IUserRepo
@@ -8,5 +10,7 @@ namespace Backend.Users
         Task<UserProDTO> userProfile(int Id, UserProDTO userproDTO);
         Task<UserProDTO> GetUserProfile(int Id);
         Task<bool> userDelete(int Id);
+        Task<List<UserModel>> GetUserList();
+        Task<int> GetUserCount();
     }
 }

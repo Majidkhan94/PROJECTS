@@ -32,7 +32,7 @@ export const UserRegisteration = () =>{
           localStorage.setItem("UserId", response.data.data.id);
           
           const timer = setTimeout(() => {
-              navigate("/login");}, 3000);
+              navigate("/");}, 3000);
               return () => clearTimeout(timer);}
 
       catch(err){
