@@ -94,11 +94,32 @@ namespace Backend.Users
         [Route("userlist")]
         public async Task<IActionResult> userlist()
         {
-            return Ok();
+            try
+            {
+                var list = await _userRepo.GetUserList();
+                return Ok(new { data = list });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
 
         // Count of Users
-
+        [HttpGet]
+        [Route("usercount")]
+        public async Task<IActionResult> usercount()
+        {
+            try
+            {
+                var count = await _userRepo.GetUserCount();
+                return Ok(new { data = count });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
     }
 }

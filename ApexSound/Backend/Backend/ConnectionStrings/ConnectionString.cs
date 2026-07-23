@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Backend.Models;
 using Backend.Newsletter;
+using Backend.Contactus;
 
 namespace Backend.ConnectionStrings
 {
@@ -12,7 +13,7 @@ namespace Backend.ConnectionStrings
         // Database Table
         public DbSet<NewsletterModel> Newsletter { get; set; }
         public DbSet<UserModel> UsersRegisteration { get; set; }
-
+        public DbSet<ContactusModel> Contactus { get; set; }
 
 
 

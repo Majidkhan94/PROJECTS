@@ -1,6 +1,7 @@
 using Backend.Administration;
 using Backend.Category;
 using Backend.ConnectionStrings;
+using Backend.Contactus;
 using Backend.Newsletter;
 using Backend.Services;
 using Backend.Users;
@@ -48,6 +49,7 @@ builder.Services.AddScoped<Token>();
 builder.Services.AddScoped<ICloudinary, Cloudinary>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<INewsletterRepo, NewsletterRepo>();
+builder.Services.AddScoped<IContactusRepo, ContactusRepo>();
 
 // JWT TOKEN 
 

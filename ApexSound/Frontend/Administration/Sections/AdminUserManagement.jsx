@@ -1,36 +1,44 @@
 import { FaUser, FaSearch } from "react-icons/fa";
 import { Button } from "../../src/Feature/Button.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const AdminUserManagement = () => {
   const [search, setSearch] = useState("");
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const users = [
-    {
-      name: "John Doe",
-      details: [
-        { label: "Email", value: "john.doe@example.com" },
-        { label: "Phone", value: "0300-1234567" },
-        { label: "Address", value: "House #12, Street 4" },
-        { label: "DOB", value: "01-01-2000" },
-        { label: "Age", value: "24" },
-        { label: "City", value: "Lahore" },
-        { label: "Gender", value: "Male" },
-      ],
-    },
-    {
-      name: "Ayesha Khan",
-      details: [
-        { label: "Email", value: "ayesha.khan@example.com" },
-        { label: "Phone", value: "0321-9876543" },
-        { label: "Address", value: "Flat 5B, Model Town" },
-        { label: "DOB", value: "15-05-1996" },
-        { label: "Age", value: "28" },
-        { label: "City", value: "Karachi" },
-        { label: "Gender", value: "Female" },
-      ],
-    },
-  ];
+
+
+
+  useEffect(()=>{
+          var FetchData = async () =>{
+              try{
+                  setLoading(true)
+                 var response = await axios.get(`${import.meta.env.VITE_USER_GETUSERLIST}`);
+                 setData(response.data.data)
+                 console.log("Successfull", response.data.data)
+              }
+              catch(err){
+                console.log(err.response.data.error || "Something Went Wrong")
+              }
+              finally{setLoading(false)}
+          }
+          FetchData();
+  },[])
+
+ const users = data.map((user) => ({
+  name: user.fullname,
+  details: [
+    { label: "Email", value: user.email },
+    { label: "Phone", value: user.phoneNumber },
+    { label: "Address", value: user.address },
+    { label: "DOB", value: user.dateOfBirth },
+    { label: "Age", value: user.age },
+    { label: "City", value: user.city },
+    { label: "Gender", value: user.gender },
+  ],
+}));
 
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(search.toLowerCase())
@@ -42,32 +50,24 @@ export const AdminUserManagement = () => {
       {/* Search bar */}
       <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-5 py-3 mb-8 w-full">
         <FaSearch className="text-white/50" size={16} />
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search users..."
-          className="bg-transparent outline-none text-white placeholder-white/40 w-full font-main"
-        />
+        <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search users..." className="bg-transparent outline-none text-white w-full font-main"/>
       </div>
 
       {/* User cards */}
-      <div className="flex flex-wrap gap-8">
+      <div className="flex flex-wrap gap-5">
         {filteredUsers.map((user, index) => (
-          <div
-            key={index}
-            className="border border-white/10 rounded-2xl p-6 text-white font-main w-[calc(50%-1rem)]"
-          >
+          <div key={index} className="border border-white/10 rounded-2xl p-6 text-white font-main w-[calc(50%-1rem)]" >
             {/* Name with icon, underline below */}
             <div className="pb-4 mb-5 border-b border-white/10">
               <div className="flex items-center gap-3">
                 <FaUser size={20} />
-                <span className="text-2xl font-semibold">{user.name}</span>
+                <span className="text-lg font-semibold">{user.name}</span>
               </div>
             </div>
 
             {/* Fields stacked vertically, "Label: value" */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               {user.details.map((item, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <span className="text-white/50 uppercase tracking-wide text-sm w-20">
@@ -80,13 +80,13 @@ export const AdminUserManagement = () => {
 
             {/* Buttons, left side */}
             <div className="flex justify-start gap-4 mt-6">
-              <Button
+              {/* <Button
                 text={"Update"}
                 className={"bg-green-700 hover:bg-green-900! hover:text-white!"}
-              />
+              /> */}
               <Button
                 text={"Delete"}
-                className={"bg-red-700 hover:bg-red-600! hover:text-white!"}
+                className={"w-full hover:bg-red-600! hover:text-white!"}
               />
             </div>
           </div>
