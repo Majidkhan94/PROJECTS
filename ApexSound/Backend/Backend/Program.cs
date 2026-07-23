@@ -3,6 +3,7 @@ using Backend.Category;
 using Backend.ConnectionStrings;
 using Backend.Newsletter;
 using Backend.Services;
+using Backend.Users;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -39,6 +40,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 // Scope
+builder.Services.AddScoped<IUserRepo, UserRepo>();
+
+
 builder.Services.AddScoped<IAdminRepo, AdminRepo>();
 builder.Services.AddScoped<Token>();
 builder.Services.AddScoped<ICloudinary, Cloudinary>();

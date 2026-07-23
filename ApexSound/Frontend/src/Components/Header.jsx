@@ -2,16 +2,30 @@ import logo from "../Public/Logo.png";
 import { Link } from 'react-router-dom';
 import { Navbar } from '../Feature/Navbar.jsx'; 
 import { FiShoppingCart, FiUser, FiMenu, FiX } from "react-icons/fi";
+import { ImProfile } from "react-icons/im";
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { Button } from "../Feature/Button.jsx";
 
 export const Header = () => {
+
     const [isOpen, setIsOpen] = useState(false);
     const handleLinkClick = () => {
        setTimeout(() => {
             setIsOpen(false);
         }, 500);
     };
-    
+
+    // Logout
+    const navigate = useNavigate();
+    var token = localStorage.getItem("accessToken");
+
+    var logouthandle = ()=>{
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("UserId");
+        navigate("/login");
+        }
+
     return (
         <header className="bg-black flex justify-between items-center px-5 md:px-20 py-4">
             {/* Logo */}
@@ -34,9 +48,21 @@ export const Header = () => {
                     <Link to="/cart" className="text-white hover:text-hover-bg transition-colors duration-300">
                         <FiShoppingCart size={16} />
                     </Link>
-                    <Link to="/login" className="text-white hover:text-hover-bg transition-colors duration-300">
-                        <FiUser size={18} />
+
+                    {token 
+                    ?(<>
+                    <Link to="/profile" className="text-white hover:text-hover-bg transition-colors duration-300">
+                        <ImProfile size={18} />
                     </Link>
+                    <button onClick={logouthandle}
+                      className="cursor-pointer inline-block transition-all duration-300 font-main 
+                      text-sm tracking-tight hover:text-hover-bg hover:-translate-y-1">
+                        Logout
+                        </button></>)
+                    : (<Link to="/login" className="text-white hover:text-hover-bg transition-colors duration-300">
+                        <FiUser size={18} />
+                    </Link>)}
+                    
                 </div>
             </nav>
 
@@ -59,7 +85,19 @@ export const Header = () => {
                 
                 <div className="flex gap-x-8 mt-4">
                     <Link to="/cart" onClick={handleLinkClick}><FiShoppingCart size={24} className="text-white" /></Link>
-                    <Link to="/login" onClick={handleLinkClick}><FiUser size={24} className="text-white" /></Link>
+                    {token 
+                    ?(<>
+                    <Link to="/profile" className="text-white hover:text-hover-bg transition-colors duration-300">
+                        <ImProfile size={18} />
+                    </Link>
+                    <button onClick={logouthandle}
+                      className="cursor-pointer inline-block transition-all duration-300 font-main 
+                      text-sm tracking-tight hover:text-hover-bg hover:-translate-y-1">
+                        Logout
+                        </button></>)
+                    : (<Link to="/login" className="text-white hover:text-hover-bg transition-colors duration-300">
+                        <FiUser size={18} />
+                    </Link>)}
                 </div>
             </nav>
 

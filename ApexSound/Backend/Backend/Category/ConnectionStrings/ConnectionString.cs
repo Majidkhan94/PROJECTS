@@ -28,7 +28,9 @@ namespace Backend.ConnectionStrings
         // Role Convert into String
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<UserModel>().Property(r => r.role).HasConversion<string>();
             modelBuilder.Entity<AuthModel>().Property(r => r.role).HasConversion<string>();
+
         }
 
 

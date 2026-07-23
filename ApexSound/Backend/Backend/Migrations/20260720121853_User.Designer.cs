@@ -3,6 +3,7 @@ using System;
 using Backend.ConnectionStrings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(ConnectionString))]
-    partial class ConnectionStringModelSnapshot : ModelSnapshot
+    [Migration("20260720121853_User")]
+    partial class User
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,8 +149,8 @@ namespace Backend.Migrations
                     b.Property<DateTime?>("Refreshtokenexpiry")
                         .HasColumnType("timestamp");
 
-                    b.Property<string>("role")
-                        .HasColumnType("text");
+                    b.Property<int?>("role")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

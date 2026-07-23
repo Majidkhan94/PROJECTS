@@ -6,6 +6,7 @@ namespace Backend.Users
         Task<UserRegDTO> userRegisteration(UserRegDTO userregDTO);
         Task<UserLogDTO> userLogin(UserLogDTO userlogDTO);
         Task<UserProDTO> userProfile(int Id, UserProDTO userproDTO);
+        Task<UserProDTO> GetUserProfile(int Id);
         Task<bool> userDelete(int Id);
     }
 }

@@ -1,9 +1,14 @@
 import { Route, Routes } from "react-router-dom";
+
 //User
 import { Userlayout } from "../Layout/Userlayout.jsx";
+import { UserRegisteration } from "../../Users/UserRegisteration.jsx"
+import { UserLogin } from "../../Users/UserLogin.jsx"
+import { UserProfile } from "../../Users/UserProfile.jsx"
+
+
+
 import { HomePage } from "../Pages/HomePage.jsx"
-
-
 
 
 import {AdminRegisteration} from "../../Administration/AdminRegisteration.jsx";
@@ -18,18 +23,32 @@ import { ProtectedRoute } from "../Routing/ProtectedRoute.jsx";
 export const Routing = () => {
     return (<>
         
-                
-
-
-
-
         <Routes>
 
-            {/* User Routes */}
+-------------------------------------- Without Header / Footer --------------------------------------
 
+            ***** USERS *****
+            <Route path="/registeration" element={<UserRegisteration />} />
+            <Route path="/login" element={<UserLogin />} />
+            <Route path="/profile" element={<UserProfile />} />
+
+-------------------------------------- With Header / Footer --------------------------------------
+            
+            {/* User Routes */}
             <Route path="" element={<Userlayout />} >
-            <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<HomePage />} />
             </Route>
+
+
+
+
+
+
+
+
+            
+
+            
             
             {/* Vender Routes */}
 
@@ -49,15 +68,11 @@ export const Routing = () => {
                     <AdminProfileUpdate />
                 </ProtectedRoute>}/>
 
-
-                { /* All Pages */ }
-                {/* Without Header / Footer */}
                 {/* Administration */}
             
             <Route path="admin/registeration" element={<AdminRegisteration />} />
             <Route path="admin/login" element={<AdminLogin />} />
                 {/* Vender */}
-                {/* Users */}
 
 
 

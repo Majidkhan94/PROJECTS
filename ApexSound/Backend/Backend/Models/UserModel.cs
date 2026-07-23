@@ -6,7 +6,7 @@ namespace Backend.Models
     public class UserModel
     {
         // Role
-        public enum Role { Admin, Customer, Vender };
+        public enum Role { Admin, Vender, User };
 
         // Model
         [Key]

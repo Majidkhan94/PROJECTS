@@ -6,30 +6,28 @@ namespace Backend.Users
     public class UserRegDTO
     {
         // Role
-        public enum Role { Admin, Customer, Vender };
+        public enum Role { Admin, Vender, User };
 
         // Model
         public int Id { get; set; }
-        [Required]
         public string? Fullname { get; set; }
-        [Required]
-        [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Invalid email format")]
         public string? Email { get; set; }
-        [Required]
-        [StringLength(15, MinimumLength = 8, ErrorMessage = "Password must be between 8 to 15 characters")]
         public string? Password { get; set; }
         [NotMapped]
-        [Compare("Password", ErrorMessage = "Password not match")]
         public string? Confirmpassword { get; set; }
         public string? Accesstoken { get; set; }
         public string? Refreshtoken { get; set; }
-        public Role? role { get; set; }
+        public Role role { get; set; }
 
     }
+
     public class UserLogDTO
     {
+        public int Id { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
+        public string? Accesstoken { get; set; }
+        public string? Refreshtoken { get; set; }
 
     }
     public class UserProDTO
@@ -55,6 +53,7 @@ namespace Backend.Users
         [Column(TypeName = "timestamp")]
         public DateTime? Refreshtokenexpiry { get; set; }
         public DateTime? Createdat { get; set; }
+        public IFormFile? ProfilePicture { get; set; }
         public string? ProfilePictureUrl { get; set; }
 
     }
