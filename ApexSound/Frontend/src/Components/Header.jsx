@@ -23,6 +23,7 @@ export const Header = () => {
     var logouthandle = ()=>{
         localStorage.removeItem("accessToken");
         localStorage.removeItem("UserId");
+        localStorage.removeItem("Role");
         navigate("/login");
         }
 

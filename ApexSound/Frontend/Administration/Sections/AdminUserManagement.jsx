@@ -45,7 +45,7 @@ export const AdminUserManagement = () => {
   );
 
   return (
-    <div className="mx-5 mt-5">
+    <div className="mx-5 mt-5 scroll-auto">
 
       {/* Search bar */}
       <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-5 py-3 mb-8 w-full">

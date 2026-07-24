@@ -23,11 +23,14 @@ namespace Backend.Users
 
     public class UserLogDTO
     {
+        // Role
+        public enum Role { Admin, Vender, User };
         public int Id { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
         public string? Accesstoken { get; set; }
         public string? Refreshtoken { get; set; }
+        public Role? role { get; set; }
 
     }
     public class UserProDTO

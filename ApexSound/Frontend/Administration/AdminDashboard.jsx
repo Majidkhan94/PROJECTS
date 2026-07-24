@@ -105,7 +105,7 @@ const handleLogout = () => {
       {/* /////////// Right_Side /////////// */}
 
       
-      <div className="flex-1 relative overflow-hidden">
+      <div className="flex-1 relative overflow-y-auto">
         {active === "dashboard" && (<AdminSlide key="dashboard"> <AdminDashboardSection /></AdminSlide>)}
 
         {active === "users" && (<AdminSlide key="users"><AdminUserManagement /></AdminSlide>)}

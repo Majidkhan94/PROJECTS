@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\users\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\users\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\contactus\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\contactus\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\users\\usermodeldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\users\\usermodeldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\contactus\\contactusrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\contactus\\contactusrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\users\\iuserrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\users\\iuserrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -43,47 +43,47 @@
               "EditorCaption": ""
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Program.cs",
-              "RelativeDocumentMoniker": "Backend\\Program.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Program.cs",
-              "RelativeToolTip": "Backend\\Program.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAADMAAAA8AAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UserModelDTO.cs",
+              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Users\\UserModelDTO.cs",
+              "RelativeDocumentMoniker": "Backend\\Users\\UserModelDTO.cs",
+              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Users\\UserModelDTO.cs",
+              "RelativeToolTip": "Backend\\Users\\UserModelDTO.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAzwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-23T10:23:15.562Z",
+              "WhenOpened": "2026-07-24T06:08:55.884Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ContactusRepo.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Contactus\\ContactusRepo.cs",
-              "RelativeDocumentMoniker": "Backend\\Contactus\\ContactusRepo.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Contactus\\ContactusRepo.cs",
-              "RelativeToolTip": "Backend\\Contactus\\ContactusRepo.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Title": "IUserRepo.cs",
+              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Users\\IUserRepo.cs",
+              "RelativeDocumentMoniker": "Backend\\Users\\IUserRepo.cs",
+              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Users\\IUserRepo.cs",
+              "RelativeToolTip": "Backend\\Users\\IUserRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-23T10:16:10.523Z",
+              "WhenOpened": "2026-07-24T05:21:53.56Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ContactusController.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Contactus\\ContactusController.cs",
-              "RelativeDocumentMoniker": "Backend\\Contactus\\ContactusController.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Contactus\\ContactusController.cs*",
-              "RelativeToolTip": "Backend\\Contactus\\ContactusController.cs*",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowCoAAAAbAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "UserRepo.cs",
+              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Users\\UserRepo.cs",
+              "RelativeDocumentMoniker": "Backend\\Users\\UserRepo.cs",
+              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Users\\UserRepo.cs",
+              "RelativeToolTip": "Backend\\Users\\UserRepo.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAAwL4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-23T09:26:29.115Z",
+              "WhenOpened": "2026-07-24T05:21:51.569Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             }
           ]
         }

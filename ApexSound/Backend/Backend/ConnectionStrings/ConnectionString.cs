@@ -12,24 +12,15 @@ namespace Backend.ConnectionStrings
 
         // Database Table
         public DbSet<NewsletterModel> Newsletter { get; set; }
-        public DbSet<UserModel> UsersRegisteration { get; set; }
-        public DbSet<ContactusModel> Contactus { get; set; }
-
-
-
-
-
-
-
-
-        public DbSet<AuthModel> Registeration { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
+        public DbSet<ContactusModel> Contactus { get; set; }
+        public DbSet<AuthModel> Registeration { get; set; }
+       
 
 
         // Role Convert into String
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserModel>().Property(r => r.role).HasConversion<string>();
             modelBuilder.Entity<AuthModel>().Property(r => r.role).HasConversion<string>();
 
         }

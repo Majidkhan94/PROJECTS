@@ -4,7 +4,7 @@ import { Footer } from '../Components/Footer.jsx';
 
 
 
-export const Userlayout = () => {
+export const Layout = () => {
     return (<>
         <Header />
         <main> <Outlet /></main>

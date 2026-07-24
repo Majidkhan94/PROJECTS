@@ -30,6 +30,8 @@ export const UserLogin = () =>{
           setSuccess(response.data.message);
           localStorage.setItem("accessToken", response.data.data.accesstoken);
           localStorage.setItem("UserId", response.data.data.id);
+          localStorage.setItem("Role", response.data.data.role);
+          
 
           var timer = setTimeout(() => {
               navigate("/");}, 3000);

@@ -6,7 +6,7 @@ namespace Backend.Models
     public class AuthModel
     {
         // Role
-        public enum Role { Admin, Customer, Vender };
+        public enum Role { Admin, User, Vender };
 
         // Model
         [Key]

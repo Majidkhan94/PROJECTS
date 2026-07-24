@@ -1,14 +1,15 @@
 import { Route, Routes } from "react-router-dom";
+import { Layout } from "../Layout/Layout.jsx";
 
 //User
-import { Userlayout } from "../Layout/Userlayout.jsx";
 import { UserRegisteration } from "../../Users/UserRegisteration.jsx"
 import { UserLogin } from "../../Users/UserLogin.jsx"
 import { UserProfile } from "../../Users/UserProfile.jsx"
 
 
-
+// Pages
 import { HomePage } from "../Pages/HomePage.jsx"
+import { Contactus } from "../Pages/Contactus.jsx"
 
 
 import {AdminRegisteration} from "../../Administration/AdminRegisteration.jsx";
@@ -30,12 +31,17 @@ export const Routing = () => {
             ***** USERS *****
             <Route path="/registeration" element={<UserRegisteration />} />
             <Route path="/login" element={<UserLogin />} />
-            <Route path="/profile" element={<UserProfile />} />
+            
+            ***** USERS Protected Routes *****
+            <Route path="/profile" element={
+                <ProtectedRoute>
+                    <UserProfile/>
+                </ProtectedRoute>} />
 
 -------------------------------------- With Header / Footer --------------------------------------
             
             {/* User Routes */}
-            <Route path="" element={<Userlayout />} >
+            <Route path="" element={<Layout />} >
                 <Route path="/" element={<HomePage />} />
             </Route>
 

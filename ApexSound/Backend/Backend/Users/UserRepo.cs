@@ -36,13 +36,13 @@ namespace Backend.Users
             }
 
             // Email Check
-            var UserExist = await _connectionString.UsersRegisteration.FirstOrDefaultAsync(r => r.Email == userregDTO.Email.Trim().ToLower());
+            var UserExist = await _connectionString.Registeration.FirstOrDefaultAsync(r => r.Email == userregDTO.Email.Trim().ToLower());
             if (UserExist != null) throw new Exception("User Already Exists.");
 
             // Password Check
             if (userregDTO.Password != userregDTO.Confirmpassword) throw new Exception("Password Not Match");
 
-            var User = new UserModel
+            var User = new AuthModel
             {
                 Id = userregDTO.Id,
                 Fullname = userregDTO.Fullname.Trim(),
@@ -52,13 +52,13 @@ namespace Backend.Users
                 Refreshtoken = userregDTO.Refreshtoken,
                 Refreshtokenexpiry = DateTime.UtcNow.AddDays(7),
                 Createdat = DateTime.UtcNow,
-                role = UserModel.Role.User
+                role = AuthModel.Role.User
             };
-                await _connectionString.UsersRegisteration.AddAsync(User);
+                await _connectionString.Registeration.AddAsync(User);
                 await _connectionString.SaveChangesAsync();
 
             // Tokens
-            var accesstoken = Token.GenerateAccessToken(User.Id, User.Email, UserModel.Role.User.ToString());
+            var accesstoken = Token.GenerateAccessToken(User.Id, User.Email, AuthModel.Role.User.ToString());
             var refreshtoken = Token.GenerateRefreshToken();
 
             User.Refreshtoken = refreshtoken;
@@ -68,11 +68,12 @@ namespace Backend.Users
             return new UserRegDTO
             {
                 Id = User.Id,
-                Fullname= User.Fullname,
-                Email= User.Email,
-                Password= User.Password,
+                Fullname = User.Fullname,
+                Email = User.Email,
+                Password = User.Password,
                 Accesstoken = accesstoken,
-                Refreshtoken=refreshtoken,
+                Refreshtoken = refreshtoken,
+                role = Enum.Parse<UserRegDTO.Role>(AuthModel.Role.User.ToString())
             };
             
         }
@@ -90,7 +91,7 @@ namespace Backend.Users
             }
 
             // Email Check
-            var ExistEmail = await _connectionString.UsersRegisteration.FirstOrDefaultAsync(e => e.Email == userlogDTO.Email.Trim().ToLower());
+            var ExistEmail = await _connectionString.Registeration.FirstOrDefaultAsync(e => e.Email == userlogDTO.Email.Trim().ToLower());
             if (ExistEmail == null) throw new Exception("Invalid Email or Password");
 
 
@@ -99,7 +100,7 @@ namespace Backend.Users
             if (!IspasswordCorrect) throw new Exception("Invalid Email or Password");
 
             // Token
-            var accesstoken = Token.GenerateAccessToken(ExistEmail.Id, ExistEmail.Email, UserModel.Role.User.ToString());
+            var accesstoken = Token.GenerateAccessToken(ExistEmail.Id, ExistEmail.Email, ExistEmail.role.ToString() );
             var refreshtoken = Token.GenerateRefreshToken();
 
             // Save Data
@@ -113,7 +114,8 @@ namespace Backend.Users
                 Password = ExistEmail.Password,
                 Accesstoken = accesstoken,
                 Refreshtoken = refreshtoken,
-                
+                role = Enum.Parse<UserLogDTO.Role>(ExistEmail.role.ToString())
+
             };
         }
 
@@ -122,7 +124,7 @@ namespace Backend.Users
         public async Task<UserProDTO> userProfile(int Id, UserProDTO userproDTO)
         {
             // Find User
-            var UpdateUser = await _connectionString.UsersRegisteration.FindAsync(Id);
+            var UpdateUser = await _connectionString.Registeration.FindAsync(Id);
             if (UpdateUser == null) throw new Exception("User Not Found");
 
             // Profile Picture
@@ -158,7 +160,7 @@ namespace Backend.Users
         // Get User Profile
         public async Task<UserProDTO> GetUserProfile(int Id)
         {
-            var User = await _connectionString.UsersRegisteration.FindAsync(Id);
+            var User = await _connectionString.Registeration.FindAsync(Id);
             if (User == null) throw new Exception("User Not Found");
 
             return new UserProDTO
@@ -176,22 +178,29 @@ namespace Backend.Users
         }
 
         // User Delete
-        public Task<bool> userDelete(int Id)
+        public async Task<bool> userDelete(int Id)
         {
-            throw new NotImplementedException();
+            var find = await _connectionString.Registeration.FindAsync(Id);
+            if(find != null)
+            {
+                _connectionString.Registeration.Remove(find);
+                await _connectionString.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
 
         // Get User List
-        public async Task<List<UserModel>> GetUserList()
+        public async Task<List<AuthModel>> GetUserList()
         {
-            return await _connectionString.UsersRegisteration.ToListAsync();
+            return await _connectionString.Registeration.ToListAsync();
         }
 
         // Get User Count
         public async Task<int> GetUserCount()
         {
-            return await _connectionString.UsersRegisteration.CountAsync();
+            return await _connectionString.Registeration.CountAsync();
         }
     }
 }
