@@ -43,6 +43,8 @@ export const Routing = () => {
             {/* User Routes */}
             <Route path="" element={<Layout />} >
                 <Route path="/" element={<HomePage />} />
+                <Route path="/contact" element={<Contactus />} />
+                
             </Route>
 
 

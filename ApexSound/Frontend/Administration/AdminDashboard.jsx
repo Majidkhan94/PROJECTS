@@ -2,17 +2,19 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FiGrid, FiUsers, FiShoppingBag, FiBox, FiShoppingCart, FiClipboard, FiUser } from "react-icons/fi";
 import { LuLetterText } from "react-icons/lu";
+import { MdContactPhone } from "react-icons/md";
 import Logo from "../src/Public/Logo.png"
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../src/Feature/Button.jsx";
 import { Paragraph } from "../src/Feature/Paragraph.jsx";
 import { AdminSlide } from "../Administration/Component/AdminSlide.jsx"
-import { AdminDashboardSection } from "../Administration/Sections/AdminDashboardSection.jsx";
-import { AdminUserManagement } from "../Administration/Sections/AdminUserManagement.jsx";
-import { AdminVenderRequest } from "../Administration/Sections/AdminVenderRequest.jsx";
-import { AdminProductManagement } from "../Administration/Sections/AdminProductManagement.jsx";
-import { AdminOrderManagement } from "../Administration/Sections/AdminOrderManagement.jsx";
-import { AdminCategories } from "../Administration/Sections/AdminCategories.jsx";
+import { Dashboard } from "../Administration/Sections/Dashboard.jsx";
+import { UserManagement } from "../Administration/Sections/UserManagement.jsx";
+import { VenderRequest } from "./Sections/VenderRequest.jsx";
+import { Categories } from "./Sections/Categories.jsx";
+import { ProductManagement } from "./Sections/ProductManagement.jsx";
+import { OrderManagement } from "./Sections/OrderManagement.jsx";
+import { Contactus } from "../Administration/Sections/Contactus.jsx";
 import { Newsletter } from "../Administration/Sections/Newsletter.jsx";
 
 
@@ -35,7 +37,9 @@ const Data = [
   { key: "categories", text: "Categories", icon: FiBox },
   { key: "products", text: "Products Management", icon: FiShoppingCart },
   { key: "orders", text: "Orders Management", icon: FiClipboard },
+  { key: "contactus", text: "Contactus", icon: MdContactPhone },
   { key: "newsletter", text: "NewsLetter", icon: LuLetterText },
+  
 ];
 
 ///////////////////////////////// Right Section Data /////////////////////////////////
@@ -54,7 +58,7 @@ export const AdminDashboard = () => {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}admin/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setAdmin(response.data);
+        setAdmin(response.data.data);
       } catch (error) {
         console.error("Fetch failed:", error);
       }
@@ -75,7 +79,7 @@ const handleLogout = () => {
       
                     {/* /////////// Left_Side /////////// */}
 
-      <div className="h-full w-70 bg-black flex flex-col justify-between ">
+      <div className="h-full w-70 bg-black flex flex-col justify-between overflow-y-auto">
         {/* 1. Logo */}
         <div className="flex items-center justify-center py-3 border-b border-gray-800">
           <img src={Logo} alt="ApexSound" className="h-15 w-auto object-contain" />
@@ -106,17 +110,19 @@ const handleLogout = () => {
 
       
       <div className="flex-1 relative overflow-y-auto">
-        {active === "dashboard" && (<AdminSlide key="dashboard"> <AdminDashboardSection /></AdminSlide>)}
+        {active === "dashboard" && (<AdminSlide key="dashboard"> <Dashboard /></AdminSlide>)}
 
-        {active === "users" && (<AdminSlide key="users"><AdminUserManagement /></AdminSlide>)}
+        {active === "users" && (<AdminSlide key="users"><UserManagement /></AdminSlide>)}
 
-        {active === "vendors" && (<AdminSlide key="vendors"><AdminVenderRequest /></AdminSlide>)}
+        {active === "vendors" && (<AdminSlide key="vendors"><VenderRequest /></AdminSlide>)}
         
-        {active === "categories" && ( <AdminSlide key="categories"><AdminCategories /></AdminSlide> )}
+        {active === "categories" && ( <AdminSlide key="categories"><Categories /></AdminSlide> )}
         
-        {active === "products" && (<AdminSlide key="products"><AdminProductManagement /></AdminSlide>)}
+        {active === "products" && (<AdminSlide key="products"><ProductManagement /></AdminSlide>)}
         
-        {active === "orders" && (<AdminSlide key="orders"><AdminOrderManagement/></AdminSlide>)}
+        {active === "orders" && (<AdminSlide key="orders"><OrderManagement/></AdminSlide>)}
+
+        {active === "contactus" && (<AdminSlide key="contactus"><Contactus/></AdminSlide>)}
 
         {active === "newsletter" && (<AdminSlide key="newsletter"><Newsletter /></AdminSlide>)}
       </div>

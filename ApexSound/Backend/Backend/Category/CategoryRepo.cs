@@ -81,8 +81,10 @@ namespace Backend.Category
             return true;
         }
 
-        
-
-        
+        // Count
+        public async Task<int> CategoryCount()
+        {
+            return await _connectionstring.Categories.CountAsync();
+        }
     }
 }

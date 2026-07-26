@@ -5,7 +5,7 @@ import { Button } from "../../src/Feature/Button.jsx";
 import { Heading } from "../../src/Feature/Heading.jsx";
 import { Paragraph } from "../../src/Feature/Paragraph.jsx";
 
-export const AdminCategories = () => {
+export const Categories = () => {
 
     const [name, setName] = useState("");
     const [list, setList] = useState([]);
@@ -15,7 +15,7 @@ export const AdminCategories = () => {
     // List Category — function bahar banayi, taake har jagah se call ho sake
     const listCategory = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}Category/list`);
+            const response = await axios.get(`${import.meta.env.VITE_CATEGORY_LIST}`);
             setList(response.data);
         } catch (error) {
             console.log("Not Fetched:", error);
@@ -30,7 +30,7 @@ export const AdminCategories = () => {
     const addCategory = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${import.meta.env.VITE_BACKEND_URL}Category/add`, { name: name });
+            await axios.post(`${import.meta.env.VITE_CATEGORY_ADD}`, { name: name });
             setName("");
             listCategory();   // list refresh
         } catch (error) {
@@ -47,7 +47,7 @@ export const AdminCategories = () => {
     // Update Category
     const updateCategory = async (Id) => {
         try {
-            await axios.put(`${import.meta.env.VITE_BACKEND_URL}Category/update/${Id}`, { name: editName });
+            await axios.put(`${import.meta.env.VVITE_CATEGORY_UPDATE}/${Id}`, { name: editName });
             setEditId(null);
             setEditName("");
             listCategory();   // ab ye kaam karega, kyunke function scope me hai
@@ -59,7 +59,7 @@ export const AdminCategories = () => {
     // Delete Category — missing function add ki
     const deleteCategory = async (Id) => {
         try {
-            await axios.delete(`${import.meta.env.VITE_BACKEND_URL}Category/delete/${Id}`);
+            await axios.delete(`${import.meta.env.VITE_CATEGORY_DELETE}/${Id}`);
             listCategory();   // list refresh
         } catch (error) {
             console.log("Not Deleted:", error);

@@ -13,16 +13,7 @@ namespace Backend.Category
             _categoryRepo = categoryRepo;
         }
 
-        // List Categories
-        [HttpGet]
-        [Route("list")]
-
-        public async Task<IActionResult> ListCategory()
-        {
-            var category = await _categoryRepo.ListCategory();
-            return Ok(category);
-        }
-        
+        // ADD
         [HttpPost]
         [Route("add")]
         public async Task<IActionResult> AddCategory([FromBody] CategoryModelDTO addcategory)
@@ -64,9 +55,9 @@ namespace Backend.Category
                 return BadRequest(new { message = ex.Message });
             }
         }
-            // Delete
-            [HttpDelete("delete/{Id}")]
-
+            
+        // Delete
+        [HttpDelete("delete/{Id}")]
         public async Task<IActionResult> DeleteCategory(int Id)
         {
             try
@@ -86,11 +77,32 @@ namespace Backend.Category
             }
         }
 
+        // List Categories
+        [HttpGet]
+        [Route("list")]
+
+        public async Task<IActionResult> ListCategory()
+        {
+            var category = await _categoryRepo.ListCategory();
+            return Ok(category);
+        }
+
+        [HttpGet]
+        [Route("count")]
+        public async Task<IActionResult> CategoryCount()
+        {
+            try
+            {
+                var count = await _categoryRepo.CategoryCount();
+                return Ok(new { data = count });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
     }
-
-
-
-
 
     }
 

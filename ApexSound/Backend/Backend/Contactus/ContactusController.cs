@@ -3,7 +3,7 @@
 namespace Backend.Contactus
 {
     [ApiController]
-    [Route("/api/$[controller]")]
+    [Route("api/[controller]")]
     public class ContactusController : ControllerBase
     {
         private readonly IContactusRepo _contactus;
@@ -28,7 +28,7 @@ namespace Backend.Contactus
         // ADD
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> Contactadd([FromForm] ContactusModel contactadd)
+        public async Task<IActionResult> Contactadd([FromBody] ContactusModel contactadd)
         {
             try {
                 var add = await _contactus.Contactadd(contactadd);

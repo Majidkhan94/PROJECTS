@@ -72,6 +72,25 @@ namespace Backend.Users
             }
         }
 
+        // Delete
+        [HttpDelete("delete/{Id}")]
+        public async Task<IActionResult> userDelete(int Id)
+        {
+            try
+            {
+                var Delete = await _userRepo.userDelete(Id);
+                if (!Delete) 
+                {
+                    return BadRequest(new { message = "User Not Deleted" });
+                }
+                return Ok(new { message = "User Deleted"});
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+
+        }
 
         // Get User Profile Data
         [HttpGet("{Id}")]
@@ -123,3 +142,4 @@ namespace Backend.Users
         }
     }
 }
+

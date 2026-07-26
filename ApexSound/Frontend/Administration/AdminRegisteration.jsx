@@ -17,20 +17,19 @@ export const AdminRegisteration = () => {
 
     // Fetch Data From Backend
     
-    useEffect(() => {
-
-        var FetchData = async () => {
-            try{
-              const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}admin/registeration`);
-              setdata(response.data);
-            }
-            catch(err){
-              setError(err.message);
-              setLoading(false);
-            }
+   useEffect(() => {
+    var FetchData = async () => {
+        try{
+          const response = await axios.get(`${import.meta.env.VITE_ADMIN_PROFILE}`);
+          setdata(response.data);
         }
-            FetchData();
-    }, []);
+        catch(err){
+          setError(err.message);
+          setLoading(false);
+        }
+    }
+        FetchData();
+}, []);
 
     // Form Data 
     const [formData, setFormData] = useState({
@@ -70,7 +69,8 @@ export const AdminRegisteration = () => {
     setLoading(true);
 
     try{
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}admin/registeration`, formData);
+      const response = await axios.post(`${import.meta.env.VITE_ADMIN_REGISTERATION}`, formData,
+         {headers: {"Content-Type" : "application/json"}});
       setSuccess("Registration successful!");
       localStorage.setItem("accessToken", response.data.details.accesstoken);
       localStorage.setItem("adminId", response.data.details.id);

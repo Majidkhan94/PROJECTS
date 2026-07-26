@@ -3,7 +3,7 @@ import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { Button } from "../../src/Feature/Button.jsx";
 
 
-export const AdminOrderManagement = () => {
+export const OrderManagement = () => {
   const [search, setSearch] = useState("");
 
   const orders = [

@@ -1,20 +1,28 @@
 import { AdminCardComponents } from "../Component/AdminCardComponents";
 import { FiGrid, FiUsers, FiShoppingBag, FiBox, FiShoppingCart, FiClipboard, FiUser } from "react-icons/fi";
+import { MdContactPhone } from "react-icons/md";
+import { LuLetterText } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export const AdminDashboardSection = ()=>{
 
-    const [data, setData] = useState([])
+export const Dashboard = ()=>{
+
     const [loading, setloading] = useState(false)
+    const [user, setUser] = useState([])
+    const [category, setCategory] = useState([])
 
 
     useEffect(()=>{
           const FetchData = async () => {
               try{
                   setloading(true)
-                  var response = await axios.get(`${import.meta.env.VITE_USER_GETUSERCOUNT}`)
-                  setData(response.data.data)
+                  
+                  var User = await axios.get(`${import.meta.env.VITE_USER_GETUSERCOUNT}`)
+                  setUser(User.data.data);
+                  
+                  var Category = await axios.get(`${import.meta.env.VITE_CATEGORY_COUNT}`)
+                  setCategory(Category.data.data)
                   console.log("Successfull", response.data.data)
               }
               catch(err){
@@ -27,11 +35,13 @@ export const AdminDashboardSection = ()=>{
     },[])
 
     const DashboardData = [
-      { text: "Total Users", numbers: data, icon: FiUsers },
-      { text: "Total Vendors", numbers: "356", icon: FiShoppingBag },
-      { text: "Total Products", numbers: "8,924", icon: FiBox },
-      { text: "Total Orders", numbers: "21,309", icon: FiShoppingCart },
-      { text: "Pending Vendor Requests", numbers: "14", icon: FiClipboard }
+      { text: "Total Users", numbers: user, icon: FiUsers },
+      { text: "Total Vendors Request", numbers: "356", icon: FiShoppingBag },
+      { text: "Total Categories", numbers: category, icon: FiBox },
+      { text: "Total Products", numbers: "8,924", icon: FiShoppingCart },
+      { text: "Total Orders", numbers: "21,309", icon: FiClipboard },
+      { text: "Total Contacts", numbers: "21,309", icon: MdContactPhone },
+      { text: "Total Newsletter", numbers: "21,309", icon: LuLetterText },
     ];
 
     return(<>

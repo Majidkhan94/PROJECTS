@@ -2,7 +2,7 @@ import { FaStore, FaSearch } from "react-icons/fa";
 import { Button } from "../../src/Feature/Button.jsx";
 import { useState } from "react";
 
-export const AdminVenderRequest = () => {
+export const VenderRequest = () => {
   const [search, setSearch] = useState("");
 
   const vendorRequests = [

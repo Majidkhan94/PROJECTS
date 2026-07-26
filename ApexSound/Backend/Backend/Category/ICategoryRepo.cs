@@ -9,5 +9,6 @@ namespace Backend.Category
         Task<CategoryModelDTO> AddCategory(CategoryModelDTO addcategory);
         Task<CategoryModelDTO> UpdateCategory(int Id, CategoryModelDTO updatecategory);
         Task<bool> DeleteCategory(int Id);
+        Task<int> CategoryCount();
     }
 }
