@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 export const AdminLogin = () => {
 
+  const navigate =  useNavigate();
+
   const [data, setdata] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -16,13 +18,9 @@ export const AdminLogin = () => {
 
   // Form Data
     const [formData, setFormData] = useState({ Email: "", Password: "" });
-    const FormDataInput = (e) => {
-      const { name, value } = e.target;
-      setFormData((prevData) => ({ ...prevData, [name]: value }));  
-    }
+    const FormDataInput = (e) => { setFormData({...formData, [e.target.name]: e.target.value})}
   
     // Submit Form Data to Backend
-    const navigate =  useNavigate();
     
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -43,18 +41,16 @@ export const AdminLogin = () => {
       }
       setLoading(true);
       try {
-          const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}admin/login`, formData);
-          console.log("FULL RESPONSE:", response.data);
+          const response = await axios.post(`${import.meta.env.VITE_ADMIN_LOGIN}`, formData);
           setSuccess("Login successful!");
           localStorage.setItem("accessToken", response.data.details.accesstoken);
           localStorage.setItem("adminId", response.data.details.id);
           localStorage.setItem("role", response.data.details.role);
           setFormData({ Email: "", Password: "" });
           navigate("/admin/dashboard");
-
         }
       catch (err) {
-        setError("Invalid email or password");
+        setError(err?.data?.message || "Invalid email or password");
       }
       finally {
         setLoading(false);
@@ -66,7 +62,6 @@ export const AdminLogin = () => {
 
 <section className="h-screen flex items-center justify-center p-4">
   <div className="shadow-2xl shadow-white p-8 rounded-md w-full max-w-md">
-    <Button text="Back to Homepage" to="/" className="my-2 bg-black hover:bg-white text-white text-sm  px-2 rounded inline-block"/>
     <span className="flex justify-center items-center gap-4 text-3xl font-semibold mb-6">
       <IoIosUnlock />
       <Heading text="Admin Login" />

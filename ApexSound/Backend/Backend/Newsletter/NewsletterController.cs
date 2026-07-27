@@ -70,7 +70,18 @@ namespace Backend.Newsletter
             }
 
         }
-
+        [HttpGet]
+        [Route("count")]
+        public async Task<IActionResult> NewsletterCount()
+        {
+            try {
+                var count = await _newsletterRepo.NewsletterCount();
+                return Ok(new { data = count });
+            }
+            catch (Exception ex) {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
 
 
 

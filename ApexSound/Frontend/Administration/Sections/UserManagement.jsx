@@ -8,17 +8,12 @@ export const UserManagement = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   
-
-
-
-
   useEffect(()=>{
           var FetchData = async () =>{
               try{
                   setLoading(true)
                  var response = await axios.get(`${import.meta.env.VITE_USER_GETUSERLIST}`);
                  setData(response.data.data)
-                 console.log("Successfull", response.data.data)
               }
               catch(err){
                 console.log(err.response.data.error || "Something Went Wrong")

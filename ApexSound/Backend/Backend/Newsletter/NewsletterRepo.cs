@@ -44,5 +44,10 @@ namespace Backend.Newsletter
             var list = await _connectionString.Newsletter.ToListAsync() ;
             return list;
         }
+
+        public async Task<int> NewsletterCount()
+        {
+            return await _connectionString.Newsletter.CountAsync();
+        }
     }
 }

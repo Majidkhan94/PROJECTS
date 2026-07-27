@@ -11,6 +11,8 @@ export const Dashboard = ()=>{
     const [loading, setloading] = useState(false)
     const [user, setUser] = useState([])
     const [category, setCategory] = useState([])
+    const [contact, setContact] = useState([])
+    const [newsletter, setNewsletter] = useState([])
 
 
     useEffect(()=>{
@@ -23,7 +25,14 @@ export const Dashboard = ()=>{
                   
                   var Category = await axios.get(`${import.meta.env.VITE_CATEGORY_COUNT}`)
                   setCategory(Category.data.data)
-                  console.log("Successfull", response.data.data)
+
+                  var Contactus = await axios.get(`${import.meta.env.VITE_CONTACTUS_COUNT}`)
+                  setContact(Contactus.data.data)
+
+                  var Newsletter = await axios.get(`${import.meta.env.VITE_NEWSLETTER_COUNT}`)
+                  setNewsletter(Newsletter.data.data)
+
+
               }
               catch(err){
                 console.log(err.response?.data.error || "Something Went Wrong")
@@ -40,8 +49,8 @@ export const Dashboard = ()=>{
       { text: "Total Categories", numbers: category, icon: FiBox },
       { text: "Total Products", numbers: "8,924", icon: FiShoppingCart },
       { text: "Total Orders", numbers: "21,309", icon: FiClipboard },
-      { text: "Total Contacts", numbers: "21,309", icon: MdContactPhone },
-      { text: "Total Newsletter", numbers: "21,309", icon: LuLetterText },
+      { text: "Total Contacts", numbers: contact, icon: MdContactPhone },
+      { text: "Total Newsletter", numbers: newsletter, icon: LuLetterText },
     ];
 
     return(<>

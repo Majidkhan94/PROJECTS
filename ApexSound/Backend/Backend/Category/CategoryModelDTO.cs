@@ -8,5 +8,8 @@ namespace Backend.Category
         [Required]
         public string? Name { get; set; }
         public string? Slug { get; set; }
+        public IFormFile? ProfilePic { get; set; }
+        public string? ProfilePicURL { get; set; }
+
     }
 }

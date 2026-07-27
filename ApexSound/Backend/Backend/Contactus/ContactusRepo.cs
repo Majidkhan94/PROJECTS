@@ -48,5 +48,10 @@ namespace Backend.Contactus
             return false;
         }
 
+        // Count
+        public async Task<int> ContactCount()
+        {
+            return await _connectionString.Contactus.CountAsync();
+        }
     }
 }

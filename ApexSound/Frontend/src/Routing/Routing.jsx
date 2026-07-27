@@ -10,7 +10,7 @@ import { UserProfile } from "../../Users/UserProfile.jsx"
 // Pages
 import { HomePage } from "../Pages/HomePage.jsx"
 import { Contactus } from "../Pages/Contactus.jsx"
-
+import {Categories} from "../Pages/Categories.jsx"
 
 import {AdminRegisteration} from "../../Administration/AdminRegisteration.jsx";
 import {AdminLogin} from "../../Administration/AdminLogin.jsx";
@@ -44,6 +44,7 @@ export const Routing = () => {
             <Route path="" element={<Layout />} >
                 <Route path="/" element={<HomePage />} />
                 <Route path="/contact" element={<Contactus />} />
+                <Route path="/Categories" element={<Categories />} />
                 
             </Route>
 

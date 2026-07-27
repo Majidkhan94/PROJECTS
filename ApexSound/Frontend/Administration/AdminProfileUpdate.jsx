@@ -11,7 +11,6 @@ export const AdminProfileUpdate = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [loading, setLoading] = useState(false);
-
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
@@ -20,34 +19,26 @@ export const AdminProfileUpdate = () => {
   const [saving, setSaving] = useState(false);
 
   // FETCHING DATA FROM BACKEND
-   const fetchProfile = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}admin/profile`,
-        { headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` } }
-      );
-      setFetchdata(response.data);
-      setFormData(response.data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+const fetchProfile = async () => {
+  setLoading(true);
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_ADMIN_PROFILE}`,
+      { headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` } });
+    setFetchdata(response.data);
+    setFormData(response.data);
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
-  // useEffect ab sirf itna karta hai: call fetchProfile on load
-  useEffect(() => {
-    fetchProfile();
-  }, []);
-
+useEffect(() => {
+  fetchProfile();
+}, []);
 
   // InputFields Change Handler
-  const handleInputChange = (e) =>
-    {
-        const {name, value} = e.target;
-        setFormData((prevData) => ({ ...prevData, [name]: value, }));    
-    }
+  const handleInputChange = (e) =>{ setFormData({...formData, [e.target.name]: e.target.value})}
 
 // New Image Selection Handler
   const handleImageChange = (e) => {
@@ -79,7 +70,7 @@ export const AdminProfileUpdate = () => {
                 form.append("DateOfBirth", formData.dateOfBirth ? formData.dateOfBirth.split("T")[0] : "");
 
             // Backend ko request bhejein
-            await axios.put( `${import.meta.env.VITE_BACKEND_URL}admin/update`, form,
+            await axios.put( `${import.meta.env.VITE_ADMIN_UPDATE}`, form,
             { headers: {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             "Content-Type": "multipart/form-data",
@@ -115,7 +106,6 @@ export const AdminProfileUpdate = () => {
   return (
     <section className="h-screen flex items-center justify-center p-4">
   <div className="shadow-2xl shadow-white p-4 rounded-md w-full max-w-md">
-    <Button text="Back to Dashboard" to="/admin/dashboard" className="my-2 bg-black hover:bg-white text-white text-sm px-2 rounded inline-block" />
 
     <span className="flex justify-center items-center gap-4 text-3xl font-semibold mb-6">
       <AiFillProfile />
@@ -209,7 +199,7 @@ export const AdminProfileUpdate = () => {
           <Input type="date" name="dateOfBirth" value={formData.dateOfBirth || ""} onChange={handleInputChange} placeholder="Date of Birth" />
 
           <div className="flex gap-2 mt-2">
-            <Button text="Save" onClick={handleSave} className="flex-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" />
+            <Button text="Save" onClick={()=> handleSave()} className="flex-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" />
             <Button text="Cancel" onClick={handleCancel} className="flex-1 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" />
           </div>
         </form>

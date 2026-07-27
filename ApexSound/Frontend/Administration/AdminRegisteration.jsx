@@ -9,42 +9,20 @@ import { useNavigate } from "react-router-dom";
 
 
 export const AdminRegisteration = () => {
+    
+    const navigate =  useNavigate();
 
     const [data, setdata] = useState([]);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    // Fetch Data From Backend
-    
-   useEffect(() => {
-    var FetchData = async () => {
-        try{
-          const response = await axios.get(`${import.meta.env.VITE_ADMIN_PROFILE}`);
-          setdata(response.data);
-        }
-        catch(err){
-          setError(err.message);
-          setLoading(false);
-        }
-    }
-        FetchData();
-}, []);
+ // Form Data 
+    const [formData, setFormData] = useState({ Fullname: "", Email: "", Password: "", Confirmpassword: "" });  
 
-    // Form Data 
-    const [formData, setFormData] = useState({
-    Fullname: "",
-    Email: "",
-    Password: "",
-    Confirmpassword: ""
-  });  
-
-  const valueinput = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({...prevData, [name]: value}))};
+  const valueinput = (e) => { setFormData({...formData, [e.target.name]: e.target.value})};
 
     // Submit Form Data to Backend
-    const navigate =  useNavigate();
     const handleSubmit = async (e) => {
       e.preventDefault();
       setError(null);
@@ -75,13 +53,6 @@ export const AdminRegisteration = () => {
       localStorage.setItem("accessToken", response.data.details.accesstoken);
       localStorage.setItem("adminId", response.data.details.id);
       localStorage.setItem("role", response.data.details.role);
-      
-      setFormData({
-        Fullname: "",
-        Email: "",
-        Password: "",
-        Confirmpassword: ""
-      });
       navigate("/admin/dashboard");
     }
     catch(err){
@@ -100,7 +71,6 @@ export const AdminRegisteration = () => {
 
 <section className="h-screen flex items-center justify-center p-4">
   <div className="shadow-2xl shadow-white p-4 rounded-md w-full max-w-md">
-    <Button text="Back to Homepage" to="/" className="my-2 bg-black hover:bg-white text-white text-sm  px-2 rounded inline-block"/>
     <span className="flex justify-center items-center gap-4 text-3xl font-semibold mb-6">
       <FaUserLock />
       <Heading text="Admin Registration" />

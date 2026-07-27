@@ -44,7 +44,7 @@ export const Newsletter = () => {
                     {list.map((item) => (
                         <li key={item.id} className="flex justify-between items-center border-b py-2">
                             <span className="text-sm">{item.email}</span>
-                            <Button text={"Delete"} onClick={()=> handleDelete(item.id)} className={"text-red-600!"} />                          
+                            <Button text={"Delete"} onClick={()=> handleDelete(item.id)} className={"hover:bg-red-600! hover:text-white!"}  />                          
                         </li>
                     ))}
                 </ul>

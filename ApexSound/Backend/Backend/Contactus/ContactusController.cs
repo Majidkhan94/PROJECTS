@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Backend.ConnectionStrings;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Contactus
 {
@@ -51,6 +52,21 @@ namespace Backend.Contactus
                 return Ok(new { message = "Deleted!!!" });
             }
             catch (Exception ex) { return BadRequest(new { error = ex.Message }); }
+        }
+
+        [HttpGet]
+        [Route("count")]
+        public async Task<IActionResult> ContactCount()
+        {
+            try
+            {
+                var count = await _contactus.ContactCount();
+                return Ok(new { data = count });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
     }
 }

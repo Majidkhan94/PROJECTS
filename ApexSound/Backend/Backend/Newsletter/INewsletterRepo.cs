@@ -7,5 +7,6 @@ namespace Backend.Newsletter
         Task<List<NewsletterModel>> ListNewsletter();
         Task<NewsletterModel> AddNewsletter(NewsletterModel addnewsletter);
         Task<bool> DeleteNewsletter(int Id);
+        Task<int> NewsletterCount();
     }
 }

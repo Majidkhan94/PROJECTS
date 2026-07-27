@@ -16,7 +16,7 @@ namespace Backend.Category
         // ADD
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> AddCategory([FromBody] CategoryModelDTO addcategory)
+        public async Task<IActionResult> AddCategory([FromForm] CategoryModelDTO addcategory)
         {
             if(!ModelState.IsValid) return BadRequest(ModelState);
             try
@@ -36,7 +36,7 @@ namespace Backend.Category
 
         // Update
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateCategory(int Id, [FromBody] CategoryModelDTO updatecategory)
+        public async Task<IActionResult> UpdateCategory(int Id, [FromForm] CategoryModelDTO updatecategory)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             try

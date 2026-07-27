@@ -14,7 +14,7 @@ import { VenderRequest } from "./Sections/VenderRequest.jsx";
 import { Categories } from "./Sections/Categories.jsx";
 import { ProductManagement } from "./Sections/ProductManagement.jsx";
 import { OrderManagement } from "./Sections/OrderManagement.jsx";
-import { Contactus } from "../Administration/Sections/Contactus.jsx";
+import { Contactus } from "./Sections/Contactus.jsx";
 import { Newsletter } from "../Administration/Sections/Newsletter.jsx";
 
 
@@ -55,10 +55,10 @@ export const AdminDashboard = () => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}admin/profile`, {
+        const response = await axios.get(`${import.meta.env.VITE_ADMIN_PROFILE}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setAdmin(response.data.data);
+        setAdmin(response.data);
       } catch (error) {
         console.error("Fetch failed:", error);
       }
@@ -121,8 +121,8 @@ const handleLogout = () => {
         {active === "products" && (<AdminSlide key="products"><ProductManagement /></AdminSlide>)}
         
         {active === "orders" && (<AdminSlide key="orders"><OrderManagement/></AdminSlide>)}
-
-        {active === "contactus" && (<AdminSlide key="contactus"><Contactus/></AdminSlide>)}
+        
+        {active === "contactus" && (<AdminSlide key="contactus"><Contactus /></AdminSlide>)}
 
         {active === "newsletter" && (<AdminSlide key="newsletter"><Newsletter /></AdminSlide>)}
       </div>
