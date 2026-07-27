@@ -11,6 +11,8 @@ namespace Backend.Models
         public bool? IsActive { get; set; }
         public DateTime?  Createdat { get; set; }
         public string? ProfilePicURL { get; set; }
+        public ICollection<ProductModel>? Products { get; set; }
+
 
     }
 }

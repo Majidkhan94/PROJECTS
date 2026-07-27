@@ -46,8 +46,7 @@ namespace Backend.Category
 
             // Exist category
             var existCategory = await _connectionstring.Categories.FirstOrDefaultAsync(c => c.Slug == slug);
-            if (existCategory != null)
-                throw new InvalidOperationException("Category already exists.");
+            if (existCategory != null) throw new Exception("Category already exists.");
 
             // Image upload
             string? profilePicUrl = addcategory.ProfilePicURL;

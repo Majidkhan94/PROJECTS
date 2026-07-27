@@ -5,6 +5,7 @@ using Backend.Contactus;
 using Backend.Newsletter;
 using Backend.Services;
 using Backend.Users;
+using Backend.Products;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -48,14 +49,13 @@ builder.Services.AddControllers()
 
 // Scope
 builder.Services.AddScoped<IUserRepo, UserRepo>();
-
-
 builder.Services.AddScoped<IAdminRepo, AdminRepo>();
 builder.Services.AddScoped<Token>();
 builder.Services.AddScoped<ICloudinary, Cloudinary>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<INewsletterRepo, NewsletterRepo>();
 builder.Services.AddScoped<IContactusRepo, ContactusRepo>();
+builder.Services.AddScoped<IProductRepo, ProductRepo>();
 
 // JWT TOKEN 
 

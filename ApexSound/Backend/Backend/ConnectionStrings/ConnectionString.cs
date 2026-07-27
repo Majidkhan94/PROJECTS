@@ -14,6 +14,7 @@ namespace Backend.ConnectionStrings
         public DbSet<NewsletterModel> Newsletter { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<ContactusModel> Contactus { get; set; }
+        public DbSet<ProductModel> Products { get; set; }
         public DbSet<AuthModel> Registeration { get; set; }
        
 
