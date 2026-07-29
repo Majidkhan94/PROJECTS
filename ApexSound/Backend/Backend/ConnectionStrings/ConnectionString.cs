@@ -23,6 +23,7 @@ namespace Backend.ConnectionStrings
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AuthModel>().Property(r => r.role).HasConversion<string>();
+            modelBuilder.Entity<ProductModel>().Property(p => p.products).HasConversion<string>();
 
         }
 

@@ -19,8 +19,8 @@ namespace Backend.Products
         {
             try
             {
-                await _productrepo.ProductCount();
-                return Ok(new { message = "Product add successfully" });
+                 var count = await _productrepo.ProductCount();
+                return Ok(new { data = count });
             }
             catch (Exception ex) { return BadRequest(new { error = ex.Message }); }
         }
@@ -32,8 +32,8 @@ namespace Backend.Products
         {
             try
             {
-                await _productrepo.ListProduct();
-                return Ok(new { message = "Product add successfully" });
+                var list =  await _productrepo.ListProduct();
+                return Ok(new { data = list });
             }
             catch (Exception ex) { return BadRequest(new { error = ex.Message }); }
         }
@@ -42,14 +42,14 @@ namespace Backend.Products
         // Add
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> AddProduct(ProductModelDTO addproduct)
+        public async Task<IActionResult> AddProduct([FromForm] ProductModelDTO addproduct)
         {
             try 
             {
-                    await _productrepo.AddProduct(addproduct);
-                    return Ok(new { message = "Product add successfully"});
+                   var add =  await _productrepo.AddProduct(addproduct);
+                    return Ok(new { message = "Product add successfully", data = add});
             }
-            catch(Exception ex) { return BadRequest(new { error = ex.Message });}   
+            catch(Exception ex) { return BadRequest(new { error = ex.Message, inner = ex.InnerException?.Message });}   
         }
 
     }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Backend.Services;
 using Backend.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Products
 {
@@ -45,7 +46,7 @@ namespace Backend.Products
         public async Task<ProductModelDTO> AddProduct(ProductModelDTO addproduct)
         {
             // Check Name
-            if (!string.IsNullOrWhiteSpace(addproduct.Name)) throw new Exception("Product name required");
+            if (string.IsNullOrWhiteSpace(addproduct.Name)) throw new Exception("Product name required");
 
             // Slug
             var slug = addproduct.Name.ToLower().Replace(" ", "-");
@@ -73,6 +74,7 @@ namespace Backend.Products
                 Createdat = DateTime.UtcNow,
                 CategoryId = addproduct.CategoryId,
                 CategoryName = addproduct.CategoryName,
+                products = (ProductModel.Products)addproduct.products
             };
 
                 await _connectionString.Products.AddAsync(adddata);
@@ -86,12 +88,20 @@ namespace Backend.Products
                 Description = adddata.Description,
                 Price= adddata.Price,
                 Stock = adddata.Stock,
+                IsActive = adddata.IsActive,
                 ProductPicURL = productpicurl,
+                Createdat = adddata.Createdat,
+                CategoryId = adddata.CategoryId,
+                CategoryName = adddata.CategoryName,
+                products = (ProductModelDTO.Products)adddata.products
 
             };
 
 
         }
+
+
+
 
         public Task<ProductModelDTO> DeleteProduct(int Id)
         {
