@@ -1,6 +1,37 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import {Heading} from "../Feature/Heading.jsx"
+import {Paragraph} from "../Feature/Paragraph.jsx"
+import {Button} from "../Feature/Button.jsx"
 import { Link } from "react-router-dom";
+import { PageHeader } from "../Feature/PageHeader.jsx"
+
+// Card
+const Card = ({ category }) => {
+if (!category) return null;
+
+const {name,profilePicURL,slug,} = category;
+
+
+return (<>
+
+    <Link to={`/categories/${slug}`}>
+    <div className="w-72 bg-hover-bg rounded-2xl overflow-hidden transition-transform duration-500 hover:scale-105">
+        
+        {/* Image */}
+      <div className="relative w-full overflow-hidden">
+        <img src={profilePicURL} className="w-full h-full object-cover" />
+      </div>
+
+        {/* Button   */}
+      <div className="px-4 pt-4 pb-4">
+        <Button text={name} className={"mt-4 w-full text-sm font-medium"} />
+      </div>
+    </div>
+    </Link>
+  </>);};
+
+
 
 export const Categories = () => {
 
@@ -11,6 +42,7 @@ export const Categories = () => {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_CATEGORY_LIST}`);
                 setList(response.data);
+                console.log(response.data);
             }
             catch (error){console.log(error);}
         };
@@ -19,25 +51,14 @@ export const Categories = () => {
 
     return (
         <>
-            <section className="flex flex-wrap gap-6 p-6">
-                {list.map((item) => (
-                <Link key={item.id} to={`/categories/${item.slug}`}
-                    className="flex flex-col items-center w-50 group cursor-pointer">
-                    
-                    {/* Image box */}
-                    
-                    <div className="w-full rounded-xl overflow-hidden transition-transform duration-500 
-                    group-hover:scale-105">
-                        <img src={item.profilePicURL || "/placeholder-image.png"}
-                        className="w-full h-full object-cover" />
-                    </div>
+            <PageHeader text={"Categories"} />
 
-                    {/* Category Name */}
-                    <span className="mt-3 group-hover:text-hover-bg transition-colors">
-                    {item.name}
-                    </span>
-                </Link>
+            <section className="flex flex-wrap gap-6 p-6">
+                
+                {list.map((category) => (
+                    <Card key={category.id} category={category}/>
                 ))}
+                
             </section>
         </>
     );

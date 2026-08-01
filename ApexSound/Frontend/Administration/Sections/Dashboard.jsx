@@ -13,6 +13,7 @@ export const Dashboard = ()=>{
     const [category, setCategory] = useState([])
     const [contact, setContact] = useState([])
     const [newsletter, setNewsletter] = useState([])
+    const [product, setProduct] = useState([])
 
 
     useEffect(()=>{
@@ -32,6 +33,9 @@ export const Dashboard = ()=>{
                   var Newsletter = await axios.get(`${import.meta.env.VITE_NEWSLETTER_COUNT}`)
                   setNewsletter(Newsletter.data.data)
 
+                  var Product = await axios.get(`${import.meta.env.VITE_PRODUCT_COUNT}`)
+                  setProduct(Product.data.data)
+
 
               }
               catch(err){
@@ -47,7 +51,7 @@ export const Dashboard = ()=>{
       { text: "Total Users", numbers: user, icon: FiUsers },
       { text: "Total Vendors Request", numbers: "356", icon: FiShoppingBag },
       { text: "Total Categories", numbers: category, icon: FiBox },
-      { text: "Total Products", numbers: "8,924", icon: FiShoppingCart },
+      { text: "Total Products", numbers: product, icon: FiShoppingCart },
       { text: "Total Orders", numbers: "21,309", icon: FiClipboard },
       { text: "Total Contacts", numbers: contact, icon: MdContactPhone },
       { text: "Total Newsletter", numbers: newsletter, icon: LuLetterText },

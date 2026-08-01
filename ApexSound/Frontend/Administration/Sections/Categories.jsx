@@ -171,8 +171,8 @@ export const Categories = () => {
                 {/* Header Row */}
                 <div className="flex items-center gap-4 px-0 py-2 border-b border-white/10">
                     <div className="w-16"></div>
-                    <Heading text={"Category Name"} className={"flex-1"} />
-                    <Heading text={"Slug"} className={"flex-1"} />
+                    <Heading text={"Category Name"} className={"flex-1 text-2xl!"} />
+                    <Heading text={"Slug"} className={"flex-1 text-2xl!"} />
                     <div className="w-52"></div>
                 </div>
 

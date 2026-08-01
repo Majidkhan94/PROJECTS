@@ -8,6 +8,7 @@ import {Button} from "../Feature/Button"
 import { data, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import {PageHeader} from "../Feature/PageHeader.jsx"
 
 export const Contactus = () => {
 
@@ -43,7 +44,7 @@ export const Contactus = () => {
 
   return (<>    
       
-
+      <PageHeader text={"contacts us"}/>
       <section className="h-screen w-full flex">
             
             {/* LEFT: details panel */}

@@ -11,6 +11,11 @@ import { UserProfile } from "../../Users/UserProfile.jsx"
 import { HomePage } from "../Pages/HomePage.jsx"
 import { Contactus } from "../Pages/Contactus.jsx"
 import {Categories} from "../Pages/Categories.jsx"
+import {CategoryProducts} from "../Pages/CategoryProducts.jsx"
+import {Products} from "../Pages/Products.jsx"
+
+
+
 
 import {AdminRegisteration} from "../../Administration/AdminRegisteration.jsx";
 import {AdminLogin} from "../../Administration/AdminLogin.jsx";
@@ -45,6 +50,8 @@ export const Routing = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/contact" element={<Contactus />} />
                 <Route path="/Categories" element={<Categories />} />
+                <Route path="/categories/:slug" element={<CategoryProducts />} />
+                <Route path="/products" element={<Products />} />
                 
             </Route>
 

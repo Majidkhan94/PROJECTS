@@ -28,11 +28,11 @@ namespace Backend.Products
         // List
         [HttpGet]
         [Route("list")]
-        public async Task<IActionResult> ListProduct()
+        public async Task<IActionResult> ListProduct(string? product)
         {
             try
             {
-                var list =  await _productrepo.ListProduct();
+                var list =  await _productrepo.ListProduct(product);
                 return Ok(new { data = list });
             }
             catch (Exception ex) { return BadRequest(new { error = ex.Message }); }

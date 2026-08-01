@@ -1,8 +1,9 @@
 ﻿using Backend.ConnectionStrings;
-using Microsoft.EntityFrameworkCore;
-using Backend.Services;
 using Backend.Models;
+using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Backend.Products
 {
@@ -23,11 +24,20 @@ namespace Backend.Products
         }
 
         // List
-        public async Task<List<ProductModelDTO>> ListProduct()
+        public async Task<List<ProductModelDTO>> ListProduct( string? product)
         {
-            return await _connectionString.Products
-                   .Include(p => p.Category)
-                   .Select(s => new ProductModelDTO
+            var list = _connectionString.Products
+                       .Include(C => C.Category)
+                       .AsQueryable();
+
+            if(!string.IsNullOrWhiteSpace(product))
+            {
+                list = list.Where(C => C.Category != null && C.Category.Slug.ToLower() == product.ToLower());
+            }
+
+            var data = await list.ToListAsync();
+
+            return data.Select(s => new ProductModelDTO
                    {
                        Id = s.Id,
                        Name = s.Name,
@@ -38,8 +48,11 @@ namespace Backend.Products
                        ProductPicURL = s.ProductPicURL,
                        CategoryId = s.CategoryId,
                        CategoryName = s.CategoryName,
+                       products = (ProductModelDTO.Products)s.products,
+                       IsActive = s.IsActive,
+                       Createdat = s.Createdat,
                    })
-                   .ToListAsync();
+                   .ToList();
         }
 
         // Add
