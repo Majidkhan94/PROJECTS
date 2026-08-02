@@ -7,7 +7,7 @@ namespace Backend.Products
         Task<List<ProductModelDTO>> ListProduct(string? product);
         Task<ProductModelDTO> AddProduct(ProductModelDTO addproduct);
         Task<ProductModelDTO> UpdateProduct(int Id, ProductModelDTO updateproduct);
-        Task<ProductModelDTO> DeleteProduct(int Id);
+        Task<bool> DeleteProduct(int Id);
         Task<int> ProductCount();
     }
 }

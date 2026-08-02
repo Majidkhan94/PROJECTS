@@ -5,7 +5,7 @@ import axios from "axios";
 import {Input} from "../../src/Feature/Input.jsx";
 import {PageHeader} from "../../src/Feature/PageHeader.jsx";
 import { Searchbar } from "../Component/Searchbar.jsx";
-
+import {Heading} from "../../src/Feature/Heading.jsx";
 
 export const ProductManagement = () => {
   
@@ -78,19 +78,41 @@ export const ProductManagement = () => {
 
           const response = await axios.post(import.meta.env.VITE_PRODUCT_ADD, formdata, {
             headers: { "Content-Type": "multipart/form-data" },});
-          setForm(response.data.data);          
-          setSuccess("Product added successfully!");
+          setSuccess(response?.data?.message);
+          setForm({ "productPic": null, "name": "", "price": "", "stock": "", "products": "", "categoryName": "",
+            "description": "" });
+          setPreviewImage("https://www.govtmohindracollege.in/wp-content/uploads/2023/10/photo-placeholder.webp");
         } 
-        catch (error) { setError("Failed to add product.");}
+        catch (error) { setError(error.response?.data?.error || "Failed to add product."); }
         finally { setLoading(false); }
       };
 
 
+  // Listing Products
+  const [products, setProducts] = useState([]);
+      useEffect(() => {
+        var fetchProducts = async () => {
+          try {
+            setLoading(true);
+            const response = await axios.get(import.meta.env.VITE_PRODUCT_LIST);
+            console.log("Fetched products:", response.data.data);
+            setProducts(response.data.data);
+          }
+          catch (error) {console.error("Error fetching products:", error);}
+          finally {setLoading(false);}
+        }; 
+        fetchProducts();
+      },[]);
 
-// const filteredProducts = products.filter((product) =>
-//     product.name.toLowerCase().includes(search.toLowerCase())
-//   );
+
+const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(search.toLowerCase())
+  );
   
+    // Update Product
+
+    // Delete Product
+
 
   return (<>
     <section className="mx-5 mt-5">
@@ -103,6 +125,8 @@ export const ProductManagement = () => {
         {/* <span>
           {filteredProducts.length === 0 && <p className="text-white/50">No products found.</p>}
         </span> */}
+
+          {/* Add Product */}
 
 {/* Form */}
 <div className="shadow-2xl shadow-white p-8 rounded-md w-full">
@@ -172,6 +196,44 @@ export const ProductManagement = () => {
   
 </div>
 
+      {/* List of Products */}
+
+ <div className="shadow-2xl shadow-white p-8 rounded-md w-full">
+  <PageHeader text="All Products" />
+
+  {/* Header Row */}
+  <div className="flex items-center gap-4 pb-3 border-b border-white/20">
+    <Heading text="" className="w-14" />
+    <Heading text="Products Name" className="flex-1" />
+    <Heading text="Slug" className="flex-1" />
+    <Heading text="Actions" className="w-64 text-right" />
+  </div>
+
+  {/* Product Rows */}
+  <div className="mt-6">
+    {filteredProducts.map((product) => (
+      <div
+        key={product.id}
+        className="flex items-center gap-4 py-3 border-b border-white/20"
+      >
+        <img
+          src={product.productPicURL}
+          alt={product.name}
+          className="w-14 h-14 rounded-full object-cover"
+        />
+
+        <p className="flex-1">{product.name}</p>
+        <p className="flex-1 text-white/60">{product.slug}</p>
+
+        <div className="flex gap-2 w-64 justify-end">
+          <Button text="Update" />
+          <Button text="Delete" />
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+    
 
     </section>
  </> );

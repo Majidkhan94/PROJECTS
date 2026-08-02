@@ -43,8 +43,8 @@ namespace Backend.Products
                        Name = s.Name,
                        Slug = s.Slug,
                        Description = s.Description,
-                       Price = s.Price,
-                       Stock = s.Stock,
+                       Price = s.Price.Value,
+                       Stock = s.Stock.Value,
                        ProductPicURL = s.ProductPicURL,
                        CategoryId = s.CategoryId,
                        CategoryName = s.CategoryName,
@@ -59,7 +59,16 @@ namespace Backend.Products
         public async Task<ProductModelDTO> AddProduct(ProductModelDTO addproduct)
         {
             // Check Name
-            if (string.IsNullOrWhiteSpace(addproduct.Name)) throw new Exception("Product name required");
+            if (addproduct.ProductPic == null ||
+                string.IsNullOrWhiteSpace(addproduct.Name) ||
+                addproduct.Price == null || addproduct.Price <= 0 ||
+                addproduct.Stock == null || addproduct.Stock < 0 ||
+                addproduct.products == null ||
+                string.IsNullOrWhiteSpace(addproduct.CategoryName) ||
+                string.IsNullOrWhiteSpace(addproduct.Description))
+            {
+                throw new Exception("All fields are required");
+            }
 
             // Slug
             var slug = addproduct.Name.ToLower().Replace(" ", "-");
@@ -99,8 +108,8 @@ namespace Backend.Products
                 Name = adddata.Name,
                 Slug = slug,
                 Description = adddata.Description,
-                Price= adddata.Price,
-                Stock = adddata.Stock,
+                Price= adddata.Price.Value,
+                Stock = adddata.Stock.Value,
                 IsActive = adddata.IsActive,
                 ProductPicURL = productpicurl,
                 Createdat = adddata.Createdat,
@@ -113,21 +122,90 @@ namespace Backend.Products
 
         }
 
-
-
-
-        public Task<ProductModelDTO> DeleteProduct(int Id)
+        // Update
+        // Update
+        public async Task<ProductModelDTO> UpdateProduct(int Id, ProductModelDTO updateproduct)
         {
-            throw new NotImplementedException();
+            // Find Existing Product
+            var existingProduct = await _connectionString.Products.FirstOrDefaultAsync(p => p.Id == Id);
+            if (existingProduct == null) throw new Exception("Product not found");
+
+            // Check Name
+            if (string.IsNullOrWhiteSpace(updateproduct.Name) ||
+                updateproduct.Price == null || updateproduct.Price <= 0 ||
+                updateproduct.Stock == null || updateproduct.Stock < 0 ||
+                updateproduct.products == null ||
+                string.IsNullOrWhiteSpace(updateproduct.CategoryName) ||
+                string.IsNullOrWhiteSpace(updateproduct.Description))
+            {
+                throw new Exception("All fields are required");
+            }
+
+            // Slug
+            var slug = updateproduct.Name.ToLower().Replace(" ", "-");
+
+            // Exist Product (agar naam badla hai aur naya slug kisi doosre product se clash kar raha hai)
+            var ExistProduct = await _connectionString.Products
+                .FirstOrDefaultAsync(p => p.Slug == slug && p.Id != Id);
+            if (ExistProduct != null) throw new Exception("Product already exists.");
+
+            // Image Upload (sirf tab jab nayi image bheji ho, warna purani hi rahegi)
+            string? productpicurl = existingProduct.ProductPicURL;
+            if (updateproduct.ProductPic != null)
+            {
+                productpicurl = await _cloudinary.UploadImage(updateproduct.ProductPic, "ProductsImage");
+            }
+
+            // Update Fields
+            existingProduct.Name = updateproduct.Name;
+            existingProduct.Slug = slug;
+            existingProduct.Description = updateproduct.Description;
+            existingProduct.Price = updateproduct.Price;
+            existingProduct.Stock = updateproduct.Stock;
+            existingProduct.IsActive = updateproduct.IsActive;
+            existingProduct.ProductPicURL = productpicurl;
+            existingProduct.CategoryId = updateproduct.CategoryId;
+            existingProduct.CategoryName = updateproduct.CategoryName;
+            existingProduct.products = (ProductModel.Products)updateproduct.products;
+
+            await _connectionString.SaveChangesAsync();
+
+            return new ProductModelDTO
+            {
+                Id = existingProduct.Id,
+                Name = existingProduct.Name,
+                Slug = existingProduct.Slug,
+                Description = existingProduct.Description,
+                Price = existingProduct.Price.Value,
+                Stock = existingProduct.Stock.Value,
+                IsActive = existingProduct.IsActive,
+                ProductPicURL = existingProduct.ProductPicURL,
+                Createdat = existingProduct.Createdat,
+                CategoryId = existingProduct.CategoryId,
+                CategoryName = existingProduct.CategoryName,
+                products = (ProductModelDTO.Products)existingProduct.products
+            };
+        }
+
+        // Delete
+        public async Task<bool> DeleteProduct(int Id)
+        {
+            // Find Existing Product
+            var existingProduct = await _connectionString.Products.FirstOrDefaultAsync(p => p.Id == Id);
+
+            if (existingProduct != null)
+            {
+                _connectionString.Products.Remove(existingProduct);
+                await _connectionString.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
 
 
 
 
-        public Task<ProductModelDTO> UpdateProduct(int Id, ProductModelDTO updateproduct)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
