@@ -5,6 +5,7 @@ import { Button } from "../../src/Feature/Button.jsx";
 import { Heading } from "../../src/Feature/Heading.jsx";
 import { Paragraph } from "../../src/Feature/Paragraph.jsx";
 import { FaSearch, FaImage } from "react-icons/fa";
+import {Searchbar} from "../Component/Searchbar.jsx";
 
 export const Categories = () => {
 
@@ -123,16 +124,8 @@ export const Categories = () => {
             <div className="mt-6 p-4">
 
                 {/* Search bar */}
-                <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-5 py-3 mb-8 w-full">
-                    <FaSearch className="text-white/50" size={16} />
-                    <input
-                        type="text"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Search category..."
-                        className="bg-transparent outline-none text-white w-full font-main"
-                    />
-                </div>
+                <Searchbar type={"text"} value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search category..." />
+                
 
                 {/* Add Category Card */}
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">

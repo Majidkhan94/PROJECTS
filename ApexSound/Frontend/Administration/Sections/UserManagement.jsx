@@ -2,6 +2,7 @@ import { FaUser, FaSearch } from "react-icons/fa";
 import { Button } from "../../src/Feature/Button.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Searchbar } from "../Component/Searchbar.jsx";
 
 export const UserManagement = () => {
   const [search, setSearch] = useState("");
@@ -60,11 +61,7 @@ export const UserManagement = () => {
     <div className="mx-5 mt-5">
 
       {/* Search bar */}
-      <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-5 py-3 mb-8 w-full">
-        <FaSearch className="text-white/50" size={16} />
-        <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search users..." className="bg-transparent outline-none text-white w-full font-main"/>
-      </div>
+      <Searchbar type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search users..." />
 
       {/* User cards */}
       <div className="flex flex-wrap gap-5">

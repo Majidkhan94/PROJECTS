@@ -1,6 +1,8 @@
 import { FaStore, FaSearch } from "react-icons/fa";
 import { Button } from "../../src/Feature/Button.jsx";
 import { useState } from "react";
+import { Searchbar } from "../Component/Searchbar.jsx";
+
 
 export const VenderRequest = () => {
   const [search, setSearch] = useState("");
@@ -36,16 +38,8 @@ export const VenderRequest = () => {
     <div className="mx-5 mt-5">
 
       {/* Search bar */}
-      <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-5 py-3 mb-8 w-full">
-        <FaSearch className="text-white/50" size={16} />
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search vendor requests..."
-          className="bg-transparent outline-none text-white placeholder-white/40 w-full font-main"
-        />
-      </div>
+      <Searchbar type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search vendor requests..." />
+      
 
       {/* Vendor request cards */}
       <div className="flex flex-wrap gap-8">
