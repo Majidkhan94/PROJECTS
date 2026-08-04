@@ -1,6 +1,6 @@
-import { Input } from "../src/Feature/Input.jsx"
-import {Button} from "../src/Feature/Button.jsx"
-import { Heading } from "../src/Feature/Heading.jsx"
+import { Input } from "../Feature/Input.jsx"
+import {Button} from "../Feature/Button.jsx"
+import { Heading } from "../Feature/Heading.jsx"
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";

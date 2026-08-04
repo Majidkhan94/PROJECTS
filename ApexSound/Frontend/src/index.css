@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-bg: #121212;
-  --color-hover-bg: #b7b7b7;
+  --color-brand-color: #121212;
+  --color-text-color: #b7b7b7;
+  --color-background-color: #282c31;
+  --color-hover-color: white;
+  
+  --color-button-main: #696969;
+  
 
   --font-main: 'General Sans', sans-serif;
 }
@@ -12,7 +17,7 @@
 
 /* Global Styles */
 body {
-  background-color: var(--color-brand-bg);
-  color: white;
+  background-color: var(--color-brand-color);
+  color: var(--color-text-color);
   font-family: var(--font-main);
 }

@@ -4,7 +4,7 @@ import { MdContactPhone } from "react-icons/md";
 import { LuLetterText } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { NewsletterCount } from "../../APIs/NewsletterAPIs.js";
 
 export const Dashboard = ()=>{
 
@@ -30,8 +30,11 @@ export const Dashboard = ()=>{
                   var Contactus = await axios.get(`${import.meta.env.VITE_CONTACTUS_COUNT}`)
                   setContact(Contactus.data.data)
 
-                  var Newsletter = await axios.get(`${import.meta.env.VITE_NEWSLETTER_COUNT}`)
-                  setNewsletter(Newsletter.data.data)
+                  var Newsletter = await NewsletterCount();
+                  if(Newsletter.success) {
+                      setNewsletter(Newsletter.data.data);
+                  }
+                  else {console.log(Newsletter.data.message)}
 
                   var Product = await axios.get(`${import.meta.env.VITE_PRODUCT_COUNT}`)
                   setProduct(Product.data.data)

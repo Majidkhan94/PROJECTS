@@ -11,17 +11,15 @@ namespace Backend.Newsletter
             _connectionString = connectionString;
         }
 
+        // Add Functionality
         public async Task<NewsletterModel> AddNewsletter(NewsletterModel addnewsletter)
         {
-            var existEmail = await _connectionString.Newsletter
-                .FirstOrDefaultAsync(e => e.email == addnewsletter.email);
+            // Email Exist
+            var existEmail = await _connectionString.Newsletter.FirstOrDefaultAsync(e => e.email == addnewsletter.email);
+            if (existEmail != null) throw new Exception("Email already exists");
 
-            if (existEmail != null)
-            {
-                throw new Exception("Email already exists");
-            }
-
-            var add = await _connectionString.Newsletter.AddAsync(addnewsletter);
+            // Add Newsletter
+            await _connectionString.Newsletter.AddAsync(addnewsletter);
             await _connectionString.SaveChangesAsync();
             return addnewsletter;
         }

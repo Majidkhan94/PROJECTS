@@ -14,6 +14,7 @@ import {Categories} from "../Pages/Categories.jsx"
 import {CategoryProducts} from "../Pages/CategoryProducts.jsx"
 import {Products} from "../Pages/Products.jsx"
 
+import {Aboutus} from "../Pages/Aboutus.jsx"
 
 
 
@@ -52,6 +53,7 @@ export const Routing = () => {
                 <Route path="/Categories" element={<Categories />} />
                 <Route path="/categories/:slug" element={<CategoryProducts />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/aboutus" element={<Aboutus />} />
                 
             </Route>
 

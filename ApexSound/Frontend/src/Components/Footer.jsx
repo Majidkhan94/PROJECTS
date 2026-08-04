@@ -5,18 +5,32 @@ import {Heading} from "../Feature/Heading.jsx"
 import {Input} from "../Feature/Input.jsx"
 import {Button} from "../Feature/Button.jsx"
 import { useState, useEffect} from "react";
-import axios from "axios";
+import {NewsletterAdd} from "../APIs/NewsletterAPIs.js"
+
+
 
 export const Footer = () => {
 
 const [data, setData] = useState({ email: "" });
+const [loading, setLoading] = useState(false);
 const [success, setSuccess] = useState(null);
 const [errorMsg, setErrorMsg] = useState("");
 
 const Newslettersubmit = async (e) => {
   e.preventDefault();
   try {
-    const response = await axios.post(`${import.meta.env.VITE_NEWSLETTER_ADD}`,data);
+    setLoading(true)
+    const Add = await NewsletterAdd();
+    if(Add.success)
+    {
+        setData(Add.data);
+        setSuccess(Add.message);
+    }
+    else
+    {
+
+    }
+    
     setSuccess(true); setErrorMsg("");
     } 
     catch (err) {
@@ -55,7 +69,7 @@ const Newslettersubmit = async (e) => {
             <nav className="flex flex-col gap-4 text-hover-bg">
                 <Navbar to="/" text="Home" />
                 <Navbar to="/products" text="Products" />
-                <Navbar to="/about" text="About Us" />
+                <Navbar to="/aboutus" text="About Us" />
                 <Navbar to="/contact" text="Contact Us" />
             </nav>
         </div>

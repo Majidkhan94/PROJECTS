@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Backend.Controller;
 
 namespace Backend.Newsletter
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class NewsletterController : ControllerBase
+    public class NewsletterController : BaseController
     {
         private readonly INewsletterRepo _newsletterRepo;
         public NewsletterController(INewsletterRepo newsletterRepo)
@@ -16,20 +17,10 @@ namespace Backend.Newsletter
         [Route("add")]
         public async Task<IActionResult> AddNewsletter([FromBody] NewsletterModel addnewsletter)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-            try
-            {
+            return await TryCatch(async () => {
                 var add = await _newsletterRepo.AddNewsletter(addnewsletter);
-                if (add == null)
-                {
-                    return BadRequest(new { message = "Newsletter Not Added"});
-                }
-                return Ok(new { message = "Newsletter Added", data = add });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+                return add;
+            }, "NewsLetter Added Successfully");
         }
 
         [HttpDelete("delete/{Id}")]
@@ -78,9 +69,7 @@ namespace Backend.Newsletter
                 var count = await _newsletterRepo.NewsletterCount();
                 return Ok(new { data = count });
             }
-            catch (Exception ex) {
-                return BadRequest(new { error = ex.Message });
-            }
+            catch (Exception ex) { return BadRequest(new { message = ex.Message });}
         }
 
 
