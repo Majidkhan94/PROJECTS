@@ -1,12 +1,9 @@
-import { Heading } from "../src/Feature/Heading.jsx";
 import { FaUserLock } from "react-icons/fa6";
-import {Input} from "../src/Feature/Input.jsx"
-import { Button } from "../src/Feature/Button.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
 
+import {Heading, Input, Button} from "../Export.js";
 
 export const AdminRegisteration = () => {
     

@@ -5,17 +5,8 @@ import { LuLetterText } from "react-icons/lu";
 import { MdContactPhone } from "react-icons/md";
 import Logo from "../src/Public/Logo.png"
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "../src/Feature/Button.jsx";
-import { Paragraph } from "../src/Feature/Paragraph.jsx";
-import { AdminSlide } from "../Administration/Component/AdminSlide.jsx"
-import { Dashboard } from "../Administration/Sections/Dashboard.jsx";
-import { UserManagement } from "../Administration/Sections/UserManagement.jsx";
-import { VenderRequest } from "./Sections/VenderRequest.jsx";
-import { Categories } from "./Sections/Categories.jsx";
-import { ProductManagement } from "./Sections/ProductManagement.jsx";
-import { OrderManagement } from "./Sections/OrderManagement.jsx";
-import { Contactus } from "./Sections/Contactus.jsx";
-import { Newsletter } from "../Administration/Sections/Newsletter.jsx";
+import { Button, Paragraph, Dashboard,AdminSlide,UserManagement, VenderRequest, Categories, ProductManagement, OrderManagement, Contactus, Newsletter} from "../Export.js";
+
 
 
 ///////////////////////////////// Left Section Data /////////////////////////////////

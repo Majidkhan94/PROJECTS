@@ -3,10 +3,11 @@
 @theme {
   --color-brand-color: #121212;
   --color-text-color: #b7b7b7;
-  --color-background-color: #282c31;
+  --color-background-color: #1c1c1c;
   --color-hover-color: white;
-  
-  --color-button-main: #696969;
+  --color-button-color: #3d3e41;
+  --color-button-hover: #6a6b6c;
+  --color-button-redhover: #b70000;
   
 
   --font-main: 'General Sans', sans-serif;

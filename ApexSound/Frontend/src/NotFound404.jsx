@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaGhost } from "react-icons/fa6";
-import { Heading } from "../src/Feature/Heading.jsx"
-import { Paragraph } from "../src/Feature/Paragraph.jsx"
-
+import { Heading, Paragraph } from "../Export.js";
 
 export const NotFound404 = () => {
   return (

@@ -1,11 +1,9 @@
 import { FaBox, FaShoppingCart, FaSearch } from "react-icons/fa";
-import { Button } from "../../src/Feature/Button.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Input } from "../../src/Feature/Input.jsx";
-import { PageHeader } from "../../src/Feature/PageHeader.jsx";
-import { Searchbar } from "../Component/Searchbar.jsx";
-import { Heading } from "../../src/Feature/Heading.jsx";
+
+import {Button, Searchbar, Input, Heading, PageHeader} from "../../Export.js";
+
 
 export const ProductManagement = () => {
 

@@ -1,8 +1,9 @@
 import { FaUser, FaSearch } from "react-icons/fa";
-import { Button } from "../../src/Feature/Button.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Searchbar } from "../Component/Searchbar.jsx";
+
+import {Button, Searchbar} from "../../Export.js";
+
 
 export const UserManagement = () => {
   const [search, setSearch] = useState("");

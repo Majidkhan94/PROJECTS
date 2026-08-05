@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
-import { Button } from "../../src/Feature/Button.jsx";
 
+import {Button} from "../../Export.js";
 
 export const OrderManagement = () => {
   const [search, setSearch] = useState("");

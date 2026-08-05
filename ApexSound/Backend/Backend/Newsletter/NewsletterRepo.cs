@@ -15,8 +15,8 @@ namespace Backend.Newsletter
         public async Task<NewsletterModel> AddNewsletter(NewsletterModel addnewsletter)
         {
             // Email Exist
-            var existEmail = await _connectionString.Newsletter.FirstOrDefaultAsync(e => e.email == addnewsletter.email);
-            if (existEmail != null) throw new Exception("Email already exists");
+            var Email = await _connectionString.Newsletter.FirstOrDefaultAsync(e => e.email == addnewsletter.email);
+            if (Email != null) throw new Exception("Email already exists");
 
             // Add Newsletter
             await _connectionString.Newsletter.AddAsync(addnewsletter);
