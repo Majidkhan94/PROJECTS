@@ -26,19 +26,10 @@ namespace Backend.Newsletter
         [HttpDelete("delete/{Id}")]
         public async Task<IActionResult> DeleteNewsletter(int Id)
             {
-            try
-            {
+            return await TryCatch(async () =>{
                 var Delete = await _newsletterRepo.DeleteNewsletter(Id);
-                if (Delete == null)
-                {
-                    return BadRequest(new { message = "Newsletter Not Deleted", data = Delete });
-                }
-                return Ok(new { message = "Newsletter Deleted", data = Delete });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "Something went wrong", data = ex.Message });
-            }
+                return Delete;
+            }, "NewsLetter Deleted Successfully");
 
             }
 
@@ -46,30 +37,23 @@ namespace Backend.Newsletter
         [Route("list")]
         public async Task<IActionResult> ListNewsletter()
         {
-            try
-            {
+            return await TryCatch(async () =>{
                 var list = await _newsletterRepo.ListNewsletter();
-                if (list == null)
-                {
-                    return BadRequest(new { message = "List Not Found"});
-                }
-                return Ok(new { message = "List Found", data = list });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "Something went wrong", data = ex.Message });
-            }
+                return list;
+            }, "");
+            
 
         }
         [HttpGet]
         [Route("count")]
         public async Task<IActionResult> NewsletterCount()
         {
-            try {
+            return await TryCatch(async () =>
+            {
                 var count = await _newsletterRepo.NewsletterCount();
-                return Ok(new { data = count });
-            }
-            catch (Exception ex) { return BadRequest(new { message = ex.Message });}
+                return count;
+            }, "");
+            
         }
 
 

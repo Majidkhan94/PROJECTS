@@ -30,6 +30,9 @@ namespace Backend.Contactus
             if(!contactadd.email.Contains("@") || !contactadd.email.Contains("."))
             { throw new Exception("Invalid email format"); }
 
+            var existemail = await _connectionString.Contactus.FirstOrDefaultAsync(e => e.email == contactadd.email);
+            if (existemail != null) { throw new Exception("Email already exists"); }
+
 
             await _connectionString.Contactus.AddAsync(contactadd);
             await _connectionString.SaveChangesAsync();

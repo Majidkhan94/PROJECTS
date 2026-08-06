@@ -1,11 +1,12 @@
 ﻿using Backend.ConnectionStrings;
+using Backend.Controller;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Contactus
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ContactusController : ControllerBase
+    public class ContactusController : BaseController
     {
         private readonly IContactusRepo _contactus;
         public ContactusController(IContactusRepo iContactusrepo)
@@ -18,12 +19,11 @@ namespace Backend.Contactus
         [Route("list")]
         public async Task<IActionResult> Contactlist()
         {
-            try {
+            return await TryCatch( async () =>{
                 var list = await _contactus.Contactlist();
-                return Ok(new { data = list });
-            }
-            catch (Exception ex) { return BadRequest(new { error = ex.Message }); }
-            
+                return list;
+            }, "");
+  
         }
 
         // ADD
@@ -31,42 +31,32 @@ namespace Backend.Contactus
         [Route("add")]
         public async Task<IActionResult> Contactadd([FromBody] ContactusModel contactadd)
         {
-            try {
+            return await TryCatch(async () =>
+            {
                 var add = await _contactus.Contactadd(contactadd);
-                
-                if (add == null) return BadRequest(new { message = "Message not sent" });
-                return Ok(new {message = "Message sent successfully"});
-            }
-            catch(Exception ex) { return BadRequest(new { error = ex.Message }); }
+                return add;
+            }, "Message has been sent");
         }
 
         // DELETE
         [HttpDelete("delete/{Id}")]
         public async Task<IActionResult> Contactdelete(int Id)
         {
-            try
+            return await TryCatch( async () =>
             {
                 var delete = await _contactus.Contactdelete(Id);
-
-                if (delete == null) return BadRequest(new { message = "Not deleted" });
-                return Ok(new { message = "Deleted!!!" });
-            }
-            catch (Exception ex) { return BadRequest(new { error = ex.Message }); }
+                return delete;
+            },"Contact deleted");
         }
 
         [HttpGet]
         [Route("count")]
         public async Task<IActionResult> ContactCount()
         {
-            try
-            {
+            return await TryCatch(async() => {
                 var count = await _contactus.ContactCount();
-                return Ok(new { data = count });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
+                return count;
+            }, "");
         }
     }
 }

@@ -4,6 +4,7 @@ import { LuLetterText } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { NewsletterCount } from "../../APIs/NewsletterAPIs.js";
+import { ContactusCount } from "../../APIs/ContactusAPIs.js";
 import {Loading} from "../../Export.js"
 
 
@@ -24,8 +25,8 @@ export const Dashboard = ()=>{
       { text: "Total Categories", numbers: category, icon: <FiBox /> },
       { text: "Total Products", numbers: product, icon: <FiShoppingCart /> },
       { text: "Total Orders", numbers: "21,309", icon: <FiClipboard /> },
-      { text: "Total Contacts", numbers: contact, icon: <MdContactPhone /> },
-      { icon: <LuLetterText/>, text: "Total Newsletter", numbers: newsletter },
+      { icon: <MdContactPhone/>, text: "Total Contacts",   numbers: contact    },
+      { icon: <LuLetterText/>,   text: "Total Newsletter", numbers: newsletter },
     ];
 
 
@@ -42,8 +43,9 @@ export const Dashboard = ()=>{
                   var Category = await axios.get(`${import.meta.env.VITE_CATEGORY_COUNT}`)
                   setCategory(Category.data.data)
 
-                  var Contactus = await axios.get(`${import.meta.env.VITE_CONTACTUS_COUNT}`)
-                  setContact(Contactus.data.data)
+                  const Contact = await ContactusCount();
+                  if(Contact.success){ setContact(Contact?.data?.data);}
+                  else {console.log(Contact.data.message)}
 
                   
 
@@ -56,14 +58,10 @@ export const Dashboard = ()=>{
                   if(Newsletter.success){ setNewsletter(Newsletter?.data?.data);}
                   else {console.log(Newsletter.data.message)}
               }
-              catch(err){
-                console.log(err.response?.data.error || "Something Went Wrong")
-              }
+              catch(err){console.log(err.response?.data.error || "Something Went Wrong")}
               finally {setloading(false)}
-
           }
-          FetchData();
-    },[])
+          FetchData();},[])
 
     
     if(loading) return <Loading/>;

@@ -5,7 +5,7 @@ import { LuLetterText } from "react-icons/lu";
 import { MdContactPhone } from "react-icons/md";
 import Logo from "../src/Public/Logo.png"
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Paragraph, Dashboard,AdminSlide,UserManagement, VenderRequest, Categories, ProductManagement, OrderManagement, Contactus, Newsletter} from "../Export.js";
+import { Button, Paragraph, Dashboard,AdminSlide,UserManagement, VenderRequest, Categories, ProductManagement, OrderManagement, ContactusSection, NewsletterSection} from "../Export.js";
 
 
 
@@ -113,9 +113,9 @@ const handleLogout = () => {
         
         {active === "orders" && (<AdminSlide key="orders"><OrderManagement/></AdminSlide>)}
         
-        {active === "contactus" && (<AdminSlide key="contactus"><Contactus /></AdminSlide>)}
+        {active === "contactus" && (<AdminSlide key="contactus"><ContactusSection /></AdminSlide>)}
 
-        {active === "newsletter" && (<AdminSlide key="newsletter"><Newsletter /></AdminSlide>)}
+        {active === "newsletter" && (<AdminSlide key="newsletter"><NewsletterSection /></AdminSlide>)}
       </div>
     </section>
   );
