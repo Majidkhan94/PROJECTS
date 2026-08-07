@@ -5,7 +5,8 @@ import { LuLetterText } from "react-icons/lu";
 import { MdContactPhone } from "react-icons/md";
 import Logo from "../src/Public/Logo.png"
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Paragraph, Dashboard,AdminSlide,UserManagement, VenderRequest, Categories, ProductManagement, OrderManagement, ContactusSection, NewsletterSection} from "../Export.js";
+import { Button, Paragraph, AdminSlide, AdminCategoriesSection, AdminContactusSection, AdminDashboardSection,
+  AdminNewsletterSection, AdminOrderManagementSection, AdminProductManagementSection,AdminUserManagementSection, AdminVenderRequestSection } from "../Export.js";
 
 
 
@@ -101,21 +102,21 @@ const handleLogout = () => {
 
       
       <div className="flex-1 relative overflow-y-auto">
-        {active === "dashboard" && (<AdminSlide key="dashboard"> <Dashboard /></AdminSlide>)}
+        {active === "dashboard" && (<AdminSlide key="dashboard"> <AdminDashboardSection /></AdminSlide>)}
 
-        {active === "users" && (<AdminSlide key="users"><UserManagement /></AdminSlide>)}
+        {active === "users" && (<AdminSlide key="users"><AdminUserManagementSection /></AdminSlide>)}
 
-        {active === "vendors" && (<AdminSlide key="vendors"><VenderRequest /></AdminSlide>)}
+        {active === "vendors" && (<AdminSlide key="vendors"><AdminVenderRequestSection /></AdminSlide>)}
         
-        {active === "categories" && ( <AdminSlide key="categories"><Categories /></AdminSlide> )}
+        {active === "categories" && ( <AdminSlide key="categories"><AdminCategoriesSection /></AdminSlide> )}
         
-        {active === "products" && (<AdminSlide key="products"><ProductManagement /></AdminSlide>)}
+        {active === "products" && (<AdminSlide key="products"><AdminProductManagementSection /></AdminSlide>)}
         
-        {active === "orders" && (<AdminSlide key="orders"><OrderManagement/></AdminSlide>)}
+        {active === "orders" && (<AdminSlide key="orders"><AdminOrderManagementSection/></AdminSlide>)}
         
-        {active === "contactus" && (<AdminSlide key="contactus"><ContactusSection /></AdminSlide>)}
+        {active === "contactus" && (<AdminSlide key="contactus"><AdminContactusSection /></AdminSlide>)}
 
-        {active === "newsletter" && (<AdminSlide key="newsletter"><NewsletterSection /></AdminSlide>)}
+        {active === "newsletter" && (<AdminSlide key="newsletter"><AdminNewsletterSection /></AdminSlide>)}
       </div>
     </section>
   );

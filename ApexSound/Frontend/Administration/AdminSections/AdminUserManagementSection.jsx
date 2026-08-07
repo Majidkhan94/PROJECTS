@@ -5,7 +5,7 @@ import axios from "axios";
 import {Button, Searchbar} from "../../Export.js";
 
 
-export const UserManagement = () => {
+export const AdminUserManagementSection = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);

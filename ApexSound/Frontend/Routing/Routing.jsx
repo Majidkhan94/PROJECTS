@@ -1,4 +1,5 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { useEffect } from "react"
 import {
         Layout, ProtectedRoute, NotFound404,
         
@@ -10,9 +11,52 @@ import {
 
     } from "../Export.js";
 
+        ////////////////////////////// Page Title ////////////////////////////// 
+        const titles = 
+    {
+        // Pages
+        "/": "Apex Sound","/products": "Products",
+                        
+        
+        "/contact": "Contact Us",
+                        "/categories": "Categories",
+                        
+                        "/aboutus": "About Us",
+                        "/login": "Login",
+                        "/registeration": "Register",
+                        "/profile": "My Profile",
+                        "/admin/login": "Admin Login",
+                        "/admin/registeration": "Admin Register",
+                        "/admin/dashboard": "Admin Dashboard",
+                        "/admin/adminprofileupdate": "Admin Profile",
+    }
+
+        const PageTitle = () => {
+            const location = useLocation();
+                useEffect(() => {
+                     const path = location.pathname.toLowerCase();
+                     let title = titles[path];
+                    if(!title && path.startsWith("/categories/")) {
+                    title = "Category Products";
+                }
+
+        document.title = title ? `${title}` : "Apex Sound";
+    }, [location.pathname]);
+
+    return null;
+}
+
+        ////////////////////////////// Page Title //////////////////////////////
+
+
+
+
+
+
+
 export const Routing = () => {
     return (<>
-        
+        <PageTitle />
         <Routes>
 
 -------------------------------------- Without Header / Footer --------------------------------------

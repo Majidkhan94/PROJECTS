@@ -1,8 +1,11 @@
+
+////////////////////////////// Completed //////////////////////////////
+
 import { useState, useEffect } from "react";
 import {Button, Paragraph, NewsletterList, NewsletterDelete, Loading, PageHeader, Searchbar} from "../../Export.js";
 
 
-export const NewsletterSection = () => {
+export const AdminNewsletterSection = () => {
     
     const [search, setSearch] = useState("");
     const [list, setList] = useState([]);

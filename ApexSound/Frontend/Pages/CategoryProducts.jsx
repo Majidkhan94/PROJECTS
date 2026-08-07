@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {Card, Paragraph, Heading, PageHeader} from "../Export.js";
+import {ProductCard, Paragraph, Heading, PageHeader} from "../Export.js";
 
 
 export const CategoryProducts = () => {
@@ -37,7 +37,7 @@ if (!loading && fetchdata.length === 0)
     <PageHeader text={slug}/>    
     <section className="flex flex-wrap gap-6 justify-center p-6">
       {fetchdata.map((product) => (
-        <Card key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} />
       ))}
     </section>
   </>);

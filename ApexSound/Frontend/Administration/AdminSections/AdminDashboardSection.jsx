@@ -8,7 +8,7 @@ import { ContactusCount } from "../../APIs/ContactusAPIs.js";
 import {Loading} from "../../Export.js"
 
 
-export const Dashboard = ()=>{
+export const AdminDashboardSection = ()=>{
 
     // User State
     const [loading, setloading] = useState(false)

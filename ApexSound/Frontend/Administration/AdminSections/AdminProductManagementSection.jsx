@@ -5,7 +5,7 @@ import axios from "axios";
 import {Button, Searchbar, Input, Heading, PageHeader} from "../../Export.js";
 
 
-export const ProductManagement = () => {
+export const AdminProductManagementSection = () => {
 
   // Search State
   const [search, setSearch] = useState("");

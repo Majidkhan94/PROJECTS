@@ -1,8 +1,6 @@
 import {Heading, Paragraph, Button} from "../Export.js";
 
-export const Card = ({ product }) => {
-
-  // if (!product) return null;
+export const ProductCard = ({ product }) => {
 
 const {name,description,price,stock,productPicURL,categoryName, products} = product;
 

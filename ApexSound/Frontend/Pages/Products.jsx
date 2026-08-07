@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {PageHeader, Paragraph, Card} from "../Export.js";
+import {PageHeader, Paragraph, ProductCard} from "../Export.js";
 
 
 export const Products = () =>{
@@ -31,7 +31,7 @@ if (!loading && fetchdata.length === 0)
    <PageHeader text={"products"}/>
    <section className="flex flex-wrap gap-6 justify-center p-6">
     {fetchdata.map((product) => (
-      <Card key={product.id} product={product} />
+      <ProductCard key={product.id} product={product} />
     ))}
   </section>
    </>

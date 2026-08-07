@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Backend.Category;
+using Backend.Controller;
 
 namespace Backend.Category
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CategoryController : ControllerBase
+    public class CategoryController : BaseController
     {
         private readonly ICategoryRepo _categoryRepo;
         public CategoryController(ICategoryRepo categoryRepo)
@@ -18,20 +19,11 @@ namespace Backend.Category
         [Route("add")]
         public async Task<IActionResult> AddCategory([FromForm] CategoryModelDTO addcategory)
         {
-            if(!ModelState.IsValid) return BadRequest(ModelState);
-            try
+            return await TryCatch(async () => 
             {
                 var Add = await _categoryRepo.AddCategory(addcategory);
-                if (Add == null) 
-                {
-                    return BadRequest(new { message = "Category not added"});                 
-                }
-                return Ok(new { message = "Category Add Successfully", data = Add });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+                return Add;
+            }, "Categories Added");
         }
 
         // Update
@@ -83,23 +75,21 @@ namespace Backend.Category
 
         public async Task<IActionResult> ListCategory()
         {
-            var category = await _categoryRepo.ListCategory();
-            return Ok(category);
+            return await TryCatch(async () => {
+                var category = await _categoryRepo.ListCategory();
+                return category;
+            }, "");
         }
 
         [HttpGet]
         [Route("count")]
         public async Task<IActionResult> CategoryCount()
         {
-            try
-            {
+            return await TryCatch(async () => {
                 var count = await _categoryRepo.CategoryCount();
-                return Ok(new { data = count });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
+                return count;
+            }, "");
+            
         }
 
     }

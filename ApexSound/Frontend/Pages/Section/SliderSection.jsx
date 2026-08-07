@@ -6,21 +6,21 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import {Heading, Paragraph, Button} from "../../Export.js";
 
 
-export const Slider = () => {
+export const SliderSection = () => {
 
     const data = [
         {   "Image": Slider1, "heading": "Premium Headphones",
             "Description": "Immerse yourself in rich, studio-quality sound with active noise cancellation and all-day comfort.",
-            "button1": { "text": "Buy Now", "link": "#" }, "button2": { "text": "All Products", "link": "/products" }
+            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Categories", "link": "/categories" }
         },
         {   "Image": Slider2, "heading": "Powerful Speakers",
             "Description": "Fill any room with deep bass and crystal-clear highs, built for parties, home theaters, and everyday listening.",
-            "button1": { "text": "Buy Now", "link": "#" }, "button2": { "text": "All Products", "link": "/products" }
+            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Categories", "link": "/categories" }
         },
         {
             "Image": Slider3, "heading": "Professional Microphones",
             "Description": "Capture crisp, broadcast-ready audio for podcasts, streaming, and studio recording.",
-            "button1": { "text": "Buy Now", "link": "#" }, "button2": { "text": "All Products", "link": "/products" }
+            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Categories", "link": "/categories" }
         },
     ]
 

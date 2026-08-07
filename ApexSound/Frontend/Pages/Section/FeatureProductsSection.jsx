@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Card } from "../../Export.js";
+import { ProductCard } from "../../Export.js";
 
-export const FeatureProducts = () => {
+export const FeatureProductsSection = () => {
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -33,7 +33,7 @@ export const FeatureProducts = () => {
   
 <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
     {featuredProducts.map((product) => (
-        <Card key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} />
     ))}
 </section>  
   
