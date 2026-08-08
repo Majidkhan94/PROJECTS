@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { NewsletterCount } from "../../APIs/NewsletterAPIs.js";
 import { ContactusCount } from "../../APIs/ContactusAPIs.js";
+import { GETUSERCOUNT } from "../../APIs/UserAPIS.js";
+
 import {Loading} from "../../Export.js"
 
 
@@ -20,7 +22,7 @@ export const AdminDashboardSection = ()=>{
     
     // Data APIS
     const Dashboard = [
-      { text: "Total Users", numbers: user, icon: <FiUsers/> },
+      { icon: <FiUsers/>, text: "Total Users", numbers: user },
       { text: "Total Vendors Request", numbers: "356", icon: <FiShoppingBag /> },
       { text: "Total Categories", numbers: category, icon: <FiBox /> },
       { text: "Total Products", numbers: product, icon: <FiShoppingCart /> },
@@ -37,15 +39,16 @@ export const AdminDashboardSection = ()=>{
               try{
                   setloading(true)
                   
-                  var User = await axios.get(`${import.meta.env.VITE_USER_GETUSERCOUNT}`)
-                  setUser(User.data.data);
+                  const User = await GETUSERCOUNT();
+                  if(User.success){ setUser(User?.data?.data);}
+                  else {console.log(User.data.message)}
                   
                   var Category = await axios.get(`${import.meta.env.VITE_CATEGORY_COUNT}`)
                   setCategory(Category.data.data)
 
                   const Contact = await ContactusCount();
                   if(Contact.success){ setContact(Contact?.data?.data);}
-                  else {console.log(Contact.data.message)}
+                  else {console.log(Contact?.data?.message)}
 
                   
 

@@ -17,6 +17,8 @@ export const Header = () => {
     const navigate = useNavigate();
     var token = localStorage.getItem("accessToken");
 
+      const role = localStorage.getItem("Role");
+
     var logouthandle = ()=>{
         localStorage.removeItem("accessToken");
         localStorage.removeItem("UserId");
@@ -46,18 +48,23 @@ export const Header = () => {
                 </Link>
                 
                 {token 
-                    ?(<>
-                    <Link to="/profile" className="hover:text-hover-color hover:-translate-y-1 transition-all duration-300">
-                    <ImProfile size={18} />
-                    </Link>
-                    <button onClick={logouthandle}
-                      className="cursor-pointer inline-block transition-all duration-300 font-main 
-                      text-sm tracking-tight hover:text-hover-color hover:-translate-y-1">
-                        Logout
-                        </button></>)
-                    : (<Link to="/login" className="hover:text-hover-color transition-all hover:-translate-y-1 duration-300">
-                        <FiUser size={18} />
-                    </Link>)}
+    ? (<>
+        <Link 
+          to={role === "Admin" ? "/admin/adminprofileupdate" : "/profile"} 
+          className="hover:text-hover-color hover:-translate-y-1 transition-all duration-300"
+        >
+          <ImProfile size={18} />
+        </Link>
+        <button onClick={logouthandle}
+          className="cursor-pointer inline-block transition-all duration-300 font-main 
+          text-sm tracking-tight hover:text-hover-color hover:-translate-y-1">
+            Logout
+        </button>
+      </>)
+    : (<Link to="/login" className="hover:text-hover-color transition-all hover:-translate-y-1 duration-300">
+        <FiUser size={18} />
+      </Link>)
+}
                     
                 </div>
             </nav>

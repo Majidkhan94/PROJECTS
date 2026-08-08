@@ -53,10 +53,10 @@ export const AdminNewsletterSection = () => {
             
 
         <div className="flex flex-col gap-2">
-            {error && <PageHeader text={error} className={"text-button-redhover"}/>}
+            
 
             {filterlist.length === 0 
-            ? ( <PageHeader text={"No subscribers yet..."}/>) 
+            ? ( <PageHeader text={"No subscribers yet..."} className={"text-button-redhover"}/>) 
             : ( <ul className="flex flex-col gap-5 p-10">
                 {filterlist.map((item) => (
                  <li key={item.id} className="flex justify-between items-center border-b py-2">
@@ -65,5 +65,6 @@ export const AdminNewsletterSection = () => {
                     className={"hover:bg-button-redhover"}  />                          
                  </li>))}
                 </ul>)}
+                {error && <PageHeader text={error} className={"text-button-redhover"}/>}
         </div>
     </>)};

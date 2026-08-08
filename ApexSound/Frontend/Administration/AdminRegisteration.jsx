@@ -1,109 +1,96 @@
-import { FaUserLock } from "react-icons/fa6";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useState, useEffect } from 'react';
-
-import {Heading, Input, Button} from "../Export.js";
+import { Input, Button, PageHeader, Paragraph } from "../Export.js";
+import { Registeration } from "../APIs/AdminAPIs.js"
 
 export const AdminRegisteration = () => {
-    
-    const navigate =  useNavigate();
 
-    const [data, setdata] = useState([]);
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
-    const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
- // Form Data 
-    const [formData, setFormData] = useState({ Fullname: "", Email: "", Password: "", Confirmpassword: "" });  
+  const [form, setForm] = useState({ Fullname: "", Email: "", Password: "", Confirmpassword: "" });
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const valueinput = (e) => { setFormData({...formData, [e.target.name]: e.target.value})};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
 
-    // Submit Form Data to Backend
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      setError(null);
-      setSuccess(null);
-      setLoading(true)
-
-      if (!formData.Fullname || !formData.Email || !formData.Password || !formData.Confirmpassword) {
-      setError("All field is required");
+    if (!form.Fullname || !form.Email || !form.Password || !form.Confirmpassword) {
+      setError("All fields are required");
       return;
     }
 
-    if(!formData.Email.includes("@")){
+    if (!form.Email.includes("@")) {
       setError("Please enter a valid email address");
       return;
     }
 
-    if(formData.Password !== formData.Confirmpassword){
+    if (form.Password !== form.Confirmpassword) {
       setError("Passwords do not match");
       return;
     }
 
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    try{
-      const response = await axios.post(`${import.meta.env.VITE_ADMIN_REGISTERATION}`, formData,
-         {headers: {"Content-Type" : "application/json"}});
-      setSuccess("Registration successful!");
-      localStorage.setItem("accessToken", response.data.details.accesstoken);
-      localStorage.setItem("adminId", response.data.details.id);
-      localStorage.setItem("role", response.data.details.role);
-      navigate("/admin/dashboard");
+      var Register = await Registeration(form);
+
+      if (Register.success) {
+        setSuccess(Register?.message);
+        localStorage.setItem("accessToken", Register?.data?.data?.accesstoken);
+        localStorage.setItem("adminId", Register?.data?.data?.id);
+        localStorage.setItem("Role", Register?.data?.data?.role);
+
+        const timer = setTimeout(() => { navigate("/admin/dashboard"); }, 3000);
+        return () => clearTimeout(timer);
+      }
+      else { setError(Register?.message); }
     }
-    catch(err){
-      setError(err.response?.data?.message || "Registration failed.");
-    }
-    finally{
-      setLoading(false);
-    }
-    };
+    catch (err) { setError(err?.response?.data?.message); }
+    finally { setLoading(false); }
+  }
+
+  return (<>
+
+    <section className="h-screen flex items-center justify-center p-4">
+      <div className="bg-background-color p-8 rounded-md w-full max-w-md">
+
+        <span className="flex justify-center items-center gap-3 mb-6">
+          <PageHeader text={"ADMIN REGISTRATION"} />
+        </span>
+
+        <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
+
+          <Input type="text" name="Fullname" placeholder="Full Name" value={form.Fullname}
+            onChange={(e) => setForm({ ...form, Fullname: e.target.value })} />
+
+          <Input type="text" name="Email" placeholder="Email" value={form.Email}
+            onChange={(e) => setForm({ ...form, Email: e.target.value })} />
+
+          <Input type="password" name="Password" placeholder="Password" value={form.Password}
+            onChange={(e) => setForm({ ...form, Password: e.target.value })} />
+
+          <Input type="password" name="Confirmpassword" placeholder="Confirm Password" value={form.Confirmpassword}
+            onChange={(e) => setForm({ ...form, Confirmpassword: e.target.value })} />
+
+          <Button text={loading ? "Registering..." : "Register"} type={"submit"} />
+
+        </form>
+
+        {/* Login Link */}
+        <div className="flex justify-center gap-2 mt-4 text-sm">
+          <Paragraph text={"Already have an account?"} />
+          <Link to="/admin/login" className="font-semibold hover:underline"> Login here </Link>
+        </div>
+        <div className="w-full text-center text-[12px] mt-4"><Link to={"/"}>Back to Homepage</Link></div>
 
 
+        {error && (<div className="text-red-500 text-sm font-medium text-center pt-3">  {error}  </div>)}
+        {success && (<div className="text-green-500 text-sm font-medium text-center pt-3">{success}</div>)}
+      </div>
+    </section>
 
-
-
-    return (<>
-
-<section className="h-screen flex items-center justify-center p-4">
-  <div className="shadow-2xl shadow-white p-4 rounded-md w-full max-w-md">
-    <span className="flex justify-center items-center gap-4 text-3xl font-semibold mb-6">
-      <FaUserLock />
-      <Heading text="Admin Registration" />
-    </span>
-
-    <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
-      <Input type="text" name="Fullname" placeholder="Full Name" value={formData.Fullname} onChange={valueinput} />
-      <Input type="text" name="Email" placeholder="Email" value={formData.Email} onChange={valueinput} />
-      <Input type="password" name="Password" placeholder="Password" value={formData.Password} onChange={valueinput} />
-      <Input type="password" name="Confirmpassword" placeholder="Confirm Password" value={formData.Confirmpassword} onChange={valueinput} />
-      <Button text= {loading ? "Registering..." : "Register" } type={"submit"} />
-    </form>
-
-    {/* Login Link */}
-    <div className="text-center mt-4 text-sm text-hover-bg">
-      Already have an account? 
-      <Link to="/admin/login" className="text-white ml-1 hover:underline">
-        Login here
-      </Link>
-    </div>
-
-   {/* Error Message */}
-{error && (
-  <div className="bg-black p-4 rounded-2xl text-center mt-2 text-red-500 text-sm font-medium">
-    {error}
-  </div>
-)}
-
-{/* Success Message */}
-{success && (
-  <div className="bg-black p-4 rounded-2xl text-center mt-2 text-green-500 text-sm font-medium">
-    {success}
-  </div>
-)}
-  </div>
-</section>
-
-
-    </>)}
+  </>)
+}

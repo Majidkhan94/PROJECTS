@@ -1,39 +1,46 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import {PageHeader, Paragraph, ProductCard} from "../Export.js";
+import { useState, useEffect } from "react";
+import { ProductCard, Loading, Paragraph } from "../Export.js";
+import { ProductsList } from "../APIs/ProductAPIs.js";
 
+export const Products = () => {
 
-export const Products = () =>{
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const [fetchdata, setFetchdata] = useState([])
-    const [loading, setLoading] = useState(false)
+    useEffect(() => {
+        const Fetchdata = async () => {
+            try {
+                setLoading(true);
+                const response = await ProductsList();
+                if (response.success) {
+                    setData(response?.data?.data || []);
+                } else {
+                    setData([]);
+                }
+            } 
+            catch (error) {
+                console.error("Error fetching latest products:", error);
+                setData([]);
+            }
+            finally { setLoading(false); }
+        };
+        Fetchdata();
+    }, []);
 
-     useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(import.meta.env.VITE_PRODUCT_LIST);
-        setFetchdata(response.data.data);
-        console.log("Fetch successfully", response.data.data);
-      }
-      catch (err) {console.log("Fetch failed", err);}
-      finally {setLoading(false);}};
-    fetchData();
-  }, []);
+    const latestProducts = (data || [])
+        .sort((a, b) => new Date(b.createdat) - new Date(a.createdat))
+        .slice(0, 8);
 
-if (!loading && fetchdata.length === 0)
-{
-    return <Paragraph text={"NO PRODUCT FOUND"} className={"text-2xl! text-center"}/>
-}
+    if (loading) return <Loading />;
 
-
-   return (<>
-   <PageHeader text={"products"}/>
-   <section className="flex flex-wrap gap-6 justify-center p-6">
-    {fetchdata.map((product) => (
-      <ProductCard key={product.id} product={product} />
-    ))}
-  </section>
-   </>
-  
-)}
+    return (
+        <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
+            {latestProducts.length > 0 
+                ? (latestProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                )))
+                : (<Paragraph text={"No featured products found."} />)
+            }
+        </section>
+    );
+};

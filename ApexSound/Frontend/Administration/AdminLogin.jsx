@@ -1,99 +1,84 @@
+import { useState } from "react";
 import { IoIosUnlock } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useState, useEffect } from 'react';
-import {Heading, Input, Button,} from "../Export.js";
+import { Input, Button, Paragraph, PageHeader } from "../Export.js";
+import { Login } from "../APIs/AdminAPIs.js"
 
 export const AdminLogin = () => {
 
-  const navigate =  useNavigate();
+  const navigate = useNavigate();
 
-  const [data, setdata] = useState([]);
+  const [form, setForm] = useState({ Email: "", Password: "" })
+  const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(null);
 
-  // Form Data
-    const [formData, setFormData] = useState({ Email: "", Password: "" });
-    const FormDataInput = (e) => { setFormData({...formData, [e.target.name]: e.target.value})}
-  
-    // Submit Form Data to Backend
-    
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      setError(null);
-      setSuccess(null);
-      setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
 
-      if (!formData.Email || !formData.Password) {
-        setError("All fields are required");
-        setLoading(false);
-        return;
-      }
-
-      if(!formData.Email.includes("@")){
-        setError("Please enter a valid email address");
-        setLoading(false);
-        return;
-      }
-      setLoading(true);
-      try {
-          const response = await axios.post(`${import.meta.env.VITE_ADMIN_LOGIN}`, formData);
-          setSuccess("Login successful!");
-          localStorage.setItem("accessToken", response.data.details.accesstoken);
-          localStorage.setItem("adminId", response.data.details.id);
-          localStorage.setItem("role", response.data.details.role);
-          setFormData({ Email: "", Password: "" });
-          navigate("/admin/dashboard");
-        }
-      catch (err) {
-        setError(err?.data?.message || "Invalid email or password");
-      }
-      finally {
-        setLoading(false);
-      }
+    if (!form.Email || !form.Password) {
+      setError("All fields are required");
+      return;
     }
 
-    return (<>
+    if (!form.Email.includes("@")) {
+      setError("Please enter a valid email address");
+      return;
+    }
 
+    try {
+      setLoading(true);
 
-<section className="h-screen flex items-center justify-center p-4">
-  <div className="shadow-2xl shadow-white p-8 rounded-md w-full max-w-md">
-    <span className="flex justify-center items-center gap-4 text-3xl font-semibold mb-6">
-      <IoIosUnlock />
-      <Heading text="Admin Login" />
-    </span>
+      var login = await Login(form);
+      if (login.success) {
+        setSuccess(login?.message);
+        localStorage.setItem("accessToken", login?.data?.data?.accesstoken);
+        localStorage.setItem("adminId", login?.data?.data?.id);
+        localStorage.setItem("Role", login?.data?.data?.role);
 
-    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-      <Input type="text" placeholder="Email" name="Email" value={formData.Email} onChange={FormDataInput} />
-      <Input type="password" placeholder="Password" name="Password" value={formData.Password} onChange={FormDataInput} />
-      <Button text={loading ? "Logging..." : "Login"} type="submit" />
-    </form>
+        var timer = setTimeout(() => { navigate("/admin/dashboard"); }, 3000);
+        return () => clearTimeout(timer);
+      }
+      else { setError(login?.message); }
+    }
+    catch (err) { setError(err?.response?.data?.message); }
+    finally { setLoading(false) }
+  }
 
-    {/* Login Link */}
-    <div className="text-center mt-4 text-sm text-hover-bg">
-  Don't have an account? 
-  <Link to="/admin/registeration" className="text-white ml-1 hover:underline">
-    Register here
-  </Link>
-</div>
+  return (<>
 
-    {/* Error Message */}
-    
-    {error && (
-      <div className="bg-black p-4 rounded-2xl text-center mt-2 text-red-500 text-sm font-medium">
-        {error}
+    <section className="h-screen flex items-center justify-center p-4">
+      <div className="bg-background-color p-8 rounded-md w-full max-w-md">
+
+        <span className="flex justify-center items-center gap-3 mb-6">
+          <IoIosUnlock size={24} />
+          <PageHeader text={"ADMIN LOGIN"} />
+        </span>
+
+        <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
+
+          <Input type="text" name="Email" placeholder="Email" value={form.Email}
+            onChange={(e) => setForm({ ...form, Email: e.target.value })} />
+
+          <Input type="password" name="Password" placeholder="Password" value={form.Password}
+            onChange={(e) => setForm({ ...form, Password: e.target.value })} />
+
+          <Button text={loading ? "Logging..." : "Login"} type={"submit"} />
+        </form>
+
+        {/* Register Link */}
+        <div className="flex justify-center gap-2 mt-4 text-sm">
+          <Paragraph text={"Don't have an account? "} />
+          <Link to="/admin/registeration" className="font-semibold hover:underline"> Register here </Link>
+        </div>
+        <div className="w-full text-center text-[12px] mt-4"><Link to={"/"}>Back to Homepage</Link></div>
+
+        {error && (<div className="text-red-500 text-sm font-medium text-center pt-3">  {error}  </div>)}
+        {success && (<div className="text-green-500 text-sm font-medium text-center pt-3">{success}</div>)}
       </div>
-    )}
+    </section>
 
-     {/* Success Message */}
-    {success && (
-      <div className="bg-black p-4 rounded-2xl text-center mt-2 text-green-500 text-sm font-medium">
-        {success}
-      </div>
-    )}
-  </div>
-</section>
-
-
-    </>)}
+  </>)
+}

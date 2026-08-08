@@ -1,8 +1,5 @@
-
-////////////////////////////// Completed //////////////////////////////
-
 import { useState, useEffect } from "react"
-import { Button, Heading, Loading, Searchbar, Paragraph } from "../../Export.js";
+import { Button, Heading, Loading, Searchbar, Paragraph, PageHeader } from "../../Export.js";
 import { MdContactPhone } from "react-icons/md"
 import {ContactusList, ContactusDelete} from "../../APIs/ContactusAPIs.js"
 
@@ -66,6 +63,10 @@ export const AdminContactusSection = () => {
                         </div>
 
                     </div>))}
+                    
             </div>
+            {filterlist.length === 0 && (
+                              <PageHeader text={"No contact found."} className={"text-button-redhover"}/>
+                            )}
         </section>
     );}

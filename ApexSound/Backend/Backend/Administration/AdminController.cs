@@ -1,4 +1,5 @@
-﻿    using Microsoft.AspNetCore.Authorization;
+﻿using Backend.Controller;
+using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -6,7 +7,7 @@
     {
         [ApiController]
         [Route("/api/[controller]")]
-        public class AdminController : ControllerBase
+        public class AdminController : BaseController
         {
             private readonly IAdminRepo _adminRepo;
             public AdminController(IAdminRepo adminRepo)
@@ -18,71 +19,44 @@
             [HttpPost("registeration")]
             public async Task<IActionResult> AdminRegisteration([FromBody] AdminRegDTO adminregisteration)
             {
-                if (!ModelState.IsValid) return BadRequest(ModelState);
-                try
-                {
-                    var Adminreg = await _adminRepo.AdminRegisteration(adminregisteration);
-                    if (Adminreg == null)
-                    {
-                        return BadRequest(new { message = "Admin Registeration Failed" });
-                    }
-                    return Ok(new { message = "Admin Registeration Successfully", Details = Adminreg });
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(new { message = ex.Message });
-                }
+            return await TryCatch(async () =>
+            {
+                var Register = await _adminRepo.AdminRegisteration(adminregisteration);
+                return Register;
+            }, "Admin Registeration Successfully");
             }
 
             // Login
             [HttpPost("login")]
             public async Task<IActionResult> AdminLogin([FromBody] AdminLogDTO adminlogin)
             {
-                if (!ModelState.IsValid) return BadRequest(ModelState);
-                try
-                {
-                    var Adminlogin = await _adminRepo.AdminLogin(adminlogin);
-                    if (Adminlogin == null)
+                    return await TryCatch(async () =>
                     {
-                        return BadRequest(new { message = "Admin Login Failed" });
-                    }
-                    return Ok(new { message = "Admin Login Successfully", Details = Adminlogin });
-                }
-                catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
+                        var login = await _adminRepo.AdminLogin(adminlogin);
+                        return login;
+                    }, "Admin Login Successfully");
             }
 
-            [Authorize]
-            [HttpPut("update")]
-            public async Task<IActionResult> AdminUpdate([FromForm] AdminUpdateDTO adminupdate)
+        [HttpPut("update/{Id}")]
+        public async Task<IActionResult> AdminUpdate(int Id, [FromForm] AdminUpdateDTO adminupdate)
+        {
+
+            return await TryCatch(async () =>
             {
-                if (!ModelState.IsValid) return BadRequest(ModelState);
-                try
-                {
-                    var idClaim = User.FindFirst("Id")?.Value;
-                    if (idClaim == null) return Unauthorized(new { message = "Invalid token" });
-                    int Id = int.Parse(idClaim);
+                var Update = await _adminRepo.AdminUpdate(Id,adminupdate);
+                return Update;
+            }, "Admin Update Successfully");
+        }
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> AdminProfile(int Id)
+        {
 
-                 await _adminRepo.AdminUpdate(Id, adminupdate);
-                    return Ok(new { message = "Admin Updated Successfully" });
-                }
-                catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
-            }
-
-            [Authorize]
-            [HttpGet("profile")]
-            public async Task<IActionResult> AdminProfile()
+            return await TryCatch(async () =>
             {
-                try
-                {
-                    var idClaim = User.FindFirst("Id")?.Value;
-                    if (idClaim == null) return Unauthorized(new { message = "Invalid token" });
-                    int Id = int.Parse(idClaim);
-
-                    var profile = await _adminRepo.AdminProfile(Id);
-                    return Ok(profile);
-                }
-                catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
-            }
+                var Profile = await _adminRepo.AdminProfile(Id);
+                return Profile;
+            }, "");
+        }
 
     }
     }

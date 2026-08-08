@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Input, Button, Heading, Paragraph, Searchbar, Loading } from "../../Export.js";
 import { FaImage } from "react-icons/fa";
-import { CategoriesList, CategoriesDelete } from "../../APIs/CategoriesAPIs.js"
+import { CategoriesList, CategoriesDelete, CategoriesAdd, CategoriesUpdate } from "../../APIs/CategoriesAPIs.js"
 
 export const AdminCategoriesSection = () => {
 
@@ -53,19 +53,20 @@ export const AdminCategoriesSection = () => {
             formData.append("Name", name);
             if (image) { formData.append("ProfilePic", image); }
 
-            if (editId) {
-                await axios.put(`${import.meta.env.VITE_BACKEND_URL}Category/update/${editId}`, formData);
-            } else {
-                await axios.post(`${import.meta.env.VITE_BACKEND_URL}Category/add`, formData);
-            }
-
+            const response = editId
+            ? await CategoriesUpdate(editId, formData)
+            : await CategoriesAdd(formData);
+            if (response.success) {
             resetForm();
             listCategory();
-        } catch (error) {
-            setError(error?.response?.data?.message || "Not Added");
-        } finally {
-            setLoading(false);
+        } else {
+            setError(response?.message || "Not Added");
         }
+    } catch (error) {
+        setError(error?.response?.data?.message || "Not Added");
+    } finally {
+        setLoading(false);
+    }
     };
 
     const handleEdit = (category) => {

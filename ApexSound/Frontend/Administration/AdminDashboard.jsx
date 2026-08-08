@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+
 import { FiGrid, FiUsers, FiShoppingBag, FiBox, FiShoppingCart, FiClipboard, FiUser } from "react-icons/fi";
 import { LuLetterText } from "react-icons/lu";
 import { MdContactPhone } from "react-icons/md";
@@ -7,7 +7,7 @@ import Logo from "../src/Public/Logo.png"
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Paragraph, AdminSlide, AdminCategoriesSection, AdminContactusSection, AdminDashboardSection,
   AdminNewsletterSection, AdminOrderManagementSection, AdminProductManagementSection,AdminUserManagementSection, AdminVenderRequestSection } from "../Export.js";
-
+import { GETADMINPROFILE } from "../APIs/AdminAPIs.js"
 
 
 ///////////////////////////////// Left Section Data /////////////////////////////////
@@ -42,21 +42,33 @@ export const AdminDashboard = () => {
 
   const [active, setActive] = useState("dashboard");
   const [admin, setAdmin] = useState(null);
+  const [loading, setLoading] = useState("");
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const token = localStorage.getItem("accessToken");
-        const response = await axios.get(`${import.meta.env.VITE_ADMIN_PROFILE}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setAdmin(response.data);
-      } catch (error) {
-        console.error("Fetch failed:", error);
-      }
-    };
-    fetchProfile();
-  }, [])
+
+const fetchProfile = async () => {
+    setLoading(true);
+    try {
+        const adminId = localStorage.getItem("adminId");
+        const response = await GETADMINPROFILE(adminId);
+        if (response.success) {
+            setAdmin(response?.data?.data || {});
+        } else {
+            setError(response?.message);
+        }
+    } catch (err) {
+        setError(err?.response?.data?.message || "Something went wrong");
+    } finally {
+        setLoading(false);
+    }
+};
+
+useEffect(() => {
+  fetchProfile();
+}, []);
+
+
+
 
   // Logout
 const handleLogout = () => {

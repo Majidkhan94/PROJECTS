@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { Input, Button, Heading, Paragraph } from "../Export.js";
+import { Input, Button, Heading, Paragraph, PageHeader } from "../Export.js";
+import {Login} from "../APIs/UserAPIS.js"
+
 
 export const UserLogin = () =>{
 
@@ -9,76 +10,55 @@ export const UserLogin = () =>{
     
     const [form, setForm] = useState({ Email: "", Password: ""})
     const[success, setSuccess] = useState(null);
-    const[error, seterror] = useState(null);
+    const[error, setError] = useState(null);
     const[loading, setLoading] = useState(false);
 
     const handleSubmit = async (e)=>{
       e.preventDefault();
-      seterror(null);
-      setSuccess(null)
           try{
           setLoading(true);
           
-          var response = await axios.post(`${import.meta.env.VITE_USER_LOGIN}`,
-          form,
-          {headers: {"Content-Type" : "application/json"}})
-
-          setSuccess(response.data.message);
-          localStorage.setItem("accessToken", response.data.data.accesstoken);
-          localStorage.setItem("UserId", response.data.data.id);
-          localStorage.setItem("Role", response.data.data.role);
+          var login = await Login(form);
+          if(login.success){
+          setSuccess(login?.message);
+          localStorage.setItem("accessToken", login?.data?.data?.accesstoken);
+          localStorage.setItem("UserId", login?.data?.data?.id);
+          localStorage.setItem("Role", login?.data?.data?.role);
           
-
-          var timer = setTimeout(() => {
-              navigate("/");}, 3000);
-              return () => clearTimeout(timer);}
-              
-      catch(err){
-        console.log("Full Error:", err.response?.data);
-        if(err.response)
-        {seterror(err.response.data.error || "LOGIN FAILED!")}
-        else{seterror("Something went wrong. Please try again.")}}
-      finally{setLoading(false)}
+          var timer = setTimeout(() => { navigate("/");}, 3000); return () => clearTimeout(timer);}
+        
+          else{ setError(login?.message);}}
+          
+                     
+        catch(err){ setError(err?.response?.data)}
+        finally{setLoading(false)}
     }
 
     return(<>
     
     <section className="h-screen flex items-center justify-center p-4">
-        <div className="shadow-2xl shadow-white p-8 rounded-md w-full max-w-md">
-        <span className="flex justify-center items-center gap-4 text-3xl font-semibold mb-6">
-            <Heading text="LOGIN" className={"text-md"} />
-        </span>
-
+        <div className="bg-background-color p-8 rounded-md w-full max-w-md">
+          <PageHeader text={"login"}/>
+        
         <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
-          
+
           <Input type="text" name="Email" placeholder="Email" value={form.Email}
           onChange={(e)=> setForm ({...form, Email: e.target.value})}/>
           
           <Input type="password" name="Password" placeholder="Password" value={form.Password}
           onChange={(e)=> setForm({...form, Password: e.target.value})} />
           
-          <Button text= {"LOGIN"} type={"submit"} />
+          <Button text= {"Submit"} type={"submit"} />
         </form>
 
     {/* Login Link */}
-    <div className="text-center mt-4 text-sm text-hover-bg">
-      Don't have an account?
-      <Link to="/registeration" className="text-white ml-1 hover:underline">
-        Register here
-      </Link>
+    <div className="flex justify-center gap-2 mt-4 text-sm">
+      <Paragraph text={"Don't have an account? "}/> 
+      <Link to="/registeration" className="font-semibold hover:underline"> Register here </Link>
     </div>
-
-{error && (
-  <div className="bg-black p-4 rounded-2xl text-center mt-2 text-red-500 text-sm font-medium">
-    {error}
-  </div>
-)}
-
-{success && (
-  <div className="bg-black p-4 rounded-2xl text-center mt-2 text-green-500 text-sm font-medium">
-    {success}
-  </div>
-)}
+<div className="w-full text-center text-[12px] mt-4"><Link to={"/"}>Back to Homepage</Link></div>
+{error   && (<div className="text-red-500 text-sm font-medium text-center pt-3">  {error}  </div>)}
+{success && (<div className="text-green-500 text-sm font-medium text-center pt-3">{success}</div>)}
   </div>
 </section>
     

@@ -1,9 +1,9 @@
 import { FaBox, FaShoppingCart, FaSearch } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import axios from "axios";
 
-import {Button, Searchbar, Input, Heading, PageHeader} from "../../Export.js";
-
+import { Button, Searchbar, Input, Heading, PageHeader, Paragraph } from "../../Export.js";
+import { ProductsList, ProductsAdd, ProductsUpdate, ProductsDelete } from "../../APIs/ProductAPIs.js";
+import { CategoriesList } from "../../APIs/CategoriesAPIs.js";
 
 export const AdminProductManagementSection = () => {
 
@@ -36,11 +36,17 @@ export const AdminProductManagementSection = () => {
     const fetchCategories = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(import.meta.env.VITE_CATEGORY_LIST);
-        console.log("Fetched categories:", response.data);
-        setCategories(response.data);
+        const response = await CategoriesList();
+        if (response.success) {
+          setCategories(response?.data?.data || []);
+        } else {
+          setCategories([]);
+        }
       }
-      catch (error) { console.error("Error fetching categories:", error); }
+      catch (error) {
+        console.error("Error fetching categories:", error);
+        setCategories([]);
+      }
       finally { setLoading(false); }
     };
     fetchCategories();
@@ -58,11 +64,11 @@ export const AdminProductManagementSection = () => {
   };
 
   // Form ko reset karke wapas Add mode me le aao
-  const resetForm = () => {
-    setEditingProductId(null);
-    setForm({ productPic: null, name: "", price: "", stock: "", products: "", categoryName: "", description: "" });
-    setPreviewImage("https://www.govtmohindracollege.in/wp-content/uploads/2023/10/photo-placeholder.webp");
-  };
+  // const resetForm = () => {
+  //   setEditingProductId(null);
+  //   setForm({ productPic: null, name: "", price: "", stock: "", products: "", categoryName: "", description: "" });
+  //   setPreviewImage("https://www.govtmohindracollege.in/wp-content/uploads/2023/10/photo-placeholder.webp");
+  // };
 
   // Listing Products
   const [products, setProducts] = useState([]);
@@ -70,11 +76,17 @@ export const AdminProductManagementSection = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(import.meta.env.VITE_PRODUCT_LIST);
-      console.log("Fetched products:", response.data.data);
-      setProducts(response.data.data);
+      const response = await ProductsList();
+      if (response.success) {
+        setProducts(response?.data?.data || []);
+      } else {
+        setProducts([]);
+      }
     }
-    catch (error) { console.error("Error fetching products:", error); }
+    catch (error) {
+      console.error("Error fetching products:", error);
+      setProducts([]);
+    }
     finally { setLoading(false); }
   };
 
@@ -82,8 +94,8 @@ export const AdminProductManagementSection = () => {
     fetchProducts();
   }, []);
 
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(search.toLowerCase())
+  const filteredProducts = (products || []).filter((product) =>
+    product.name?.toLowerCase().includes(search.toLowerCase())
   );
 
   // Add Product
@@ -95,10 +107,6 @@ export const AdminProductManagementSection = () => {
       setError("Please fill in all fields.");
       return;
     }
-
-    setError(null);
-    setSuccess(null);
-
     try {
       setLoading(true);
 
@@ -111,19 +119,24 @@ export const AdminProductManagementSection = () => {
       formdata.append("Description", form.description);
       if (form.productPic) { formdata.append("ProductPic", form.productPic); }
 
-      const response = await axios.post(import.meta.env.VITE_PRODUCT_ADD, formdata, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await ProductsAdd(formdata);
 
-      setSuccess(response?.data?.message);
-      resetForm();
-      fetchProducts();
+      if (response.success) {
+        setSuccess(response?.message || "Product added successfully.");
+        //resetForm();
+        setForm({ ...form, productPic: null, name: "" });
+        setPreviewImage("https://www.govtmohindracollege.in/wp-content/uploads/2023/10/photo-placeholder.webp");
+        
+        fetchProducts();
+      } else {
+        setError(response?.message || "Failed to add product.");
+      }
     }
     catch (error) {
-      setError(error.response?.data?.error || "Failed to add product.");
+      setError(error?.response?.data?.message || "Failed to add product.");
     }
     finally { setLoading(false); }
-  };  
+  };
 
   // Update Product ke liye form bharna (Edit button click)
   const handleEditClick = (product) => {
@@ -138,7 +151,6 @@ export const AdminProductManagementSection = () => {
       description: product.description || ""
     });
     setPreviewImage(product.productPicURL || "https://www.govtmohindracollege.in/wp-content/uploads/2023/10/photo-placeholder.webp");
-   
   };
 
   // Update Product (submit)
@@ -166,18 +178,20 @@ export const AdminProductManagementSection = () => {
       formdata.append("Description", form.description);
       if (form.productPic) { formdata.append("ProductPic", form.productPic); }
 
-      const response = await axios.put(
-        `${import.meta.env.VITE_PRODUCT_UPDATE}/${editingProductId}`,
-        formdata,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
+      const response = await ProductsUpdate(editingProductId, formdata);
 
-      setSuccess(response?.data?.message);
-      resetForm();
-      fetchProducts();
+      if (response.success) {
+        setSuccess(response?.message || "Product updated successfully.");
+        //resetForm();
+        setForm({ ...form, productPic: null, name: "" });
+        setPreviewImage("https://www.govtmohindracollege.in/wp-content/uploads/2023/10/photo-placeholder.webp");
+        fetchProducts();
+      } else {
+        setError(response?.message || "Failed to update product.");
+      }
     }
     catch (error) {
-      setError(error.response?.data?.error || "Failed to update product.");
+      setError(error?.response?.data?.message || "Failed to update product.");
     }
     finally { setLoading(false); }
   };
@@ -198,12 +212,17 @@ export const AdminProductManagementSection = () => {
 
     try {
       setLoading(true);
-      const response = await axios.delete(`${import.meta.env.VITE_PRODUCT_DELETE}/${productId}`);
-      setSuccess(response?.data?.message);
-      fetchProducts();
+      const response = await ProductsDelete(productId);
+
+      if (response.success) {
+        setSuccess(response?.message || "Product deleted successfully.");
+        fetchProducts();
+      } else {
+        setError(response?.message || "Failed to delete product.");
+      }
     }
     catch (error) {
-      setError(error.response?.data?.error || "Failed to delete product.");
+      setError(error?.response?.data?.message || "Failed to delete product.");
     }
     finally { setLoading(false); }
   };
@@ -213,11 +232,6 @@ export const AdminProductManagementSection = () => {
 
       {/* Search Bar */}
       <Searchbar type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search products..." />
-
-      {/* No products found. */}
-      {/* <span>
-        {filteredProducts.length === 0 && <p className="text-white/50">No products found.</p>}
-      </span> */}
 
       {/* Form (Add / Update) */}
       <div className="shadow-2xl shadow-white p-8 rounded-md w-full">
@@ -268,7 +282,7 @@ export const AdminProductManagementSection = () => {
           {/* Row 4 - Buttons */}
           <div className="flex justify-end gap-3">
             {editingProductId && (
-              <Button text="Cancel" type="button" onClick={resetForm} />
+              <Button text="Cancel" type="button" onClick={() => setEditingProductId(null)} />
             )}
             <Button
               text={loading ? "Saving..." : editingProductId ? "Update Product" : "Add Product"}
@@ -293,41 +307,59 @@ export const AdminProductManagementSection = () => {
       </div>
 
       {/* List of Products */}
-      <div className="shadow-2xl shadow-white p-8 rounded-md w-full">
-        <PageHeader text="All Products" />
+      {/* List of Products */}
+<div className="mx-5 mt-5">
+  <PageHeader text="All Products" />
 
-        {/* Header Row */}
-        <div className="flex items-center gap-4 pb-3 border-b border-white/20">
-          <Heading text="" className="w-14" />
-          <Heading text="Products Name" className="flex-1" />
-          <Heading text="Slug" className="flex-1" />
-          <Heading text="Actions" className="w-64 text-right" />
+  {/* Product Cards */}
+  <div className="flex flex-wrap gap-5 mt-6">
+    {filteredProducts.map((product) => (
+      <div key={product.id} className="bg-background-color rounded-2xl p-6 w-[calc(33.333%-1.34rem)]">
+        
+        {/* Image + Name header, underline below */}
+       <div className="pb-4 mb-5 border-b">
+  <div className="flex flex-col items-center gap-2">
+    <img
+      src={product.productPicURL}
+      alt={product.name}
+      className="w-14 h-14 rounded-full object-cover"
+    />
+    <div className="flex flex-col items-center text-lg font-semibold">
+      <span>{product.name}</span>
+      <span>{`[ ${product.products} ]`}</span>
+    </div>
+  </div>
+</div>
+
+        {/* Fields stacked vertically */}
+        <div className="flex flex-col gap-2">
+          <Paragraph text={`Price: ${product.price}`} />
+          <Paragraph text={`Stock: ${product.stock}`} />
+          <Paragraph text={`Category: ${product.categoryName}`} />
+          <Paragraph text={`Description: ${product.description}`} />
         </div>
 
-        {/* Product Rows */}
-        <div className="mt-6">
-          {filteredProducts.map((product) => (
-            <div
-              key={product.id}
-              className="flex items-center gap-4 py-3 border-b border-white/20"
-            >
-              <img
-                src={product.productPicURL}
-                alt={product.name}
-                className="w-14 h-14 rounded-full object-cover"
-              />
-
-              <p className="flex-1">{product.name}</p>
-              <p className="flex-1 text-white/60">{product.slug}</p>
-
-              <div className="flex gap-2 w-64 justify-end">
-                <Button text="Update" onClick={() => handleEditClick(product)} />
-                <Button text="Delete" onClick={() => handleDeleteProduct(product.id)} />
-              </div>
-            </div>
-          ))}
+        {/* Update / Delete buttons */}
+        <div className="flex gap-3 mt-6">
+          <Button
+            onClick={() => handleEditClick(product)}
+            text={"Update"}
+            className={"flex-1"}
+          />
+          <Button
+            onClick={() => handleDeleteProduct(product.id)}
+            text={"Delete"}
+            className={"flex-1 hover:bg-button-redhover"}
+          />
         </div>
       </div>
+    ))}
+  </div>
+
+  {filteredProducts.length === 0 && (
+    <PageHeader text={"No products found."} className={"text-button-redhover"} />
+  )}
+</div>
 
     </section>
   </>);

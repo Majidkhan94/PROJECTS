@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Backend.Controller;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Products
 {
     [ApiController]
     [Route("/api/[controller]")]
-    public class ProductController : ControllerBase
+    public class ProductController : BaseController
     {
         private readonly IProductRepo _productrepo;
         public ProductController(IProductRepo productrepo)
@@ -17,12 +18,11 @@ namespace Backend.Products
         [Route("count")]
         public async Task<IActionResult> ProductCount()
         {
-            try
+            return await TryCatch(async () =>
             {
                 var count = await _productrepo.ProductCount();
-                return Ok(new { data = count });
-            }
-            catch (Exception ex) { return BadRequest(new { error = ex.Message }); }
+                return count;
+            }, "");
         }
 
         // List
@@ -30,26 +30,23 @@ namespace Backend.Products
         [Route("list")]
         public async Task<IActionResult> ListProduct(string? product)
         {
-            try
+            return await TryCatch(async () =>
             {
                 var list = await _productrepo.ListProduct(product);
-                return Ok(new { data = list });
-            }
-            catch (Exception ex) { return BadRequest(new { error = ex.Message }); }
+                return list;
+            }, "");
         }
-
 
         // Add
         [HttpPost]
         [Route("add")]
         public async Task<IActionResult> AddProduct([FromForm] ProductModelDTO addproduct)
         {
-            try
+            return await TryCatch(async () =>
             {
                 var add = await _productrepo.AddProduct(addproduct);
-                return Ok(new { message = "Product Added Successfully", data = add });
-            }
-            catch (Exception ex) { return BadRequest(new { error = ex.Message }); }
+                return add;
+            }, "Product Added Successfully");
         }
 
         // Update
@@ -57,12 +54,11 @@ namespace Backend.Products
         [Route("update/{Id}")]
         public async Task<IActionResult> UpdateProduct(int Id, [FromForm] ProductModelDTO updateproduct)
         {
-            try
+            return await TryCatch(async () =>
             {
                 var update = await _productrepo.UpdateProduct(Id, updateproduct);
-                return Ok(new { message = "Product Updated Successfully", data = update });
-            }
-            catch (Exception ex) { return BadRequest(new { error = ex.Message }); }
+                return update;
+            }, "Product Updated Successfully");
         }
 
         // Delete
@@ -70,13 +66,11 @@ namespace Backend.Products
         [Route("delete/{Id}")]
         public async Task<IActionResult> DeleteProduct(int Id)
         {
-            try
+            return await TryCatch(async () =>
             {
                 var delete = await _productrepo.DeleteProduct(Id);
-                return Ok(new { message = "Product Deleted Successfully", data = delete });
-            }
-            catch (Exception ex) { return BadRequest(new { error = ex.Message }); }
-
+                return delete;
+            }, "Product Deleted Successfully");
         }
     }
 }

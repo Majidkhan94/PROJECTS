@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { ProductCard } from "../../Export.js";
+import { ProductCard, Loading, Paragraph } from "../../Export.js";
+import { ProductsList } from "../../APIs/ProductAPIs.js";
 
 export const FeatureProductsSection = () => {
 
@@ -8,35 +8,36 @@ export const FeatureProductsSection = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-
         const Fetchdata = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(import.meta.env.VITE_PRODUCT_LIST);
-                console.log("Feature Products Response:", response.data.data);
-                setData(response.data.data);
+                const response = await ProductsList();
+                if (response.success) {
+                    setData(response?.data?.data || []);
+                } else {
+                    setData([]);
+                }
             } 
-            catch (error) { console.error("Error fetching feature products:", error);}
-            finally {setLoading(false);}
-        }
+            catch (error) {
+                console.error("Error fetching feature products:", error);
+                setData([]);
+            }
+            finally { setLoading(false); }
+        };
         Fetchdata();
     }, []);
 
-    const featuredProducts = data
-  .filter(p => p.products === "FeatureProducts")
-  .sort((a, b) => new Date(b.createdat) - new Date(a.createdat))
-  .slice(0, 8);
+    const featuredProducts = (data || [])
+        .filter(p => p.products === "FeatureProducts")
+        .sort((a, b) => new Date(b.createdat) - new Date(a.createdat))
+        .slice(0, 8);
 
-
-
-  return (<>
-  
-<section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
-    {featuredProducts.map((product) => (
-        <ProductCard key={product.id} product={product} />
-    ))}
-</section>  
-  
-  
-  </>);
+        if(loading) return <Loading />
+    return (<>
+        <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
+            {featuredProducts.length > 0 
+            ? (featuredProducts.map((product) => ( <ProductCard key={product.id} product={product} /> )))
+            : ( <Paragraph text={"No featured products found."}/>)}
+        </section>
+    </>);
 };
