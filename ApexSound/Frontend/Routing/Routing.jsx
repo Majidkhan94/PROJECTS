@@ -1,15 +1,16 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react"
 import {
-        Layout, ProtectedRoute, NotFound404,
+        Layout, ProtectedRoute, NotFound404
         
-        UserRegisteration, UserLogin, UserProfile,
+        ,UserRegisteration, UserLogin, UserProfile
         
-        HomePage, Contactus, Categories, CategoryProducts, Products, Aboutus,
+        ,HomePage, Contactus, Categories, CategoryProducts, Products, Aboutus, Support, Faqs, TermsandCondition, PrivacyPolicy
         
-        AdminRegisteration, AdminLogin, AdminDashboard, AdminProfileUpdate,      
+        ,AdminRegisteration, AdminLogin, AdminDashboard, AdminProfileUpdate,      
 
     } from "../Export.js";
+
 
         ////////////////////////////// Page Title ////////////////////////////// 
         const titles = 
@@ -81,6 +82,10 @@ export const Routing = () => {
                 <Route path="/categories/:slug" element={<CategoryProducts />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/aboutus" element={<Aboutus />} />
+                <Route path="/support" element={<Support />} />
+                <Route path="/faqs" element={<Faqs />} />
+                <Route path="/termsandcondition" element={<TermsandCondition />} />
+                <Route path="/privacypolicy" element={<PrivacyPolicy />} />
                 
             </Route>
 

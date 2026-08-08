@@ -47,9 +47,9 @@ const Newslettersubmit = async (e) => {
             <Heading text={"QUICK LINKS"} className={"text-lg mb-3"} />
             <nav className="flex flex-col gap-4">
                 <Navbar to="/support" text="Support" />
-                <Navbar to="/faq" text="FAQ" />
-                <Navbar to="/terms" text="Terms" />
-                <Navbar to="/privacy" text="Privacy" />
+                <Navbar to="/faqs" text="FAQ" />
+                <Navbar to="/termsandcondition" text="Terms and Condition" />
+                <Navbar to="/privacypolicy" text="Privacy Policy" />
             </nav>
         </div>
 

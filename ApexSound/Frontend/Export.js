@@ -24,12 +24,16 @@ export {Header} from "../Frontend/Components/Header.jsx"
 export {CategoryCard} from "../Frontend/Components/CategoryCard.jsx"
 
 // Pages
-export {Aboutus} from "../Frontend/Pages/Aboutus.jsx"
 export {Categories} from "../Frontend/Pages/Categories.jsx"
 export {CategoryProducts} from "../Frontend/Pages/CategoryProducts.jsx"
 export {Contactus} from "../Frontend/Pages/Contactus.jsx"
 export {HomePage} from "../Frontend/Pages/HomePage.jsx"
 export {Products} from "../Frontend/Pages/Products.jsx"
+export {Aboutus} from "../Frontend/Pages/Aboutus.jsx"
+export {Support} from "../Frontend/Pages/Support.jsx"
+export {Faqs} from "../Frontend/Pages/Faqs.jsx"
+export {PrivacyPolicy} from "../Frontend/Pages/PrivacyPolicy.jsx"
+export {TermsandCondition} from "../Frontend/Pages/TermsandCondition.jsx"
 export {SliderSection} from "./Pages/Section/SliderSection.jsx"
 export {FeatureProductsSection} from "./Pages/Section/FeatureProductsSection.jsx"
 export {CategoriesSection} from "../Frontend/Pages/Section/CategoriesSection.jsx"
@@ -37,6 +41,7 @@ export {AdvertizementSection} from "../Frontend/Pages/Section/AdvertizementSecti
 export {WhychooseuSection} from "../Frontend/Pages/Section/WhychooseuSection.jsx"
 export {LatestproductSection} from "../Frontend/Pages/Section/LatestproductSection.jsx"
 export {CustomerreviewSection} from "../Frontend/Pages/Section/CustomerreviewSection.jsx"
+
 
 // APIs
 export {NewsletterAdd, NewsletterList, NewsletterDelete, NewsletterCount} from "../Frontend/APIs/NewsletterAPIs.js"

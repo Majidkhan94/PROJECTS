@@ -28,8 +28,7 @@ export const Products = () => {
     }, []);
 
     const latestProducts = (data || [])
-        .sort((a, b) => new Date(b.createdat) - new Date(a.createdat))
-        .slice(0, 8);
+        .sort((a, b) => new Date(b.createdat) - new Date(a.createdat));
 
     if (loading) return <Loading />;
 
