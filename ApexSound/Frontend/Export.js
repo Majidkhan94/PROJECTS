@@ -38,6 +38,7 @@ export {PrivacyPolicy} from "../Frontend/Pages/PrivacyPolicy.jsx"
 export {TermsandCondition} from "../Frontend/Pages/TermsandCondition.jsx"
 export {Cart} from "../Frontend/Pages/Cart.jsx"
 export {Requesttovendor} from "../Frontend/Pages/Requesttovendor.jsx"
+export {OrderPlaced} from "../Frontend/Pages/OrderPlaced.jsx"
 
 export {SliderSection} from "./Pages/Section/SliderSection.jsx"
 export {FeatureProductsSection} from "./Pages/Section/FeatureProductsSection.jsx"
@@ -75,3 +76,12 @@ export {AdminProductManagementSection} from "./Administration/AdminSections/Admi
 export {AdminUserManagementSection} from "./Administration/AdminSections/AdminUserManagementSection.jsx"
 export {AdminVenderRequestSection} from "./Administration/AdminSections/AdminVenderRequestSection.jsx"
 
+// Vender
+
+export {VendorsDashboard} from "../Frontend/Vendors/VendorsDashboard.jsx"
+
+export {VenderDashboardSection} from "../Frontend/Vendors/Section/VenderDashboardSection.jsx"
+export {VenderAddCategoriesSection} from "../Frontend/Vendors/Section/VenderAddCategoriesSection.jsx"
+export {VenderAllCategoriesSection} from "../Frontend/Vendors/Section/VenderAllCategoriesSection.jsx"
+export {VenderAddProductSection} from "../Frontend/Vendors/Section/VenderAddProductSection.jsx"
+export {VenderAllProductSection} from "../Frontend/Vendors/Section/VenderAllProductSection.jsx"

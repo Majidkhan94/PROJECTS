@@ -17,6 +17,7 @@ namespace Backend.ConnectionStrings
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<AuthModel> Registeration { get; set; }
         public DbSet<VenderModel> VendorRequests { get; set; }
+        public DbSet<OrderModel> Orders { get; set; }
 
 
 
@@ -25,6 +26,7 @@ namespace Backend.ConnectionStrings
         {
             modelBuilder.Entity<AuthModel>().Property(r => r.role).HasConversion<string>();
             modelBuilder.Entity<ProductModel>().Property(p => p.products).HasConversion<string>();
+            modelBuilder.Entity<VenderModel>().Property(v => v.Status).HasConversion<string>();
 
         }
 

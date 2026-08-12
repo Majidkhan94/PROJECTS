@@ -16,13 +16,13 @@ namespace Backend.Venders
 
         // ADD VENDOR REQUEST
         [HttpPost("add")]
-        public async Task<IActionResult> AddVendorRequest(VenderModel AddVendorRequest)
+        public async Task<IActionResult> AddVendorRequest([FromBody] VenderModel AddVendorRequest)
         {
             return await TryCatch(async () =>
             {
                 var Request = await _vendersRepo.AddVendorRequest(AddVendorRequest);
                 return Request;
-            }, "Vendor Request Submitted Successfully");
+            }, "Vendor Request Successfully Go Back To HomePage");
         }
 
         // APPROVE VENDOR REQUEST
@@ -56,6 +56,17 @@ namespace Backend.Venders
                 var List = await _vendersRepo.GetAllVendorRequests();
                 return List;
             }, "Vendor Requests Fetched Successfully");
+        }
+
+        // GET VENDOR REQUEST STATUS
+        [HttpGet("status/{userId}")]
+        public async Task<IActionResult> GetVendorRequestStatus(int userId)
+        {
+            return await TryCatch(async () =>
+            {
+                var Request = await _vendersRepo.GetVendorRequestStatus(userId);
+                return Request;
+            }, "Vendor Request Status Fetched Successfully");
         }
     }
 }

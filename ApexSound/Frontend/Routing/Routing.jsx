@@ -4,7 +4,7 @@ import { Layout, ProtectedRoute, NotFound404
         ,UserRegisteration, UserLogin, UserProfile
         ,HomePage, Contactus, Categories, CategoryProducts, Products, Aboutus, Support, Faqs, TermsandCondition, PrivacyPolicy
         ,AdminRegisteration, AdminLogin, AdminDashboard, AdminProfileUpdate
-        ,Cart, Requesttovendor      
+        ,Cart, Requesttovendor, VendorsDashboard, OrderPlaced     
 
     } from "../Export.js";
 
@@ -25,6 +25,7 @@ import { Layout, ProtectedRoute, NotFound404
             <Route path="/profile" element={<ProtectedRoute><UserProfile/></ProtectedRoute>} />
 
             **************************************** VENDER ****************************************
+            <Route path="/vendor/Dashboard" element={<VendorsDashboard />} />
 
             **************************************** ADMIN ****************************************
             <Route path="admin/registeration" element={<AdminRegisteration />} />
@@ -54,6 +55,7 @@ import { Layout, ProtectedRoute, NotFound404
                 <Route path="/privacypolicy" element={<PrivacyPolicy />} />
                 <Route path="/cart" element={
                 <ProtectedRoute><Cart /></ProtectedRoute>} />
+                <Route path="/orderplaced" element={<OrderPlaced />} />
                 <Route path="/requesttovender" element={
                 <ProtectedRoute><Requesttovendor /></ProtectedRoute>} />
                 

@@ -1,10 +1,11 @@
 import logo from "../src/Public/Logo.png";
 import { Link } from 'react-router-dom';
 import { FiShoppingCart, FiUser, FiMenu, FiX, FiChevronDown } from "react-icons/fi";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../Components/CartContext.jsx";
 import { Navbar } from "../Export.js";
+import { GetVendorRequestStatus } from "../APIs/VendersAPIS.js";
 
 
 export const Header = () => {
@@ -13,6 +14,7 @@ export const Header = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [mobileProfileOpen, setMobileProfileOpen] = useState(false);
+    const [vendorStatus, setVendorStatus] = useState(null);
 
     const handleLinkClick = () => { setTimeout(() => { setIsOpen(false); }, 500); };
 
@@ -20,6 +22,7 @@ export const Header = () => {
 
     const token = localStorage.getItem("accessToken");
     const role = localStorage.getItem("Role");
+    const userId = localStorage.getItem("UserId");
 
     // Logout
     const logouthandle = () => {
@@ -29,10 +32,28 @@ export const Header = () => {
         navigate("/login");
     };
 
-    
+    // Sirf "User" role ke liye vendor request status check karo
+    useEffect(() => {
+        const fetchVendorStatus = async () => {
+            if (token && role === "User" && userId) {
+                try {
+                    const response = await GetVendorRequestStatus(userId);
+                    if (response.success && response?.data?.data) {
+                        setVendorStatus(response.data.data.status); // "Pending" | "Approved" | "Rejected"
+                    }
+                } catch (err) {
+                    console.log(err?.response?.data?.message || "Something Went Wrong");
+                }
+            }
+        };
+        fetchVendorStatus();
+    }, [token, role, userId]);
+
     const dashboardLink =
         role === "Admin" ? { to: "/admin/dashboard", label: "Admin Dashboard" } :
-        role === "Vender" ? { to: "/vendor/dashboard", label: "Vendor Dashboard" } :
+        role === "Vender" ? { to: "/vendor/Dashboard", label: "Vendor Dashboard" } :
+        vendorStatus === "Pending" ? { label: "Pending", status: true } :
+        vendorStatus === "Rejected" ? { label: "Rejected", status: true } :
         null;
 
     const profileLink = role === "Admin" ? "/admin/adminprofileupdate" : "/profile";
@@ -85,9 +106,15 @@ export const Header = () => {
 
                                 {token && (<>
                                         {dashboardLink && (
-                                        <Link to={dashboardLink.to} className="px-4 py-2 text-sm">
-                                        {dashboardLink.label}
-                                        </Link>
+                                            dashboardLink.status ? (
+                                                <span className={`px-4 py-2 text-sm ${dashboardLink.label === "Rejected" ? "text-button-redhover" : "text-white/50"}`}>
+                                                    {dashboardLink.label}
+                                                </span>
+                                            ) : (
+                                                <Link to={dashboardLink.to} className="px-4 py-2 text-sm">
+                                                {dashboardLink.label}
+                                                </Link>
+                                            )
                                         )}
                                         <Link to={profileLink} className="px-4 py-2 text-sm">
                                             Profile
@@ -148,9 +175,15 @@ export const Header = () => {
                             {mobileProfileOpen && (
                                 <div className="flex flex-col items-center gap-y-3 text-sm">
                                     {dashboardLink && (
-                                        <Link onClick={handleLinkClick} to={dashboardLink.to} className="hover:text-hover-color transition-all duration-300">
-                                            {dashboardLink.label}
-                                        </Link>
+                                        dashboardLink.status ? (
+                                            <span className={dashboardLink.label === "Rejected" ? "text-button-redhover" : "text-white/50"}>
+                                                {dashboardLink.label}
+                                            </span>
+                                        ) : (
+                                            <Link onClick={handleLinkClick} to={dashboardLink.to} className="hover:text-hover-color transition-all duration-300">
+                                                {dashboardLink.label}
+                                            </Link>
+                                        )
                                     )}
                                     <Link onClick={handleLinkClick} to={profileLink} className="hover:text-hover-color transition-all duration-300">
                                         Profile

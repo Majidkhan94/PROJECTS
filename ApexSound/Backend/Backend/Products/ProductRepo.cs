@@ -24,34 +24,41 @@ namespace Backend.Products
         }
 
         // List
-        public async Task<List<ProductModelDTO>> ListProduct( string? product)
+        public async Task<List<ProductModelDTO>> ListProduct(string? product, int? userId = null)
         {
             var list = _connectionString.Products
                        .Include(C => C.Category)
                        .AsQueryable();
 
-            if(!string.IsNullOrWhiteSpace(product))
+            if (!string.IsNullOrWhiteSpace(product))
             {
                 list = list.Where(C => C.Category != null && C.Category.Slug.ToLower() == product.ToLower());
+            }
+
+            // Agar userId diya gaya hai (Vendor apne products dekhna chahta hai) to filter lagao
+            if (userId != null)
+            {
+                list = list.Where(p => p.UserId == userId);
             }
 
             var data = await list.ToListAsync();
 
             return data.Select(s => new ProductModelDTO
-                   {
-                       Id = s.Id,
-                       Name = s.Name,
-                       Slug = s.Slug,
-                       Description = s.Description,
-                       Price = s.Price.Value,
-                       Stock = s.Stock.Value,
-                       ProductPicURL = s.ProductPicURL,
-                       CategoryId = s.CategoryId,
-                       CategoryName = s.CategoryName,
-                       products = (ProductModelDTO.Products)s.products,
-                       IsActive = s.IsActive,
-                       Createdat = s.Createdat,
-                   })
+            {
+                Id = s.Id,
+                Name = s.Name,
+                Slug = s.Slug,
+                Description = s.Description,
+                Price = s.Price.Value,
+                Stock = s.Stock.Value,
+                ProductPicURL = s.ProductPicURL,
+                CategoryId = s.CategoryId,
+                CategoryName = s.CategoryName,
+                products = (ProductModelDTO.Products)s.products,
+                IsActive = s.IsActive,
+                Createdat = s.Createdat,
+                UserId = s.UserId,
+            })
                    .ToList();
         }
 
@@ -65,7 +72,8 @@ namespace Backend.Products
                 addproduct.Stock == null || addproduct.Stock < 0 ||
                 addproduct.products == null ||
                 string.IsNullOrWhiteSpace(addproduct.CategoryName) ||
-                string.IsNullOrWhiteSpace(addproduct.Description))
+                string.IsNullOrWhiteSpace(addproduct.Description) ||
+                addproduct.UserId == null)
             {
                 throw new Exception("All fields are required");
             }
@@ -79,7 +87,7 @@ namespace Backend.Products
 
             // Image Upload
             string? productpicurl = addproduct.ProductPicURL;
-            if(addproduct.ProductPic != null)
+            if (addproduct.ProductPic != null)
             {
                 productpicurl = await _cloudinary.UploadImage(addproduct.ProductPic, "ProductsImage");
             }
@@ -96,11 +104,12 @@ namespace Backend.Products
                 Createdat = DateTime.UtcNow,
                 CategoryId = addproduct.CategoryId,
                 CategoryName = addproduct.CategoryName,
-                products = (ProductModel.Products)addproduct.products
+                products = (ProductModel.Products)addproduct.products,
+                UserId = addproduct.UserId
             };
 
-                await _connectionString.Products.AddAsync(adddata);
-                await _connectionString.SaveChangesAsync();
+            await _connectionString.Products.AddAsync(adddata);
+            await _connectionString.SaveChangesAsync();
 
             return new ProductModelDTO
             {
@@ -108,21 +117,21 @@ namespace Backend.Products
                 Name = adddata.Name,
                 Slug = slug,
                 Description = adddata.Description,
-                Price= adddata.Price.Value,
+                Price = adddata.Price.Value,
                 Stock = adddata.Stock.Value,
                 IsActive = adddata.IsActive,
                 ProductPicURL = productpicurl,
                 Createdat = adddata.Createdat,
                 CategoryId = adddata.CategoryId,
                 CategoryName = adddata.CategoryName,
-                products = (ProductModelDTO.Products)adddata.products
+                products = (ProductModelDTO.Products)adddata.products,
+                UserId = adddata.UserId
 
             };
 
 
         }
 
-        // Update
         // Update
         public async Task<ProductModelDTO> UpdateProduct(int Id, ProductModelDTO updateproduct)
         {
@@ -139,6 +148,12 @@ namespace Backend.Products
                 string.IsNullOrWhiteSpace(updateproduct.Description))
             {
                 throw new Exception("All fields are required");
+            }
+
+            // Ownership Check - sirf apna hi product update kar sake
+            if (updateproduct.UserId != null && existingProduct.UserId != updateproduct.UserId)
+            {
+                throw new Exception("You are not allowed to update this product");
             }
 
             // Slug
@@ -183,29 +198,31 @@ namespace Backend.Products
                 Createdat = existingProduct.Createdat,
                 CategoryId = existingProduct.CategoryId,
                 CategoryName = existingProduct.CategoryName,
-                products = (ProductModelDTO.Products)existingProduct.products
+                products = (ProductModelDTO.Products)existingProduct.products,
+                UserId = existingProduct.UserId
             };
         }
 
         // Delete
-        public async Task<bool> DeleteProduct(int Id)
+        public async Task<bool> DeleteProduct(int Id, int? userId = null)
         {
             // Find Existing Product
             var existingProduct = await _connectionString.Products.FirstOrDefaultAsync(p => p.Id == Id);
 
             if (existingProduct != null)
             {
+                // Ownership Check - sirf apna hi product delete kar sake
+                if (userId != null && existingProduct.UserId != userId)
+                {
+                    throw new Exception("You are not allowed to delete this product");
+                }
+
                 _connectionString.Products.Remove(existingProduct);
                 await _connectionString.SaveChangesAsync();
                 return true;
             }
             return false;
         }
-
-
-
-
-
 
     }
 }

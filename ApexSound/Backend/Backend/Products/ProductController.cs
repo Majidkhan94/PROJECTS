@@ -1,6 +1,5 @@
 ﻿using Backend.Controller;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Backend.Products
 {
     [ApiController]
@@ -12,7 +11,6 @@ namespace Backend.Products
         {
             _productrepo = productrepo;
         }
-
         // Count
         [HttpGet]
         [Route("count")]
@@ -24,19 +22,17 @@ namespace Backend.Products
                 return count;
             }, "");
         }
-
         // List
         [HttpGet]
         [Route("list")]
-        public async Task<IActionResult> ListProduct(string? product)
+        public async Task<IActionResult> ListProduct(string? product, int? userId)
         {
             return await TryCatch(async () =>
             {
-                var list = await _productrepo.ListProduct(product);
+                var list = await _productrepo.ListProduct(product, userId);
                 return list;
             }, "");
         }
-
         // Add
         [HttpPost]
         [Route("add")]
@@ -48,7 +44,6 @@ namespace Backend.Products
                 return add;
             }, "Product Added Successfully");
         }
-
         // Update
         [HttpPut]
         [Route("update/{Id}")]
@@ -60,15 +55,14 @@ namespace Backend.Products
                 return update;
             }, "Product Updated Successfully");
         }
-
         // Delete
         [HttpDelete]
         [Route("delete/{Id}")]
-        public async Task<IActionResult> DeleteProduct(int Id)
+        public async Task<IActionResult> DeleteProduct(int Id, int? userId)
         {
             return await TryCatch(async () =>
             {
-                var delete = await _productrepo.DeleteProduct(Id);
+                var delete = await _productrepo.DeleteProduct(Id, userId);
                 return delete;
             }, "Product Deleted Successfully");
         }

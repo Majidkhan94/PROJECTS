@@ -41,7 +41,7 @@ export const Cart = () => {
               {/* Total + Checkout — sirf ek baar, list ke baad */}
               <div className="flex justify-between items-center bg-background-color rounded-2xl p-5 mt-2">
                 <Heading text={`Total: $${totalPrice.toFixed(2)}`} className={"text-[18px]! font-bold"} />
-                <Button text={"Place Order"} className={"px-8 text-sm font-medium "} />
+                <Button to={"/orderplaced"} text={"Place Order"} className={"px-8 text-sm font-medium "} />
               </div>
             </>)
           : (<PageHeader text={"Cart is empty"} />)}

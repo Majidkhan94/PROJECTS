@@ -3,9 +3,11 @@ using Backend.Category;
 using Backend.ConnectionStrings;
 using Backend.Contactus;
 using Backend.Newsletter;
+using Backend.Orders;
+using Backend.Products;
 using Backend.Services;
 using Backend.Users;
-using Backend.Products;
+using Backend.Venders;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -56,6 +58,8 @@ builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<INewsletterRepo, NewsletterRepo>();
 builder.Services.AddScoped<IContactusRepo, ContactusRepo>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
+builder.Services.AddScoped<IVendersRepo,VendersRepo>();
+builder.Services.AddScoped<IOrdersRepo, OrdersRepo>();
 
 // JWT TOKEN 
 

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Input, Button, Heading, Paragraph, PageHeader, Pagetitle } from "../Export.js";
 import { AddVendorRequest } from "../APIs/VendersAPIS.js";
 
-
 export const Requesttovendor = () => {
 
   const navigate = useNavigate();
@@ -12,8 +11,8 @@ export const Requesttovendor = () => {
     VendorName: "",
     Email: "",
     Phone: "",
-    Product: "",
-    Message: ""
+    Message: "",
+    UserId: Number(localStorage.getItem("UserId")) || null
   });
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
@@ -27,12 +26,10 @@ export const Requesttovendor = () => {
       var request = await AddVendorRequest(form);
       if (request.success) {
         setSuccess(request?.message);
-        var timer = setTimeout(() => { navigate("/"); }, 1500);
-        return () => clearTimeout(timer);
-      }
+        var timer = setTimeout(() => {navigate("/")}, 5000);return;}
       else {
         setError(request?.message);
-        setTimeout(() => { setError(null); }, 1500);
+        setTimeout(() => { setError(null); }, 1500); return;
       }
     }
     catch (err) { setError(err?.response?.data); }
@@ -55,9 +52,6 @@ export const Requesttovendor = () => {
 
             <Input type="text" name="Phone" placeholder="Phone Number" value={form.Phone}
               onChange={(e) => setForm({ ...form, Phone: e.target.value })} />
-
-            <Input type="text" name="Product" placeholder="Product / Service Needed" value={form.Product}
-              onChange={(e) => setForm({ ...form, Product: e.target.value })} />
 
             <Input type="text" name="Message" placeholder="Message / Details" value={form.Message}
               onChange={(e) => setForm({ ...form, Message: e.target.value })} />

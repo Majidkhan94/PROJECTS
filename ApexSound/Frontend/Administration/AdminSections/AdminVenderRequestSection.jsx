@@ -1,90 +1,102 @@
-import { FaStore, FaSearch } from "react-icons/fa";
-import { useState } from "react";
-import {Button, Searchbar} from "../../Export.js";
+import { FaStore } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { Button, Searchbar, Paragraph, Loading, PageHeader } from "../../Export.js";
+import { GetAllVendorRequests, ApproveVendorRequest, DeleteVendorRequest } from "../../APIs/VendersAPIS.js";
 
 export const AdminVenderRequestSection = () => {
+
   const [search, setSearch] = useState("");
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const vendorRequests = [
-    {
-      name: "Ali Traders",
-      details: [
-        { label: "Email", value: "ali.traders@example.com" },
-        { label: "Phone", value: "0300-1234567" },
-        { label: "Shop Name", value: "Ali Electronics" },
-        { label: "Category", value: "Electronics" },
-        { label: "Address", value: "House #12, Street 4, Lahore" },
-      ],
-    },
-    {
-      name: "Sara Fashion",
-      details: [
-        { label: "Email", value: "sara.fashion@example.com" },
-        { label: "Phone", value: "0321-9876543" },
-        { label: "Shop Name", value: "Sara's Boutique" },
-        { label: "Category", value: "Clothing" },
-        { label: "Address", value: "Flat 5B, Model Town, Karachi" },
-      ],
-    },
-  ];
+  // Vender List
+  useEffect(() => {
+    var FetchData = async () => {
+      try {
+        setLoading(true);
+        var response = await GetAllVendorRequests();
+        if (response.success){setData(response?.data?.data || []);}
+        }
+        catch (err) {console.log(err?.response?.data?.message || "Something Went Wrong");}
+        finally {setLoading(false);}
+    }; FetchData();
+  }, []);
 
+  const vendorRequests = data.map((vendor) => ({
+    id: vendor.id, name: vendor.vendorName,
+    details: [
+      { label: "Email", value: vendor.email },
+      { label: "Phone", value: vendor.phone },
+      { label: "Message", value: vendor.message },
+      { label: "Created At", value: vendor.createdAt },
+    ],}));
+
+    // SearchBar
   const filteredRequests = vendorRequests.filter((vendor) =>
-    vendor.name.toLowerCase().includes(search.toLowerCase())
-  );
+    vendor.name?.toLowerCase().includes(search.toLowerCase()));
+
+  // Vender Approve
+  const handleApprove = async (Id) => {
+    try {
+      setLoading(true);
+      var response = await ApproveVendorRequest(Id);
+      if (response.success) { setData((prev) => prev.filter((item) => item.id !== Id)); }
+      }
+      catch (err){console.log(err?.response?.data?.message || "Something Went Wrong");} 
+      finally{setLoading(false);}};
+
+      // Vender Reject
+  const handleReject = async (Id) => {
+    try {
+      setLoading(true);
+      var response = await DeleteVendorRequest(Id);
+      if (response.success) {setData((prev) => prev.filter((item) => item.id !== Id));}
+      }
+      catch (err){console.log(err?.response?.data?.message || "Something Went Wrong");}
+      finally{ setLoading(false); }};
+
+  if (loading) return <Loading />
 
   return (
     <div className="mx-5 mt-5">
-
       {/* Search bar */}
-      <Searchbar type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search vendor requests..." />
-      
+      <Searchbar value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search vendor requests..." />
 
       {/* Vendor request cards */}
-      <div className="flex flex-wrap gap-8">
+      <div className="flex flex-wrap gap-5 mt-6">
         {filteredRequests.map((vendor, index) => (
-          <div
-            key={index}
-            className="border border-white/10 rounded-2xl p-6 text-white font-main w-[calc(50%-1rem)]"
-          >
-            {/* Name with icon, underline below */}
-            <div className="pb-4 mb-5 border-b border-white/10">
+          <div key={index} className="bg-background-color rounded-2xl p-6 w-[calc(33.333%-1.34rem)]">
+            {/* Header with icon, underline below */}
+            <div className="pb-4 mb-5 border-b">
               <div className="flex items-center gap-3">
                 <FaStore size={20} />
-                <span className="text-2xl font-semibold">{vendor.name}</span>
+                <span className="text-lg font-semibold">
+                  {vendor.name}
+                </span>
               </div>
             </div>
 
-            {/* Fields stacked vertically, "Label: value" */}
-            <div className="flex flex-col gap-3">
+            {/* Fields stacked vertically */}
+            <div className="flex flex-col gap-2">
               {vendor.details.map((item, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <span className="text-white/50 uppercase tracking-wide text-sm w-24">
-                    {item.label}:
-                  </span>
-                  <span className="font-medium">{item.value}</span>
+                <div key={i}>
+                  <Paragraph text={`${item.label}: ${item.value}`} />
                 </div>
               ))}
             </div>
 
-            {/* Buttons, left side */}
-            <div className="flex justify-start gap-4 mt-6">
-              <Button
-                text={"Approve"}
-                className={"bg-green-700 hover:bg-green-900! hover:text-white!"}
-              />
-              <Button
-                text={"Reject"}
-                className={"bg-red-700 hover:bg-red-600! hover:text-white!"}
-              />
+            {/* Approve / Reject buttons */}
+            <div className="flex gap-3 mt-6">
+              <Button onClick={() => handleApprove(vendor.id)} text={"Approve"} className={"w-full hover:bg-button-greenhover!"}/>
+              <Button onClick={() => handleReject(vendor.id)} text={"Reject"} className={"w-full hover:bg-button-redhover"} />
             </div>
           </div>
         ))}
-
-        {filteredRequests.length === 0 && (
-          <p className="text-white/50">No vendor requests found.</p>
-        )}
       </div>
 
+      {filteredRequests.length === 0 && (
+        <PageHeader text={"No vendor requests found."} className={"text-button-redhover"} />
+      )}
     </div>
   );
 };
