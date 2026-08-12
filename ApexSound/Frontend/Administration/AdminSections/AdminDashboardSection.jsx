@@ -6,6 +6,8 @@ import axios from "axios";
 import { NewsletterCount } from "../../APIs/NewsletterAPIs.js";
 import { ContactusCount } from "../../APIs/ContactusAPIs.js";
 import { GETUSERCOUNT } from "../../APIs/UserAPIS.js";
+import { CategoriesCount } from "../../APIs/CategoriesAPIs.js";
+import { ProductsCount } from "../../APIs/ProductAPIs.js";
 
 import {Loading} from "../../Export.js"
 
@@ -22,13 +24,13 @@ export const AdminDashboardSection = ()=>{
     
     // Data APIS
     const Dashboard = [
-      { icon: <FiUsers/>, text: "Total Users", numbers: user },
-      { text: "Total Vendors Request", numbers: "356", icon: <FiShoppingBag /> },
-      { text: "Total Categories", numbers: category, icon: <FiBox /> },
-      { text: "Total Products", numbers: product, icon: <FiShoppingCart /> },
-      { text: "Total Orders", numbers: "21,309", icon: <FiClipboard /> },
-      { icon: <MdContactPhone/>, text: "Total Contacts",   numbers: contact    },
-      { icon: <LuLetterText/>,   text: "Total Newsletter", numbers: newsletter },
+      { icon: <FiUsers/>,         text: "Total Users",           numbers: user },
+      { icon: <FiShoppingBag />,  text: "Total Vendors Request", numbers: "356"},
+      { icon: <FiBox />,          text: "Total Categories",      numbers: category },
+      { icon: <FiShoppingCart />, text: "Total Products",        numbers: product, },
+      { icon: <FiClipboard />,    text: "Total Orders",          numbers: "21,309", },
+      { icon: <MdContactPhone/>,  text: "Total Contacts",        numbers: contact    },
+      { icon: <LuLetterText/>,    text: "Total Newsletter",      numbers: newsletter },
     ];
 
 
@@ -43,17 +45,22 @@ export const AdminDashboardSection = ()=>{
                   if(User.success){ setUser(User?.data?.data);}
                   else {console.log(User.data.message)}
                   
-                  var Category = await axios.get(`${import.meta.env.VITE_CATEGORY_COUNT}`)
-                  setCategory(Category.data.data)
+                  
+                  
+                  const Categories = await CategoriesCount();
+                  if(Categories.success){ setCategory(Categories?.data?.data);}
+                  else {console.log(Categories?.data?.message)}
 
+                  
                   const Contact = await ContactusCount();
                   if(Contact.success){ setContact(Contact?.data?.data);}
                   else {console.log(Contact?.data?.message)}
 
                   
 
-                  var Product = await axios.get(`${import.meta.env.VITE_PRODUCT_COUNT}`)
-                  setProduct(Product.data.data)
+                  const Product = await ProductsCount();
+                  if(Product.success){ setProduct(Product?.data?.data);}
+                  else {console.log(Product?.data?.message)}
 
 
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { data, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Input, Button, Heading, Paragraph, Loading, PageHeader } from "../Export.js"
+import { Input, Button, Heading, Paragraph, Loading, PageHeader, Pagetitle } from "../Export.js"
 import {GETUSERPROFILE, PROFILEUPDATE} from "../APIs/UserAPIS.js"
 
 export const UserProfile = () => {
@@ -86,6 +86,7 @@ const handleSubmit = async (e) => {
         if(loading) return <Loading />
     return (
         <>
+        <Pagetitle title={"Profile"}/>
             <section className="h-screen flex items-center justify-center p-4">
             <div className="bg-background-color p-8 rounded-md w-full max-w-md">
 

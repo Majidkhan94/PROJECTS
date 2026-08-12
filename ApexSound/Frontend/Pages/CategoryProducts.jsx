@@ -1,44 +1,41 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import {ProductCard, Paragraph, Heading, PageHeader} from "../Export.js";
-
+import { ProductCard, Paragraph, Heading, PageHeader, Pagetitle, Loading } from "../Export.js";
+import { ProductsList } from "../APIs/ProductAPIs.js";
 
 export const CategoryProducts = () => {
-  const { slug } = useParams(); 
+  const { slug } = useParams();
 
   const [fetchdata, setFetchdata] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(
-          `${import.meta.env.VITE_PRODUCT_LIST}?product=${slug}`
-        );
-        setFetchdata(response.data.data);
-      } catch (err) {
-        console.log("Fetch failed", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [slug]);
+useEffect(() => {
+  const Fetchdata = async () => {
+    try {
+      setLoading(true);
+      const response = await ProductsList(slug);
+      setFetchdata(response?.data?.data || []);
+    } catch (error) {
+      console.error("Error fetching latest products:", error);
+      setFetchdata([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+  Fetchdata();
+}, [slug]);
 
-if (!loading && fetchdata.length === 0)
-{
-    return <Paragraph text={"NO PRODUCT FOUND IN THIS CATEGORY"} className={"text-2xl! text-center p-10"}/>
-}
-
-
+if(loading) return <Loading />
   return (<>
-    <PageHeader text={slug}/>    
-    <section className="flex flex-wrap gap-6 justify-center p-6">
-      {fetchdata.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </section>
-  </>);
+    <Pagetitle title={`${slug}`}/>
+    <PageHeader text={slug} />
+      <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
+        {fetchdata > 0
+        ? (fetchdata.map((product) => (<ProductCard key={product.id} product={product} />)))
+        :(<PageHeader text={"Product not found.."}/>)
+        }
+        
+      </section>
+    </>
+  );
 };

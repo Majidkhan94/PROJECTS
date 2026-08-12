@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ProductCard, Loading, Paragraph } from "../Export.js";
+import { ProductCard, Loading, Paragraph, PageHeader, Pagetitle } from "../Export.js";
 import { ProductsList } from "../APIs/ProductAPIs.js";
 
 export const Products = () => {
@@ -32,14 +32,15 @@ export const Products = () => {
 
     if (loading) return <Loading />;
 
-    return (
+    return (<>
+            
+            <Pagetitle title={"Products"}/>
+            <PageHeader text={"Products"}/>
         <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
             {latestProducts.length > 0 
-                ? (latestProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                )))
-                : (<Paragraph text={"No featured products found."} />)
+                ? (latestProducts.map((product) => (<ProductCard key={product.id} product={product} />)))
+                : (<PageHeader text={"No featured products found."}/>)
             }
         </section>
-    );
+    </>);
 };

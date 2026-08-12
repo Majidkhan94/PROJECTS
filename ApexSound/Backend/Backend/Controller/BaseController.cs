@@ -4,7 +4,7 @@ namespace Backend.Controller
 {
     public class BaseController : ControllerBase
     {
-        protected async Task<IActionResult> TryCatch(Func<Task<object>> action, string successMessage = "Write Here Success Message")
+        protected async Task<IActionResult> TryCatch(Func<Task<object>> action, string successMessage = "Write Here Your Success Message")
         {
             try
             {

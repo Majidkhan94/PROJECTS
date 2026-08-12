@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Button, Heading, PageHeader, Paragraph } from "../Export.js";
+import { Input, Button, Heading, PageHeader, Paragraph, Pagetitle } from "../Export.js";
 import { Registeration } from "../APIs/UserAPIS.js"
 
 export const UserRegisteration = () =>{
@@ -25,16 +25,20 @@ export const UserRegisteration = () =>{
             localStorage.setItem("UserId", Register?.data?.data?.id);
             localStorage.setItem("Role", Register?.data?.data?.role);
 
-            const timer = setTimeout(() => { navigate("/"); }, 3000); return () => clearTimeout(timer);
+            const timer = setTimeout(() => { navigate("/"); }, 1500); return () => clearTimeout(timer);
           }
-          else{setError(Register?.message)}
-        }
-          catch(err){ setError(err?.response?.data?.message);}
+          else{
+            setError(Register?.message);
+            setTimeout(() => { setError(null) }, 1500);
+          }
+          }
+          catch(err){ 
+            setError(err?.response?.data?.message); }
           finally{setLoading(false)}
     }
 
     return(<>
-    
+    <Pagetitle title={"Registeration"}/>
     <section className="h-screen flex items-center justify-center p-4">
         <div className="bg-background-color p-8 rounded-md w-full max-w-md">
           <PageHeader text={"REGISTERATION"}/>

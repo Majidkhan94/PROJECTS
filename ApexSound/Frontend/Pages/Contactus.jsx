@@ -4,7 +4,7 @@ import { HiArrowUpRight } from "react-icons/hi2";
 import { data, Link } from "react-router-dom";
 import { useState } from "react";
 import {ContactusAdd} from "../APIs/ContactusAPIs.js"
-import {Heading, Paragraph, Input, Button, PageHeader} from "../Export.js";
+import {Heading, Paragraph, Input, Button, PageHeader, Pagetitle} from "../Export.js";
 
 
 export const Contactus = () => {
@@ -37,7 +37,8 @@ export const Contactus = () => {
         finally{setLoading(false)}}
 
   return (<>    
-      
+        {/* Page title  */}
+      <Pagetitle title={"Contactus"}/>
       <PageHeader text={"contacts us"}/>
       <section className="h-screen w-full flex flex-col md:flex-row">
             

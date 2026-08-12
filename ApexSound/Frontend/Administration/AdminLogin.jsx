@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoIosUnlock } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Button, Paragraph, PageHeader } from "../Export.js";
+import { Input, Button, Paragraph, PageHeader, Pagetitle } from "../Export.js";
 import { Login } from "../APIs/AdminAPIs.js"
 
 export const AdminLogin = () => {
@@ -20,13 +20,10 @@ export const AdminLogin = () => {
 
     if (!form.Email || !form.Password) {
       setError("All fields are required");
-      return;
-    }
+      setTimeout(() => { setError(null);}, 1500);return;}
 
     if (!form.Email.includes("@")) {
-      setError("Please enter a valid email address");
-      return;
-    }
+      setError("Please enter a valid email address");setTimeout(() => { setError(null);}, 1500);return;}
 
     try {
       setLoading(true);
@@ -48,7 +45,7 @@ export const AdminLogin = () => {
   }
 
   return (<>
-
+  <Pagetitle title={"Admin Login"}/>
     <section className="h-screen flex items-center justify-center p-4">
       <div className="bg-background-color p-8 rounded-md w-full max-w-md">
 

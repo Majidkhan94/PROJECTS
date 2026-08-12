@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Input, Button, Heading, Paragraph, PageHeader } from "../Export.js";
+import { Input, Button, Heading, Paragraph, PageHeader, Pagetitle } from "../Export.js";
 import {Login} from "../APIs/UserAPIS.js"
 
 
@@ -25,9 +25,9 @@ export const UserLogin = () =>{
           localStorage.setItem("UserId", login?.data?.data?.id);
           localStorage.setItem("Role", login?.data?.data?.role);
           
-          var timer = setTimeout(() => { navigate("/");}, 3000); return () => clearTimeout(timer);}
+          var timer = setTimeout(() => { navigate("/");}, 1500); return () => clearTimeout(timer);}
         
-          else{ setError(login?.message);}}
+          else{ setError(login?.message); setTimeout(() => { setError(null)}, 1500);}}
           
                      
         catch(err){ setError(err?.response?.data)}
@@ -35,7 +35,7 @@ export const UserLogin = () =>{
     }
 
     return(<>
-    
+    <Pagetitle title={"Login"}/>
     <section className="h-screen flex items-center justify-center p-4">
         <div className="bg-background-color p-8 rounded-md w-full max-w-md">
           <PageHeader text={"login"}/>

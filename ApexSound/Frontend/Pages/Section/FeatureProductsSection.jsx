@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ProductCard, Loading, Paragraph } from "../../Export.js";
+import { ProductCard, Loading, Paragraph, PageHeader } from "../../Export.js";
 import { ProductsList } from "../../APIs/ProductAPIs.js";
 
 export const FeatureProductsSection = () => {
@@ -37,7 +37,7 @@ export const FeatureProductsSection = () => {
         <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
             {featuredProducts.length > 0 
             ? (featuredProducts.map((product) => ( <ProductCard key={product.id} product={product} /> )))
-            : ( <Paragraph text={"No featured products found."}/>)}
+            : ( <PageHeader text={"No featured products found."} />)}
         </section>
     </>);
 };

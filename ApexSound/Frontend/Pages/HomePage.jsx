@@ -1,27 +1,22 @@
 import { Heading, Paragraph, Button, Seperator, SliderSection, FeatureProductsSection, CategoriesSection, AdvertizementSection,
-    WhychooseuSection, LatestproductSection, CustomerreviewSection
+    WhychooseuSection, LatestproductSection, CustomerreviewSection, Pagetitle
  } from "../Export.js";
-
-
-
 
 export const HomePage = () => {
 
-    
-
-
-
-
     return (<>
+    
+            {/* Page Title */}
+            <Pagetitle title={"HomePage"}/>
 
             <section className="mb-10">    
-            {/* Slider  */}
-            <SliderSection />
+                {/* Slider  */}
+                <SliderSection />
             
-            {/* Feature Product  */}
-            <Seperator Lefttext={"feature product"} Righttext={"all products"} to={"/products"}/>
-            <FeatureProductsSection />
-            <AdvertizementSection />        
+                {/* Feature Product  */}
+                <Seperator Lefttext={"feature product"} Righttext={"all products"} to={"/products"}/>
+                <FeatureProductsSection />
+                <AdvertizementSection />        
        
 
             {/* Categories  */}

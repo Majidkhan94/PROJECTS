@@ -9,18 +9,6 @@ export const ProtectedRoute = ({ children, allowedRole }) => {
     return <Navigate to="/login" replace />;
   }
 
-
-
-
-
-  // if (!token) {
-  //   return <Navigate to="/admin/login" replace />;
-  // }
-
-  // if (allowedRole && role !== allowedRole) {
-  //   return <Navigate to="/unauthorized" replace />;
-  // }
-
   return children;
 
 };

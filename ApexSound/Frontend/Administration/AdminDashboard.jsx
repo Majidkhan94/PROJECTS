@@ -5,7 +5,7 @@ import { LuLetterText } from "react-icons/lu";
 import { MdContactPhone } from "react-icons/md";
 import Logo from "../src/Public/Logo.png"
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Paragraph, AdminSlide, AdminCategoriesSection, AdminContactusSection, AdminDashboardSection,
+import { Button, Paragraph, AdminSlide, AdminCategoriesSection, AdminContactusSection, AdminDashboardSection, Pagetitle,
   AdminNewsletterSection, AdminOrderManagementSection, AdminProductManagementSection,AdminUserManagementSection, AdminVenderRequestSection } from "../Export.js";
 import { GETADMINPROFILE } from "../APIs/AdminAPIs.js"
 
@@ -78,7 +78,9 @@ const handleLogout = () => {
   navigate("/admin/login");
 };
 
-  return (
+  return (<>
+    <Pagetitle title={"Admin Dashboard"}/>
+
     <section className="h-screen w-full flex overflow-hidden">
       
                     {/* /////////// Left_Side /////////// */}
@@ -131,5 +133,5 @@ const handleLogout = () => {
         {active === "newsletter" && (<AdminSlide key="newsletter"><AdminNewsletterSection /></AdminSlide>)}
       </div>
     </section>
-  );
+  </>);
 };

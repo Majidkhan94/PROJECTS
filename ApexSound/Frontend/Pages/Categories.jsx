@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {Heading, Paragraph, Button, PageHeader, CategoryCard, Loading} from "../Export.js";
+import {Heading, Paragraph, Button, PageHeader, CategoryCard, Loading,Pagetitle} from "../Export.js";
 import {CategoriesList} from "../APIs/CategoriesAPIs.js"
 
 export const Categories = () => {
@@ -23,15 +23,17 @@ export const Categories = () => {
     }, []);
     
     if(loading) return <Loading />
-    return (
-        <>
-            <PageHeader text={"Categories"} />
-            <section className="flex flex-wrap gap-6 p-6">
-                
-                {list.map((category) => (
-                    <CategoryCard key={category.id} category={category}/>
-                ))}
-                
+    return (<>
+
+            <Pagetitle title={"categories"}/>
+            <PageHeader text={"categories"}/>
+            
+            <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
+                {list.length > 0
+                ? (list.map((category) => (<CategoryCard key={category.id} category={category}/>)))
+                : (<PageHeader text={"No Category products found."}/>) 
+            }
+                                
             </section>
         </>
     );

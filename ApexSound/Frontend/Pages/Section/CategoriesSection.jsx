@@ -27,12 +27,10 @@ import {CategoriesList} from "../../APIs/CategoriesAPIs.js"
         if(loading) return <Loading />
         return (
             <>
-                <section className="flex flex-wrap gap-6 p-6">
-                    
-                    {SortCategory.map((category) => (
-                        <CategoryCard key={category.id} category={category}/>
-                    ))}
-                    
+                <section className="flex flex-wrap gap-6 p-6 justify-center items-center">
+                {SortCategory.length > 0
+                ?(SortCategory.map((category) => (<CategoryCard key={category.id} category={category}/>)))
+                :(<PageHeader text={"No category products found."}/>)}
                 </section>
             </>
         );

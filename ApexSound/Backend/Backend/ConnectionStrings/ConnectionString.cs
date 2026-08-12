@@ -16,7 +16,8 @@ namespace Backend.ConnectionStrings
         public DbSet<ContactusModel> Contactus { get; set; }
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<AuthModel> Registeration { get; set; }
-       
+        public DbSet<VenderModel> VendorRequests { get; set; }
+
 
 
         // Role Convert into String

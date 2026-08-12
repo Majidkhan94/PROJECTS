@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Button, PageHeader, Paragraph } from "../Export.js";
+import { Input, Button, PageHeader, Paragraph, Pagetitle } from "../Export.js";
 import { Registeration } from "../APIs/AdminAPIs.js"
 
 export const AdminRegisteration = () => {
@@ -19,18 +19,15 @@ export const AdminRegisteration = () => {
 
     if (!form.Fullname || !form.Email || !form.Password || !form.Confirmpassword) {
       setError("All fields are required");
-      return;
-    }
+      setTimeout(() => { setError(null) }, 1500);return;}
 
     if (!form.Email.includes("@")) {
       setError("Please enter a valid email address");
-      return;
-    }
+      setTimeout(() => { setError(null) }, 1500);return;}
 
     if (form.Password !== form.Confirmpassword) {
       setError("Passwords do not match");
-      return;
-    }
+      setTimeout(() => { setError(null) }, 1500);return;}
 
     try {
       setLoading(true);
@@ -43,17 +40,17 @@ export const AdminRegisteration = () => {
         localStorage.setItem("adminId", Register?.data?.data?.id);
         localStorage.setItem("Role", Register?.data?.data?.role);
 
-        const timer = setTimeout(() => { navigate("/admin/dashboard"); }, 3000);
+        const timer = setTimeout(() => { navigate("/admin/dashboard"); }, 1500);
         return () => clearTimeout(timer);
       }
-      else { setError(Register?.message); }
+      else { setError(Register?.message);}
     }
     catch (err) { setError(err?.response?.data?.message); }
     finally { setLoading(false); }
   }
 
   return (<>
-
+      <Pagetitle title={"Admin Registeration"}/>
     <section className="h-screen flex items-center justify-center p-4">
       <div className="bg-background-color p-8 rounded-md w-full max-w-md">
 

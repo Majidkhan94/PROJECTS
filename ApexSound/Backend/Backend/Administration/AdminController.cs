@@ -30,9 +30,14 @@ using Microsoft.AspNetCore.Authorization;
             [HttpPost("login")]
             public async Task<IActionResult> AdminLogin([FromBody] AdminLogDTO adminlogin)
             {
+
                     return await TryCatch(async () =>
                     {
                         var login = await _adminRepo.AdminLogin(adminlogin);
+                        if(login == null)
+                        {
+                            throw new Exception("Invalid credentials or access denied.");
+                        }
                         return login;
                     }, "Admin Login Successfully");
             }

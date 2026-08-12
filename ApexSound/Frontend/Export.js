@@ -16,12 +16,14 @@ export {Paragraph} from "../Frontend/Feature/Paragraph.jsx"
 export {Seperator} from "../Frontend/Feature/Seperator.jsx"
 export {Loading} from "../Frontend/Feature/Loading.jsx"
 export {Searchbar} from "../Frontend/Feature/Searchbar.jsx"
+export {Pagetitle} from "../Frontend/Feature/Pagetitle.jsx"
 
 // Components
 export {ProductCard} from "./Components/ProductCard.jsx"
 export {Footer} from "../Frontend/Components/Footer.jsx"
 export {Header} from "../Frontend/Components/Header.jsx"
 export {CategoryCard} from "../Frontend/Components/CategoryCard.jsx"
+export {useCart} from "../Frontend/Components/CartContext.jsx"
 
 // Pages
 export {Categories} from "../Frontend/Pages/Categories.jsx"
@@ -34,6 +36,9 @@ export {Support} from "../Frontend/Pages/Support.jsx"
 export {Faqs} from "../Frontend/Pages/Faqs.jsx"
 export {PrivacyPolicy} from "../Frontend/Pages/PrivacyPolicy.jsx"
 export {TermsandCondition} from "../Frontend/Pages/TermsandCondition.jsx"
+export {Cart} from "../Frontend/Pages/Cart.jsx"
+export {Requesttovendor} from "../Frontend/Pages/Requesttovendor.jsx"
+
 export {SliderSection} from "./Pages/Section/SliderSection.jsx"
 export {FeatureProductsSection} from "./Pages/Section/FeatureProductsSection.jsx"
 export {CategoriesSection} from "../Frontend/Pages/Section/CategoriesSection.jsx"

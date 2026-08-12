@@ -78,6 +78,9 @@ namespace Backend.Administration
             bool isPasswordValid = BCrypt.Net.BCrypt.Verify(adminlogin.Password, ExistEmail.Password);
             if (!isPasswordValid) return null;
 
+            // Role Check 
+            if (ExistEmail.role != AuthModel.Role.Admin) return null;
+
             // Token
             var accesstoken = Token.GenerateAccessToken(ExistEmail.Id, ExistEmail.Email, AuthModel.Role.Admin.ToString());
             var refreshtoken = Token.GenerateRefreshToken();

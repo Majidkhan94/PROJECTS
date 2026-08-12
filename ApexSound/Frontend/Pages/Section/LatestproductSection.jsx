@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ProductCard, Loading, Paragraph } from "../../Export.js";
+import { ProductCard, Loading, Paragraph, PageHeader } from "../../Export.js";
 import { ProductsList } from "../../APIs/ProductAPIs.js";
 
 export const LatestproductSection = () => {
@@ -39,7 +39,7 @@ export const LatestproductSection = () => {
                 ? (latestProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
                 )))
-                : (<Paragraph text={"No featured products found."} />)
+                : (<PageHeader text={"No latest products found."}/>)
             }
         </section>
     );

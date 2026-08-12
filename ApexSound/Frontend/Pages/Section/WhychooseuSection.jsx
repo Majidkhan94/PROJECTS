@@ -13,7 +13,7 @@ export const WhychooseuSection = () =>{
     return(<>
 
 
-    <section className="flex justify-between gap-4 mx-10">
+    <section className="flex flex-col md:flex-row justify-between gap-4 mx-10">
         {WhyChooseUs.map((item, index) => (
             <div key={index} className="flex flex-col px-4 items-center text-center flex-1 p-4 rounded-lg bg-background-color hover:cursor-pointer transition-all duration-500 hover:scale-105">
             {item.icon}

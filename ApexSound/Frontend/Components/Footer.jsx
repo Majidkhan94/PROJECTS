@@ -31,6 +31,9 @@ const Newslettersubmit = async (e) => {
 }
   const handleChange = (e) => {setData({ ...data, email: e.target.value });};
 
+
+  const token = localStorage.getItem("accessToken");
+
     return (<>
     
     <footer className="bg-background-color pt-10 pb-5 px-10">
@@ -61,6 +64,9 @@ const Newslettersubmit = async (e) => {
                 <Navbar to="/products" text="Products" />
                 <Navbar to="/aboutus" text="About Us" />
                 <Navbar to="/contact" text="Contact Us" />
+                {token && (
+                <Navbar to="/requesttovender" text="Request to Vendor" />
+        )}
             </nav>
         </div>
 

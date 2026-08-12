@@ -2,7 +2,7 @@ import { AiFillProfile } from "react-icons/ai";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {Heading, Paragraph, Button, Input, PageHeader} from "../Export.js";
+import {Heading, Paragraph, Button, Input, PageHeader, Pagetitle} from "../Export.js";
 import { GETADMINPROFILE, PROFILEUPDATE } from "../APIs/AdminAPIs.js"
 
 export const AdminProfileUpdate = () => {
@@ -98,9 +98,9 @@ useEffect(() => {
 
   
 
-  return (
+  return (<>
 
-
+    <Pagetitle title={"Admin Profile"}/>
     <section className="h-screen flex items-center justify-center p-4">
   <div className="bg-background-color p-8 rounded-md w-full max-w-md">
 
@@ -195,5 +195,5 @@ useEffect(() => {
     )}
 </div>
 </section>
-  )
+  </>)
 }
