@@ -27,6 +27,7 @@ namespace Backend.ConnectionStrings
             modelBuilder.Entity<AuthModel>().Property(r => r.role).HasConversion<string>();
             modelBuilder.Entity<ProductModel>().Property(p => p.products).HasConversion<string>();
             modelBuilder.Entity<VenderModel>().Property(v => v.Status).HasConversion<string>();
+            modelBuilder.Entity<OrderModel>().Property(o => o.Status).HasConversion<string>();
 
         }
 

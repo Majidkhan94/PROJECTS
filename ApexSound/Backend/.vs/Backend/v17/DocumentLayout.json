@@ -3,56 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\products\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\products\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\migrations\\20260812111420_addorder2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\migrations\\20260812111420_addorder2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\products\\productrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\products\\productrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\models\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\models\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\products\\iproductrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\products\\iproductrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Migrations\\20260812093824_adduserIdinproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Migrations\\20260812093824_adduserIdinproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\products\\productmodeldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\products\\productmodeldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\category\\categorymodeldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\category\\categorymodeldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\category\\categoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\category\\categoryrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\models\\vendermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\models\\vendermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\venders\\venderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\venders\\venderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\venders\\vendersrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\venders\\vendersrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\models\\authmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\models\\authmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\venders\\ivendersrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\venders\\ivendersrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\orders\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|solutionrelative:backend\\orders\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8BE72488-613A-494D-AC67-285D3747D956}|Backend\\Backend.csproj|c:\\users\\majid\\desktop\\projects\\apexsound\\backend\\backend\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -70,13 +30,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 3,
               "Title": ".env",
               "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\.env",
               "RelativeDocumentMoniker": "Backend\\.env",
               "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\.env",
               "RelativeToolTip": "Backend\\.env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-06-29T08:50:19.693Z",
               "IsPinned": true,
@@ -85,53 +45,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Products\\ProductController.cs",
-              "RelativeDocumentMoniker": "Backend\\Products\\ProductController.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Products\\ProductController.cs",
-              "RelativeToolTip": "Backend\\Products\\ProductController.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAxwEUAAAABAAAAAAAAAA==",
+              "Title": "20260812111420_addorder2.cs",
+              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Migrations\\20260812111420_addorder2.cs",
+              "RelativeDocumentMoniker": "Backend\\Migrations\\20260812111420_addorder2.cs",
+              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Migrations\\20260812111420_addorder2.cs",
+              "RelativeToolTip": "Backend\\Migrations\\20260812111420_addorder2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T09:42:32.521Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IProductRepo.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Products\\IProductRepo.cs",
-              "RelativeDocumentMoniker": "Backend\\Products\\IProductRepo.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Products\\IProductRepo.cs*",
-              "RelativeToolTip": "Backend\\Products\\IProductRepo.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T09:40:57.763Z",
+              "WhenOpened": "2026-08-12T11:14:20.556Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProductRepo.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Products\\ProductRepo.cs",
-              "RelativeDocumentMoniker": "Backend\\Products\\ProductRepo.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Products\\ProductRepo.cs*",
-              "RelativeToolTip": "Backend\\Products\\ProductRepo.cs*",
-              "ViewState": "AgIAAM0AAAAAAAAAAAAcwAkAAAArAAAAAAAAAA==",
+              "Title": "OrderModel.cs",
+              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Models\\OrderModel.cs",
+              "RelativeDocumentMoniker": "Backend\\Models\\OrderModel.cs",
+              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Models\\OrderModel.cs",
+              "RelativeToolTip": "Backend\\Models\\OrderModel.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAuwCAAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T09:39:54.469Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "20260812093824_adduserIdinproduct.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Migrations\\20260812093824_adduserIdinproduct.cs",
-              "RelativeDocumentMoniker": "Backend\\Migrations\\20260812093824_adduserIdinproduct.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Migrations\\20260812093824_adduserIdinproduct.cs",
-              "RelativeToolTip": "Backend\\Migrations\\20260812093824_adduserIdinproduct.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T09:38:25.076Z",
+              "WhenOpened": "2026-08-12T11:13:49.641Z",
               "EditorCaption": ""
             },
             {
@@ -140,119 +74,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ProductModel.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Models\\ProductModel.cs",
-              "RelativeDocumentMoniker": "Backend\\Models\\ProductModel.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Models\\ProductModel.cs",
-              "RelativeToolTip": "Backend\\Models\\ProductModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAQwB4AAAABAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Orders\\OrdersController.cs",
+              "RelativeDocumentMoniker": "Backend\\Orders\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Orders\\OrdersController.cs",
+              "RelativeToolTip": "Backend\\Orders\\OrdersController.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAAAEgAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T09:36:56.448Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductModelDTO.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Products\\ProductModelDTO.cs",
-              "RelativeDocumentMoniker": "Backend\\Products\\ProductModelDTO.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Products\\ProductModelDTO.cs",
-              "RelativeToolTip": "Backend\\Products\\ProductModelDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T09:36:20.101Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CategoryModelDTO.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Category\\CategoryModelDTO.cs",
-              "RelativeDocumentMoniker": "Backend\\Category\\CategoryModelDTO.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Category\\CategoryModelDTO.cs",
-              "RelativeToolTip": "Backend\\Category\\CategoryModelDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T09:25:38.771Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CategoryRepo.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Category\\CategoryRepo.cs",
-              "RelativeDocumentMoniker": "Backend\\Category\\CategoryRepo.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Category\\CategoryRepo.cs",
-              "RelativeToolTip": "Backend\\Category\\CategoryRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T09:25:35.824Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "VenderModel.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Models\\VenderModel.cs",
-              "RelativeDocumentMoniker": "Backend\\Models\\VenderModel.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Models\\VenderModel.cs",
-              "RelativeToolTip": "Backend\\Models\\VenderModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T07:37:25.397Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AuthModel.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Models\\AuthModel.cs",
-              "RelativeDocumentMoniker": "Backend\\Models\\AuthModel.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Models\\AuthModel.cs",
-              "RelativeToolTip": "Backend\\Models\\AuthModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T07:30:51.117Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "IVendersRepo.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Venders\\IVendersRepo.cs",
-              "RelativeDocumentMoniker": "Backend\\Venders\\IVendersRepo.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Venders\\IVendersRepo.cs",
-              "RelativeToolTip": "Backend\\Venders\\IVendersRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T07:25:10.501Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "VendersController.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Venders\\VendersController.cs",
-              "RelativeDocumentMoniker": "Backend\\Venders\\VendersController.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Venders\\VendersController.cs",
-              "RelativeToolTip": "Backend\\Venders\\VendersController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAswBgAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T07:22:39.971Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "VendersRepo.cs",
-              "DocumentMoniker": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Venders\\VendersRepo.cs",
-              "RelativeDocumentMoniker": "Backend\\Venders\\VendersRepo.cs",
-              "ToolTip": "C:\\Users\\majid\\Desktop\\PROJECTS\\ApexSound\\Backend\\Backend\\Venders\\VendersRepo.cs",
-              "RelativeToolTip": "Backend\\Venders\\VendersRepo.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAAAFwAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-12T07:01:42.035Z",
+              "WhenOpened": "2026-08-12T10:52:32.825Z",
               "EditorCaption": ""
             }
           ]

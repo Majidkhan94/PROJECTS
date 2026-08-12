@@ -4,7 +4,7 @@ import Logo from "../src/Public/Logo.png"
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Paragraph, AdminSlide, Pagetitle, VenderDashboardSection,
   VenderAddCategoriesSection, VenderAllCategoriesSection, VenderAddProductSection,
-  VenderAllProductSection
+  VenderAllProductSection, VenderOrderManagement
 
 
 
@@ -113,6 +113,7 @@ const handleLogout = () => {
 
       
       <div className="flex-1 relative overflow-y-auto">
+        
         {active === "dashboard" && (<AdminSlide key="dashboard"><VenderDashboardSection /></AdminSlide>)}
 
         {active === "addcategory" && (<AdminSlide key="addcategory"><VenderAddCategoriesSection/></AdminSlide>)}
@@ -123,13 +124,8 @@ const handleLogout = () => {
 
         {active === "allproducts" && (<AdminSlide key="allproducts"><VenderAllProductSection/></AdminSlide>)}
 
-        {active === "orders" && (
-          <AdminSlide key="orders">
-            <div className="p-6 text-white">
-              <Paragraph text="Order Management content coming soon..." />
-            </div>
-          </AdminSlide>
-        )}
+        {active === "orders" && (<AdminSlide key="orders"><VenderOrderManagement /></AdminSlide>)}
+
       </div>
     </section>
   </>);

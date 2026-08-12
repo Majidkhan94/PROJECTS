@@ -2,17 +2,19 @@ import { FiBox, FiShoppingCart, FiClipboard } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { CategoriesCount } from "../../APIs/CategoriesAPIs.js";
 import { ProductsCount } from "../../APIs/ProductAPIs.js";
+import { OrderCount } from "../../APIs/OrderAPIs.js";
 import { Loading, PageHeader } from "../../Export.js";
 
 export const VenderDashboardSection = () => {
     const [loading, setloading] = useState(false);
     const [category, setCategory] = useState([]);
     const [product, setProduct] = useState([]);
+    const [order, setOrder] = useState([]);
 
     const Dashboard = [
         { icon: <FiBox />, text: "Total Categories", numbers: category },
         { icon: <FiShoppingCart />, text: "Total Products", numbers: product },
-        { icon: <FiClipboard />, text: "Total Orders", numbers: "21,309" },
+        { icon: <FiClipboard />, text: "Total Orders", numbers: order },
     ];
 
     useEffect(() => {
@@ -25,6 +27,9 @@ export const VenderDashboardSection = () => {
 
                 const Product = await ProductsCount();
                 if (Product.success) { setProduct(Product?.data?.data); }
+
+                const Order = await OrderCount();
+                if (Order.success) { setOrder(Order?.data?.data); }
             }
             catch (err) {console.log(err.response?.data.error);}
             finally {setloading(false);}

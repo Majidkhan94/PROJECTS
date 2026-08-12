@@ -85,3 +85,4 @@ export {VenderAddCategoriesSection} from "../Frontend/Vendors/Section/VenderAddC
 export {VenderAllCategoriesSection} from "../Frontend/Vendors/Section/VenderAllCategoriesSection.jsx"
 export {VenderAddProductSection} from "../Frontend/Vendors/Section/VenderAddProductSection.jsx"
 export {VenderAllProductSection} from "../Frontend/Vendors/Section/VenderAllProductSection.jsx"
+export {VenderOrderManagement} from "../Frontend/Vendors/Section/VenderOrderManagement.jsx"

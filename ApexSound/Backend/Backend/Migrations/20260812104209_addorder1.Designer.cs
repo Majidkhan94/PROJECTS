@@ -3,6 +3,7 @@ using System;
 using Backend.ConnectionStrings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(ConnectionString))]
-    partial class ConnectionStringModelSnapshot : ModelSnapshot
+    [Migration("20260812104209_addorder1")]
+    partial class addorder1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,9 +152,6 @@ namespace Backend.Migrations
 
                     b.Property<Guid?>("OrderGroupId")
                         .HasColumnType("uuid");
-
-                    b.Property<string>("PaymentMethod")
-                        .HasColumnType("text");
 
                     b.Property<string>("Phone")
                         .HasColumnType("text");

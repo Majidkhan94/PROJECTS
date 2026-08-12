@@ -27,6 +27,9 @@ DotNetEnv.Env.Load();
 var Connect = Environment.GetEnvironmentVariable("DATABASE_CONNECTION");
 builder.Services.AddDbContext<ConnectionString>(C => C.UseNpgsql(Connect));
 
+// Stripe
+Stripe.StripeConfiguration.ApiKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
+
 // CORS
 var frontendUrls = Environment.GetEnvironmentVariable("FRONTEND_URL")
     ?.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)

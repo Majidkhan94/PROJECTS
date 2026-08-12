@@ -68,7 +68,7 @@ namespace Backend.Orders
                 .ToListAsync();
         }
 
-        // UPDATE ORDER STATUS (Admin/Vendor)
+         // UPDATE ORDER STATUS (Admin/Vendor)
         public async Task<OrderModel?> UpdateOrderStatus(int id, OrderStatus status)
         {
             var order = await _connectionString.Orders.FindAsync(id);
@@ -77,6 +77,12 @@ namespace Backend.Orders
             order.Status = status;
             await _connectionString.SaveChangesAsync();
             return order;
+        }
+
+        // Count
+        public async Task<int> OrderCount()
+        {
+            return await _connectionString.Orders.CountAsync();
         }
     }
 }

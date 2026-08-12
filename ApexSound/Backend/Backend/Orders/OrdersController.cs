@@ -1,4 +1,5 @@
 ﻿using Backend.Controller;
+using Backend.Migrations;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 namespace Backend.Orders
@@ -66,6 +67,16 @@ namespace Backend.Orders
                 var order = await _ordersRepo.UpdateOrderStatus(id, status);
                 return order;
             }, "Order Status Updated Successfully");
+        }
+
+        [HttpGet]
+        [Route("count")]
+        public async Task<IActionResult> ContactCount()
+        {
+            return await TryCatch(async () => {
+                var count = await _ordersRepo.OrderCount();
+                return count;
+            }, "");
         }
     }
 }

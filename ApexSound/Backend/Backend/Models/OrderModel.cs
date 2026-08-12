@@ -28,5 +28,8 @@ namespace Backend.Models
         public string? City { get; set; }
         public OrderStatus? Status { get; set; } = OrderStatus.Pending;
         public DateTime? CreatedAt { get; set; }
+
+        // Payment
+        public string? PaymentMethod { get; set; }
     }
 }
