@@ -64,7 +64,7 @@ export const VenderAllProductSection = () => {
   };
 
   return (<>
-  <PageHeader text="My Products" />
+  <PageHeader text="All Products" />
     <section className="mx-5 mt-5">
 
       {/* Search Bar */}
@@ -89,9 +89,9 @@ export const VenderAllProductSection = () => {
         
 
         {/* Product Cards */}
-        <div className="flex flex-wrap gap-5 mt-6">
+        <div className="flex flex-col md:flex-row flex-wrap gap-5 mt-6">
           {filteredProducts.map((product) => (
-            <div key={product.id} className="bg-background-color rounded-2xl p-6 w-[calc(33.333%-1.34rem)]">
+            <div key={product.id} className="bg-background-color rounded-2xl p-6 w-full md:w-[calc(33.333%-1.34rem)]">
 
               {/* Image + Name header, underline below */}
               <div className="pb-4 mb-5 border-b">
@@ -121,7 +121,7 @@ export const VenderAllProductSection = () => {
                 <Button
                   onClick={() => handleDeleteProduct(product.id)}
                   text={"Delete"}
-                  className={"flex-1 hover:bg-button-redhover"}
+                  className={"flex-1 hover:bg-button-redhover text-sm!"}
                 />
               </div>
             </div>

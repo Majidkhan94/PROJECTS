@@ -5,4 +5,5 @@ export const GetAllOrders = () => APIsRequest("get", `${import.meta.env.VITE_BAC
 export const GetOrdersByUser = (userId) => APIsRequest("get", `${import.meta.env.VITE_BACKEND_URL}orders/user/${userId}`);
 export const GetOrdersByVendor = (vendorId) => APIsRequest("get", `${import.meta.env.VITE_BACKEND_URL}orders/vendor/${vendorId}`);
 export const UpdateOrderStatus = (id, status) => APIsRequest("put", `${import.meta.env.VITE_BACKEND_URL}orders/status/${id}`, status);
-export const OrderCount = () => APIsRequest("get", `${import.meta.env.VITE_BACKEND_URL}Orders/count`)
+export const DeleteOrder = (id) => APIsRequest("delete", `${import.meta.env.VITE_BACKEND_URL}orders/delete/${id}`);
+export const OrderCount = () => APIsRequest("get", `${import.meta.env.VITE_BACKEND_URL}orders/count`);

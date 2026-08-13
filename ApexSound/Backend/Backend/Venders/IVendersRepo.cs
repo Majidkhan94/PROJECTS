@@ -11,5 +11,7 @@ namespace Backend.Venders
         Task<VenderModel?> GetVendorRequestStatus(int userId);
         Task<bool> DeleteVendorRequest(int id);
         Task<VenderModel?> ApproveVendorRequest(int id);
+        Task<int> VenderCount();
+
     }
 }

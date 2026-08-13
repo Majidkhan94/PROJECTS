@@ -69,6 +69,17 @@ namespace Backend.Orders
             }, "Order Status Updated Successfully");
         }
 
+        // DELETE ORDER (New Added)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteOrder(int id)
+        {
+            return await TryCatch(async () =>
+            {
+                var result = await _ordersRepo.DeleteOrder(id);
+                return result;
+            }, "Order Deleted Successfully");
+        }
+
         [HttpGet]
         [Route("count")]
         public async Task<IActionResult> ContactCount()

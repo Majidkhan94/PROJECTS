@@ -4,6 +4,7 @@ using Backend.ConnectionStrings;
 using Backend.Contactus;
 using Backend.Newsletter;
 using Backend.Orders;
+using Backend.Payment;
 using Backend.Products;
 using Backend.Services;
 using Backend.Users;
@@ -63,6 +64,7 @@ builder.Services.AddScoped<IContactusRepo, ContactusRepo>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<IVendersRepo,VendersRepo>();
 builder.Services.AddScoped<IOrdersRepo, OrdersRepo>();
+builder.Services.AddScoped<IPaymentRepo, PaymentRepo>();
 
 // JWT TOKEN 
 

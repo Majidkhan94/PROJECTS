@@ -13,7 +13,7 @@ export const CustomerreviewSection = () => {
     ]
 
     return (
-        <section className="flex flex-wrap justify-between gap-4 mx-10">
+        <section className="flex flex-col md:flex-row flex-wrap justify-between gap-4 mx-10">
             {CustomerReviews.map((item, index) => (
                 <div key={index} className="flex flex-col px-10 items-center text-center flex-1 basis-[30%] p-4 rounded-lg bg-background-color hover:cursor-pointer transition-all duration-500 hover:scale-105">
                     {item.icon}

@@ -15,7 +15,7 @@ export const ProductCard = ({ product }) => {
 
   return (
     <>
-      <div className="w-80 md:w-72 bg-background-color rounded-2xl overflow-hidden transition-transform duration-500 hover:scale-105">
+      <div className="w-95 md:w-72 bg-background-color rounded-2xl overflow-hidden transition-transform duration-500 hover:scale-105">
         <div className="relative w-full overflow-hidden">
           <img src={productPicURL} className="w-full h-full object-cover" />
           <Paragraph text={products} className={"absolute top-3 left-3 text-[10px]! uppercase"} />
@@ -33,7 +33,7 @@ export const ProductCard = ({ product }) => {
             onClick={handleAddToCart}
             text={stock > 0 ? "Add to cart" : "Out of stock"}
             disabled={stock <= 0}
-            className={"mt-4 w-full text-sm font-medium"}
+            className={"mt-4 w-full text-sm! font-medium"}
           />
         </div>
       </div>

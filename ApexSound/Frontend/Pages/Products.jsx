@@ -36,7 +36,7 @@ export const Products = () => {
             
             <Pagetitle title={"Products"}/>
             <PageHeader text={"Products"}/>
-        <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
+        <section className="flex flex-wrap gap-4 justify-center items-center">
             {latestProducts.length > 0 
                 ? (latestProducts.map((product) => (<ProductCard key={product.id} product={product} />)))
                 : (<PageHeader text={"No featured products found."}/>)

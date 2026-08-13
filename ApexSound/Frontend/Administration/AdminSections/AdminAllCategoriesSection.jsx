@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Button, Searchbar, Loading, PageHeader } from "../../Export.js";
 import { CategoriesList, CategoriesDelete } from "../../APIs/CategoriesAPIs.js";
 
-export const VenderAllCategoriesSection = () => {
+export const AdminAllCategoriesSection = () => {
     const [list, setList] = useState([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false);
@@ -44,7 +43,7 @@ export const VenderAllCategoriesSection = () => {
 
     return (
         <>
-        <PageHeader text={"List of categories"}/>
+            <PageHeader text={"List of categories"} />
             <div className="p-4">
                 <Searchbar value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search Category..." />
 

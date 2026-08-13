@@ -6,7 +6,7 @@ export const PageHeader = ({ text, slug, className ="" }) => {
   return (
     <section className="text-center p-5">
         {slug
-        ? <Heading text={slug} className={`text-sm! md:text-2xl! ${BaseClass}`} />
-        : <Heading text={text} className={`text-sm! md:text-2xl! ${BaseClass}`} /> }
+        ? <Heading text={slug} className={`text-2xl! ${BaseClass}`} />
+        : <Heading text={text} className={`text-2xl! ${BaseClass}`} /> }
     </section>
   );};

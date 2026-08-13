@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { Input, Button, Heading, Paragraph, Loading, PageHeader } from "../../Export.js";
+import { useState } from "react";
+import { Input, Button, Loading, PageHeader } from "../../Export.js";
 import { FaImage } from "react-icons/fa";
 import { CategoriesAdd } from "../../APIs/CategoriesAPIs.js";
 
-export const VenderAddCategoriesSection = () => {
+export const AdminAddCategoriesSection = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [name, setName] = useState("");
@@ -50,10 +49,9 @@ export const VenderAddCategoriesSection = () => {
 
     return (
         <>
-        <PageHeader text={"Add categories"}/>
+            <PageHeader text={"Add categories"} />
             <div className="mt-6 p-4">
                 <div className="bg-background-color rounded-2xl p-6 mb-8 max-w-xl mx-auto">
-
                     {error && <p className="text-red-500 text-center mt-2">{error}</p>}
 
                     <form className="flex flex-col gap-4 mt-5" onSubmit={addCategory}>

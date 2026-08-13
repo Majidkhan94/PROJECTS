@@ -40,7 +40,7 @@ const Newslettersubmit = async (e) => {
       <div className="flex flex-wrap gap-18 justify-between">
         
         {/* Widget-1*/}
-        <div className="flex flex-col items-center md:items-start w-full md:w-63">
+        <div className="flex flex-col w-full md:w-63">
             <img src={logo} alt="Logo" className="w-30" />
             <Paragraph text="ApexSound is your ultimate destination for premium audio equipment, offering a wide range of products to elevate your sound experience." />
         </div>
@@ -53,6 +53,8 @@ const Newslettersubmit = async (e) => {
                 <Navbar to="/faqs" text="FAQ" />
                 <Navbar to="/termsandcondition" text="Terms and Condition" />
                 <Navbar to="/privacypolicy" text="Privacy Policy" />
+                <Navbar to="/orderstatus" text="Order Status" />
+                
             </nav>
         </div>
 

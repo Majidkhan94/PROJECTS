@@ -34,7 +34,7 @@ export const FeatureProductsSection = () => {
 
         if(loading) return <Loading />
     return (<>
-        <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
+        <section className="flex flex-wrap gap-4 justify-center items-center">
             {featuredProducts.length > 0 
             ? (featuredProducts.map((product) => ( <ProductCard key={product.id} product={product} /> )))
             : ( <PageHeader text={"No featured products found."} />)}

@@ -11,16 +11,16 @@ export const SliderSection = () => {
     const data = [
         {   "Image": Slider1, "heading": "Premium Headphones",
             "Description": "Immerse yourself in rich, studio-quality sound with active noise cancellation and all-day comfort.",
-            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Categories", "link": "/categories" }
+            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Explore Category", "link": "/categories/headphones" }
         },
         {   "Image": Slider2, "heading": "Powerful Speakers",
-            "Description": "Fill any room with deep bass and crystal-clear highs, built for parties, home theaters, and everyday listening.",
-            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Categories", "link": "/categories" }
+            "Description": "Fill any room with deep bass and crystal-clear highs, built for parties, home theaters.",
+            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Explore Category", "link": "/categories/speakers" }
         },
         {
             "Image": Slider3, "heading": "Professional Microphones",
             "Description": "Capture crisp, broadcast-ready audio for podcasts, streaming, and studio recording.",
-            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Categories", "link": "/categories" }
+            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Explore Category", "link": "/categories/microphones" }
         },
     ]
 
@@ -42,7 +42,7 @@ export const SliderSection = () => {
 
     return (
         <>
-            <section className="relative w-full h-50 md:h-screen overflow-hidden">
+            <section className="relative w-full h-70 md:h-screen overflow-hidden">
                 <div className="flex h-full transition-transform duration-2000 ease-in-out"
                      style={{ width: `${data.length * 100}%`,
                         transform: `translateX(-${currentSlide * (100 / data.length)}%)`}}>
@@ -55,11 +55,11 @@ export const SliderSection = () => {
                 </div>
 
                 {/* Heading + Description + Buttons */}
-                <div className="absolute left-10 md:left-20 inset-0 z-20 flex flex-col justify-center px-4 w-70 md:w-120">
+                <div className="absolute left-10 md:left-20 inset-0 z-20 flex flex-col justify-center px-4 w-80 md:w-120">
                     <div className={`flex flex-col  transition-all duration-1500 linear delay-200
                         ${ show ? "opacity-100 -translate-x-" : "opacity-0 -translate-x-150"}`}>
-                        <Heading text={data[currentSlide].heading} className={"text-lg! md:text-4xl!"} />
-                        <Paragraph text={data[currentSlide].Description} className={"text-[10px]! md:text-lg!"} />
+                        <Heading text={data[currentSlide].heading} className={"text-2xl! md:text-4xl!"} />
+                        <Paragraph text={data[currentSlide].Description} className={"text-[12px]! md:text-lg!"} />
                         <span className="flex gap-3 mt-4 md:mt-8">
                             <Button text={data[currentSlide].button1.text} 
                                     to={data[currentSlide].button1.link} />

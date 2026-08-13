@@ -62,7 +62,7 @@ export const AdminLogin = () => {
           <Input type="password" name="Password" placeholder="Password" value={form.Password}
             onChange={(e) => setForm({ ...form, Password: e.target.value })} />
 
-          <Button text={loading ? "Logging..." : "Login"} type={"submit"} />
+          <Button text={loading ? "Logging..." : "Login"} type={"submit"} className={"text-sm!"} />
         </form>
 
         {/* Register Link */}

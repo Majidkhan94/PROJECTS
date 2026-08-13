@@ -72,7 +72,7 @@ export const AdminRegisteration = () => {
           <Input type="password" name="Confirmpassword" placeholder="Confirm Password" value={form.Confirmpassword}
             onChange={(e) => setForm({ ...form, Confirmpassword: e.target.value })} />
 
-          <Button text={loading ? "Registering..." : "Register"} type={"submit"} />
+          <Button text={loading ? "Registering..." : "Register"} type={"submit"} className={"text-sm!"} />
 
         </form>
 

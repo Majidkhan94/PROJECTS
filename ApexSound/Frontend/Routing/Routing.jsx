@@ -4,7 +4,7 @@ import { Layout, ProtectedRoute, NotFound404
         ,UserRegisteration, UserLogin, UserProfile
         ,HomePage, Contactus, Categories, CategoryProducts, Products, Aboutus, Support, Faqs, TermsandCondition, PrivacyPolicy
         ,AdminRegisteration, AdminLogin, AdminDashboard, AdminProfileUpdate
-        ,Cart, Requesttovendor, VendorsDashboard, OrderPlaced     
+        ,Cart, Requesttovendor, VendorsDashboard, OrderPlaced, OrderStatus     
 
     } from "../Export.js";
 
@@ -58,7 +58,7 @@ import { Layout, ProtectedRoute, NotFound404
                 <Route path="/orderplaced" element={<OrderPlaced />} />
                 <Route path="/requesttovender" element={
                 <ProtectedRoute><Requesttovendor /></ProtectedRoute>} />
-                
+                <Route path="/orderstatus" element={<OrderStatus />} />
             </Route>
 
             

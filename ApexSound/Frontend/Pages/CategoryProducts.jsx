@@ -29,8 +29,8 @@ if(loading) return <Loading />
   return (<>
     <Pagetitle title={`${slug}`}/>
     <PageHeader text={slug} />
-      <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
-        {fetchdata > 0
+      <section className="flex flex-wrap gap-4 justify-center items-center pb-10">
+        {fetchdata.length > 0
         ? (fetchdata.map((product) => (<ProductCard key={product.id} product={product} />)))
         :(<PageHeader text={"Product not found.."}/>)
         }

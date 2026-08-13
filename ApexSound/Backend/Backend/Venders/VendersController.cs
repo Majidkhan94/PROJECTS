@@ -1,4 +1,5 @@
 ﻿using Backend.Controller;
+using Backend.Migrations;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -67,6 +68,16 @@ namespace Backend.Venders
                 var Request = await _vendersRepo.GetVendorRequestStatus(userId);
                 return Request;
             }, "Vendor Request Status Fetched Successfully");
+        }
+
+        [HttpGet]
+        [Route("count")]
+        public async Task<IActionResult> VenderCount()
+        {
+            return await TryCatch(async () => {
+                var count = await _vendersRepo.VenderCount();
+                return count;
+            }, "");
         }
     }
 }

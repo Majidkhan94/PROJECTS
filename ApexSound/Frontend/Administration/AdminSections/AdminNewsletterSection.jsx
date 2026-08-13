@@ -62,7 +62,7 @@ export const AdminNewsletterSection = () => {
                  <li key={item.id} className="flex justify-between items-center border-b py-2">
                     <span className="text-sm">{item.email}</span>
                     <Button text={"Delete"} onClick={()=> handleDelete(item.id)} 
-                    className={"hover:bg-button-redhover"}  />                          
+                    className={"hover:bg-button-redhover text-sm!"}  />                          
                  </li>))}
                 </ul>)}
                 {error && <PageHeader text={error} className={"text-button-redhover"}/>}

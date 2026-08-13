@@ -86,7 +86,7 @@ export const Contactus = () => {
         </div>
 
         {/* RIGHT: form panel */}
-        <div className="flex-1 flex flex-col gap-3 justify-center p-6 md:p-20 overflow-hidden">
+        <div className="flex-1 flex flex-col gap-3 justify-start md:justify-center p-6 md:p-20 overflow-hidden">
         <Paragraph text={"SEND A NOTE"} className={"text-sm!"} />
         <Heading text={"Tell us what's on your mind"} className={"text-2xl! md:text-4xl! font-semibold!"}/>
 

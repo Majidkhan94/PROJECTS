@@ -65,7 +65,7 @@ export const VenderOrderManagement = () => {
 
   return (<>
     <PageHeader text="Order Management" />
-    <section className="mx-5 mt-5">
+    <section className="mx-5 mt-5 pb-5">
 
       {/* Search Bar */}
       <Searchbar type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search orders..." />
@@ -88,9 +88,9 @@ export const VenderOrderManagement = () => {
       <div className="mx-5 mt-5">
 
         {/* Order Cards */}
-        <div className="flex flex-wrap gap-5 mt-6">
+        <div className="flex flex-col md:flex-row flex-wrap gap-5 mt-6">
           {filteredOrders.map((order) => (
-            <div key={order.id} className="bg-background-color rounded-2xl p-6 w-[calc(33.333%-1.34rem)]">
+            <div key={order.id} className="bg-background-color rounded-2xl p-6 w-full md:w-[calc(33.333%-1.34rem)]">
 
               {/* Image + Product Name header, underline below */}
               <div className="pb-4 mb-5 border-b">

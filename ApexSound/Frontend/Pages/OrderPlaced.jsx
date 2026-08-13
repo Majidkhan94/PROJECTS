@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../Components/CartContext.jsx";
 import { Paragraph, PageHeader, Heading, Button, Input, Pagetitle } from "../Export.js";
 import { AddOrder } from "../APIs/OrderAPIs.js";
+import { CreateCheckoutSession } from "../APIs/PaymentAPIs.js";
 
 export const OrderPlaced = () => {
   const { cartItems, totalPrice, clearCart } = useCart();
@@ -12,7 +13,8 @@ export const OrderPlaced = () => {
     fullName: "",
     phone: "",
     address: "",
-    city: ""
+    city: "",
+    paymentMethod: "COD"
   });
 
   const [loading, setLoading] = useState(false);
@@ -21,6 +23,25 @@ export const OrderPlaced = () => {
 
   const handleInputChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const buildOrderItems = () => {
+    const userId = localStorage.getItem("UserId");
+    return cartItems.map((item) => ({
+      userId: Number(userId),
+      productId: item.id,
+      productName: item.name,
+      productPicURL: item.productPicURL,
+      price: item.price,
+      quantity: item.quantity,
+      totalPrice: item.price * item.quantity,
+      vendorId: item.userId,
+      fullName: form.fullName.trim(),
+      phone: form.phone.trim(),
+      address: form.address.trim(),
+      city: form.city.trim(),
+      paymentMethod: form.paymentMethod
+    }));
   };
 
   const handleOrderPlaced = async (e) => {
@@ -35,33 +56,40 @@ export const OrderPlaced = () => {
 
     try {
       setLoading(true);
+      const orderItems = buildOrderItems();
 
-      const userId = localStorage.getItem("UserId");
+      // COD → seedha order save karo
+      if (form.paymentMethod === "COD") {
+        const response = await AddOrder(orderItems);
 
-      const orderItems = cartItems.map((item) => ({
-        userId: Number(userId),
-        productId: item.id,
+        if (response.success) {
+          setSuccess(response?.message || "Order placed successfully.");
+          setTimeout(() => { clearCart(); }, 1500);
+          setTimeout(() => { navigate("/"); }, 3000);
+        } else {
+          setError(response?.message || "Failed to place order.");
+        }
+        return;
+      }
+
+      // Stripe → checkout session bana kar redirect karo
+      // Pehle pending order localStorage mein save karo, taake success page pe wapas aa kar save kar sakein
+      localStorage.setItem("pendingOrder", JSON.stringify(orderItems));
+
+      const stripeItems = cartItems.map((item) => ({
         productName: item.name,
-        productPicURL: item.productPicURL,
         price: item.price,
-        quantity: item.quantity,
-        totalPrice: item.price * item.quantity,
-        vendorId: item.userId,
-        fullName: form.fullName.trim(),
-        phone: form.phone.trim(),
-        address: form.address.trim(),
-        city: form.city.trim()
+        quantity: item.quantity
       }));
 
-      const response = await AddOrder(orderItems);
+      const response = await CreateCheckoutSession(stripeItems);
 
-      if (response.success) {
-        setSuccess(response?.message || "Order placed successfully.");
-        setTimeout(() => { clearCart(); }, 1500);
-        setTimeout(() => { navigate("/"); }, 3000);
+      if (response.success && response?.data?.data?.url) {
+        window.location.href = response.data.data.url;
       } else {
-        setError(response?.message || "Failed to place order.");
+        setError(response?.message || "Failed to start payment.");
       }
+
     } catch (err) {
       setError(err?.response?.data?.message || "Failed to place order.");
     } finally {
@@ -112,8 +140,8 @@ export const OrderPlaced = () => {
             ))}
 
             {/* Shipping Form (User Fills) */}
-           <form onSubmit={handleOrderPlaced} className="flex flex-col gap-4 bg-background-color rounded-2xl p-6">
-              <PageHeader text={"Shipping Details"}/>
+            <form onSubmit={handleOrderPlaced} className="flex flex-col gap-4 bg-background-color rounded-2xl p-6">
+              <PageHeader text={"Shipping Details"} />
 
               <div className="flex flex-col md:flex-row gap-4">
                 <Input type="text" name="fullName" placeholder="Full Name" value={form.fullName} onChange={handleInputChange} />
@@ -123,6 +151,33 @@ export const OrderPlaced = () => {
 
               <Input type="text" name="address" placeholder="Address" value={form.address} onChange={handleInputChange} />
 
+              {/* Payment Method */}
+              <div className="flex flex-col gap-2 mt-2">
+                <Paragraph text="Payment Method" className="text-xs text-white/50" />
+                <div className="flex gap-6">
+                  <label className="flex items-center gap-2 text-sm cursor-pointer">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="COD"
+                      checked={form.paymentMethod === "COD"}
+                      onChange={handleInputChange}
+                    />
+                    Cash on Delivery
+                  </label>
+                  <label className="flex items-center gap-2 text-sm cursor-pointer">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="Stripe"
+                      checked={form.paymentMethod === "Stripe"}
+                      onChange={handleInputChange}
+                    />
+                    Pay with Card (Stripe)
+                  </label>
+                </div>
+              </div>
+
               <div className="flex justify-between items-center mt-2">
                 <Heading text={`Grand Total: $${totalPrice.toFixed(2)}`} className="text-[16px]! font-bold" />
               </div>
@@ -131,9 +186,9 @@ export const OrderPlaced = () => {
               {success && <p className="text-green-500 text-center text-sm">{success}</p>}
 
               <Button
-                text={loading ? "Placing Order..." : "Place Order"}
+                text={loading ? "Processing..." : form.paymentMethod === "Stripe" ? "Pay & Place Order" : "Place Order"}
                 type="submit"
-                className="w-full py-3 text-sm font-medium"
+                className="w-full py-3 text-sm! font-medium"
               />
             </form>
           </>

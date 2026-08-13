@@ -28,7 +28,7 @@ export const Categories = () => {
             <Pagetitle title={"categories"}/>
             <PageHeader text={"categories"}/>
             
-            <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
+            <section className="flex flex-wrap gap-4 justify-center items-center pb-10">
                 {list.length > 0
                 ? (list.map((category) => (<CategoryCard key={category.id} category={category}/>)))
                 : (<PageHeader text={"No Category products found."}/>) 

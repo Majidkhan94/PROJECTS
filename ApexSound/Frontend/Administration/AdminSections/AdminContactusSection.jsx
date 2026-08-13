@@ -59,7 +59,7 @@ export const AdminContactusSection = () => {
                             <Paragraph text={`Name: ${item.fullname}`} />
                             <Paragraph text={`Email: ${item.email}`} />
                             <Paragraph text={`Message: ${item.message}`} />
-                            <Button text="Delete" onClick={() => handleDelete(item.id)} className={" mt-5 w-full hover:bg-red-600! hover:text-white!"} />
+                            <Button text="Delete" onClick={() => handleDelete(item.id)} className={" mt-5 w-full hover:bg-red-600! hover:text-white! text-sm!"} />
                         </div>
 
                     </div>))}

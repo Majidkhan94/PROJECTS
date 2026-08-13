@@ -26,20 +26,19 @@ const supportContent = [
 export const Support = () => {
 
 return (<>
-
-    {/* Page Title  */}
-   <Pagetitle title={"Support"} />
-
-    <section className="mx-5 mt-5 mb-10">
-      <PageHeader text="Support" />
-      <div className="flex flex-col gap-6 mt-6 bg-background-color rounded-2xl p-10">
-        {supportContent.map(({ heading, text }) => (
-          <div key={heading} className="flex flex-col gap-2">
-            <Heading text={heading} className="text-xl!" />
-            <Paragraph text={text} />
-          </div>
-        ))}
-      </div>
-    </section>
-  </>);
+  {/* Page Title  */}
+  <Pagetitle title={"Support"} />
+  
+  <section className="m-5">
+    <PageHeader text="Support" />
+    <div className="flex flex-col gap-6 my-10 px-10 md:px-50">
+      {supportContent.map(({ heading, text }) => (
+        <div key={heading} className="flex flex-col gap-2">
+          <Heading text={heading} className="text-2xl!" />
+          <Paragraph text={text} />
+        </div>
+      ))}
+    </div>
+  </section>
+</>);
 };

@@ -94,7 +94,11 @@ namespace Backend.Venders
             return Request;
         }
 
-
+        // Count
+        public async Task<int> VenderCount()
+        {
+            return await _connectionString.VendorRequests.CountAsync();
+        }
 
 
 

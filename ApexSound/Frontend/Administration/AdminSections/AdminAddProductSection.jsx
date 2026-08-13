@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Button, Input, Heading, PageHeader } from "../../Export.js";
+import { Button, Input, PageHeader } from "../../Export.js";
 import { ProductsAdd } from "../../APIs/ProductAPIs.js";
 import { CategoriesList } from "../../APIs/CategoriesAPIs.js";
 import { FaImage } from "react-icons/fa";
 
-export const VenderAddProductSection = () => {
+export const AdminAddProductSection = () => {
   const [categories, setCategories] = useState([]);
 
   const [form, setForm] = useState({
@@ -70,8 +70,8 @@ export const VenderAddProductSection = () => {
     }
     try {
       setLoading(true);
-
-      const userId = localStorage.getItem("UserId");
+      setError(null);
+      setSuccess(null);
 
       const formdata = new FormData();
       formdata.append("Name", form.name);
@@ -80,7 +80,6 @@ export const VenderAddProductSection = () => {
       formdata.append("Products", form.products);
       formdata.append("CategoryName", form.categoryName);
       formdata.append("Description", form.description);
-      formdata.append("UserId", userId);
       if (form.productPic) {
         formdata.append("ProductPic", form.productPic);
       }
@@ -107,15 +106,13 @@ export const VenderAddProductSection = () => {
     } finally {
       setLoading(false);
     }
-};
+  };
 
   return (
     <>
-    <PageHeader text={"add product"}/>
+      <PageHeader text={"Add Product"} />
       <div className="mt-6 p-4">
         <div className="bg-background-color rounded-2xl p-6 mb-8 max-w-xl mx-auto">
-          
-
           {error && <p className="text-red-500 text-center mt-2">{error}</p>}
           {success && <p className="text-green-500 text-center mt-2">{success}</p>}
 
@@ -140,7 +137,7 @@ export const VenderAddProductSection = () => {
             <div className="flex gap-4">
               <select
                 name="products"
-                className="flex-1 rounded-full px-3 py-2 bg-white/5 text-hover-bg"
+                className="flex-1 rounded-full px-3 py-2 bg-white/5 text-hover-bg outline-none"
                 value={form.products}
                 onChange={handleInputChange}
               >
@@ -151,7 +148,7 @@ export const VenderAddProductSection = () => {
 
               <select
                 name="categoryName"
-                className="flex-1 rounded-full px-3 py-2 bg-white/5 text-hover-bg"
+                className="flex-1 rounded-full px-3 py-2 bg-white/5 text-hover-bg outline-none"
                 value={form.categoryName}
                 onChange={handleInputChange}
               >

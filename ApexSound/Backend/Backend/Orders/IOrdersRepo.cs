@@ -8,6 +8,7 @@ namespace Backend.Orders
         Task<List<OrderModel>> GetOrdersByUser(int userId);
         Task<List<OrderModel>> GetOrdersByVendor(int vendorId);
         Task<OrderModel?> UpdateOrderStatus(int id, OrderStatus status);
+        Task<bool> DeleteOrder(int id);
         Task<int> OrderCount();
     }
 }

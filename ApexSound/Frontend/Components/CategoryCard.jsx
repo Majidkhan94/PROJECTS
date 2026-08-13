@@ -7,7 +7,7 @@ export const CategoryCard = ({ category }) => {
 
   return (
     <Link to={`/categories/${slug}`}>
-      <div className="w-80 md:w-72 bg-background-color rounded-2xl overflow-hidden transition-transform duration-500 hover:scale-105">
+      <div className="w-95 md:w-72 bg-background-color rounded-2xl overflow-hidden transition-transform duration-500 hover:scale-105">
 
         {/* Image */}
         <div className="relative w-full overflow-hidden">
@@ -19,7 +19,7 @@ export const CategoryCard = ({ category }) => {
           <span className="flex items-start justify-between gap-2 mt-2">
             <Heading text={name} className={"text-[16px]! font-semibold"} />
           </span>
-          <Button text={"Explore Category"} className={"mt-4 w-full text-sm font-medium"} />
+          <Button text={"Explore Category"} className={"mt-4 w-full text-sm! font-medium"} />
         </div>
       </div>
     </Link>

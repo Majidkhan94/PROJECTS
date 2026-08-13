@@ -34,7 +34,7 @@ export const LatestproductSection = () => {
     if (loading) return <Loading />;
 
     return (
-        <section className="flex flex-wrap gap-4 justify-center items-center my-8 md:my-8">
+        <section className="flex flex-wrap gap-4 justify-center items-center">
             {latestProducts.length > 0 
                 ? (latestProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />

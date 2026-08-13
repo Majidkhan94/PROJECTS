@@ -44,7 +44,7 @@ export const VenderDashboardSection = () => {
         <PageHeader text={"Dashboard"}/>
             {Dashboard.map((item, index) => (
                 <section key={index} className="flex flex-col gap-10">
-                    <div className="mt-5 mx-5 px-15 py-3 flex items-center gap-4 font-main">
+                    <div className="mt-5 mx-5 px-0 md:px-15 py-3 flex items-center gap-4 font-main">
                         <span className="flex items-center gap-3 whitespace-nowrap">
                             <span className="text-lg">{item.icon}</span>
                             {item.text}

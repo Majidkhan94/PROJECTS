@@ -48,7 +48,7 @@ export const UserLogin = () =>{
           <Input type="password" name="Password" placeholder="Password" value={form.Password}
           onChange={(e)=> setForm({...form, Password: e.target.value})} />
           
-          <Button text= {"Submit"} type={"submit"} />
+          <Button text= {"Submit"} type={"submit"} className={"text-sm!"} />
         </form>
 
     {/* Login Link */}
