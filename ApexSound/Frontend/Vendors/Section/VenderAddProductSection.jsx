@@ -70,6 +70,8 @@ export const VenderAddProductSection = () => {
     }
     try {
       setLoading(true);
+      setError(null);
+      setSuccess(null);
 
       const userId = localStorage.getItem("UserId");
 

@@ -80,6 +80,7 @@ export const AdminAddProductSection = () => {
       formdata.append("Products", form.products);
       formdata.append("CategoryName", form.categoryName);
       formdata.append("Description", form.description);
+      formdata.append("UserId", localStorage.getItem("adminId"));
       if (form.productPic) {
         formdata.append("ProductPic", form.productPic);
       }
