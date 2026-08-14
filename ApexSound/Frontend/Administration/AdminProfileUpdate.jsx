@@ -131,7 +131,7 @@ useEffect(() => {
     : (<>
             <PageHeader text={"Update profile"}/>
 
-            <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
+            <form onSubmit={(e) => { e.preventDefault(); handleSave(); }} className="flex flex-col gap-4">
     {/* Image Upload */}
     <div className="flex justify-center mb-4">
         <div className="relative w-32 h-32">
