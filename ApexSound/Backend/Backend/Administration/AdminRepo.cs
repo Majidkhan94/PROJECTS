@@ -29,11 +29,9 @@ namespace Backend.Administration
             var ExistAdmin = await _connectionstring.Registeration.FirstOrDefaultAsync(r => r.role == AuthModel.Role.Admin);
             if (ExistAdmin != null)
                 throw new Exception("Admin already exists.");
-
             // Password Check
             if (adminregisteration.Password != adminregisteration.Confirmpassword)
                 throw new Exception("Password Not Match");
-
             // Mapping
             var adminData = new AuthModel()
             {
@@ -44,21 +42,18 @@ namespace Backend.Administration
                 Createdat = DateTime.UtcNow,
                 Refreshtokenexpiry = DateTime.UtcNow.AddDays(7),
             };
-
             // Database Save (pehle save, taake Id generate ho jaye)
             await _connectionstring.Registeration.AddAsync(adminData);
             await _connectionstring.SaveChangesAsync();
-
             // Tokens (ab adminData.Id available hai)
             var accesstoken = Token.GenerateAccessToken(adminData.Id, adminData.Email, AuthModel.Role.Admin.ToString());
             var refreshtoken = Token.GenerateRefreshToken();
-
             // Refresh token DB mein save karein
             adminData.Refreshtoken = refreshtoken;
             await _connectionstring.SaveChangesAsync();
-
             return new AdminRegDTO
             {
+                Id = adminData.Id,
                 Fullname = adminData.Fullname,
                 Email = adminData.Email,
                 Accesstoken = accesstoken,
