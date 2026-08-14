@@ -11,16 +11,16 @@ export const SliderSection = () => {
     const data = [
         {   "Image": Slider1, "heading": "Premium Headphones",
             "Description": "Immerse yourself in rich, studio-quality sound with active noise cancellation and all-day comfort.",
-            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Explore Category", "link": "/categories/headphones" }
+            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Explore Category", "link": "/categories/headphone" }
         },
         {   "Image": Slider2, "heading": "Powerful Speakers",
             "Description": "Fill any room with deep bass and crystal-clear highs, built for parties, home theaters.",
-            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Explore Category", "link": "/categories/speakers" }
+            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Explore Category", "link": "/categories/speaker" }
         },
         {
             "Image": Slider3, "heading": "Professional Microphones",
             "Description": "Capture crisp, broadcast-ready audio for podcasts, streaming, and studio recording.",
-            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Explore Category", "link": "/categories/microphones" }
+            "button1": { "text": "All Products", "link": "/products" }, "button2": { "text": "Explore Category", "link": "/categories/microphone" }
         },
     ]
 
