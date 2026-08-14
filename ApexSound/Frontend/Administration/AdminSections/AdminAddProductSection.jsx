@@ -14,6 +14,7 @@ export const AdminAddProductSection = () => {
     stock: "",
     products: "",
     categoryName: "",
+    categoryId: "",
     description: ""
   });
 
@@ -46,6 +47,17 @@ export const AdminAddProductSection = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Category select hone par naam aur id dono save karo
+  const handleCategoryChange = (e) => {
+    const selectedId = e.target.value;
+    const selectedCategory = categories.find((c) => String(c.id) === String(selectedId));
+    setForm({
+      ...form,
+      categoryId: selectedId,
+      categoryName: selectedCategory ? selectedCategory.name : ""
+    });
+  };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -63,6 +75,7 @@ export const AdminAddProductSection = () => {
       !form.stock ||
       !form.products ||
       !form.categoryName ||
+      !form.categoryId ||
       !form.description
     ) {
       setError("Please fill in all fields.");
@@ -79,6 +92,7 @@ export const AdminAddProductSection = () => {
       formdata.append("Stock", form.stock);
       formdata.append("Products", form.products);
       formdata.append("CategoryName", form.categoryName);
+      formdata.append("CategoryId", form.categoryId);
       formdata.append("Description", form.description);
       formdata.append("UserId", localStorage.getItem("adminId"));
       if (form.productPic) {
@@ -96,6 +110,7 @@ export const AdminAddProductSection = () => {
           stock: "",
           products: "",
           categoryName: "",
+          categoryId: "",
           description: ""
         });
         setPreviewImage(null);
@@ -148,14 +163,14 @@ export const AdminAddProductSection = () => {
               </select>
 
               <select
-                name="categoryName"
+                name="categoryId"
                 className="flex-1 rounded-full px-3 py-2 bg-white/5 text-hover-bg outline-none"
-                value={form.categoryName}
-                onChange={handleInputChange}
+                value={form.categoryId}
+                onChange={handleCategoryChange}
               >
                 <option value="" disabled className="text-black font-semibold">Select Categories</option>
                 {categories.map((category) => (
-                  <option key={category.id} value={category.name} className="text-black font-semibold">
+                  <option key={category.id} value={category.id} className="text-black font-semibold">
                     {category.name}
                   </option>
                 ))}
